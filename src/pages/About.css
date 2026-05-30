@@ -1,0 +1,32 @@
+.page-hero {
+  padding: 120px 0 80px;
+  text-align: center;
+  background: linear-gradient(135deg, #0f0a2e 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.page-hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-hero__title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.page-hero__subtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+  .page-hero { padding: 80px 0 50px; }
+  .page-hero__subtitle { font-size: 0.92rem; }
+}

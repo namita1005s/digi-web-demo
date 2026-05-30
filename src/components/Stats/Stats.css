@@ -35,5 +35,12 @@
 @media (max-width: 640px) {
   .stats__grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0;
   }
+  .stats__item {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .stats__item:nth-child(odd) { border-right: 1px solid var(--card-border); }
+  .stats { padding: 50px 0; }
 }

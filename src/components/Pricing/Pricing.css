@@ -113,3 +113,9 @@
     margin: 0 auto;
   }
 }
+
+@media (max-width: 480px) {
+  .pricing__grid { max-width: 100%; }
+  .pricing-card { padding: 28px 20px; }
+  .pricing-card__amount { font-size: 2rem; }
+}

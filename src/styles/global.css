@@ -50,12 +50,14 @@ button {
 /* Section */
 .section {
   padding: var(--section-padding);
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Section Header */
 .section-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 48px;
 }
 
 .section-tag {
@@ -136,7 +138,14 @@ button {
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (max-width: 768px) {
+  .container { padding: 0 16px; }
+  .section-header { margin-bottom: 36px; }
+  .btn-primary, .btn-outline { padding: 12px 22px; font-size: 0.9rem; }
+}
+
 @media (max-width: 640px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .section { padding: 70px 0; }
+  .section { padding: 60px 0; }
+  .section-subtitle { font-size: 0.92rem; }
 }

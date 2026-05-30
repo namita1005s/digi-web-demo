@@ -74,10 +74,18 @@
 @media (max-width: 900px) {
   .about__inner {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
 
   .about__card {
     max-width: 100%;
   }
+}
+
+@media (max-width: 480px) {
+  .about__card {
+    padding: 24px 20px;
+    gap: 20px;
+  }
+  .about__stat-num { font-size: 1.8rem; }
 }

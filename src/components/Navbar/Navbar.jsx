@@ -21,6 +21,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   const handleQuote = () => {
     navigate('/contact');
     setMenuOpen(false);
@@ -48,6 +53,8 @@ export default function Navbar() {
           <Link to="/" className="navbar__logo">
             Trendox<span>.</span>
           </Link>
+
+          {menuOpen && <div className="navbar__overlay" onClick={() => setMenuOpen(false)} />}
 
           <ul className={`navbar__links${menuOpen ? ' navbar__links--open' : ''}`}>
             {navLinks.map(({ label, to }) => (

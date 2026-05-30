@@ -3,9 +3,19 @@ import './Services.css'
 
 const services = [
   {
+    icon: '🎨',
+    title: 'Website Design',
+    desc: 'Beautiful, modern websites crafted to represent your brand and convert visitors into customers.',
+  },
+  {
+    icon: '⚙️',
+    title: 'Website Development',
+    desc: 'Fast, scalable, and secure web development solutions built with the latest technologies.',
+  },
+  {
     icon: '📈',
-    title: 'SEO Optimization',
-    desc: 'Rank higher on search engines and drive organic traffic with data-driven SEO strategies.',
+    title: 'SEO Services',
+    desc: 'Rank higher on search engines and drive consistent organic traffic with proven SEO strategies.',
   },
   {
     icon: '📱',
@@ -13,24 +23,14 @@ const services = [
     desc: 'Build brand awareness and engage your audience across all major social platforms.',
   },
   {
-    icon: '✍️',
-    title: 'Content Marketing',
-    desc: 'Create compelling content that attracts, educates, and converts your target audience.',
-  },
-  {
     icon: '💰',
-    title: 'Paid Advertising',
-    desc: 'Maximize ROI with targeted Google Ads and social media ad campaigns.',
+    title: 'PPC Advertising',
+    desc: 'Maximize ROI with targeted Google Ads and paid social campaigns that deliver real results.',
   },
   {
-    icon: '📧',
-    title: 'Email Marketing',
-    desc: 'Nurture leads and retain customers with personalized email automation campaigns.',
-  },
-  {
-    icon: '🎨',
-    title: 'Web Design & Dev',
-    desc: 'Build fast, beautiful, conversion-optimized websites that represent your brand.',
+    icon: '✨',
+    title: 'Branding Solutions',
+    desc: 'Create a powerful brand identity that stands out and leaves a lasting impression.',
   },
 ]
 

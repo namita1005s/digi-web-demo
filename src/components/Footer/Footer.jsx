@@ -47,22 +47,6 @@ export default function Footer() {
   return (
     <footer className="footer">
 
-      {/* ── Top Banner ── */}
-      <div className="footer__top">
-        <div className="container footer__top-inner">
-          <h2 className="footer__top-heading">
-            Experience World-Class <span>Digital Marketing Services</span>
-          </h2>
-          <p className="footer__top-text">
-            Elevate your brand with innovative strategies tailored to drive growth, visibility,
-            and long-term success. Let's grow your business together.
-          </p>
-          <Link to="/contact" className="btn-primary footer__top-cta">
-            Get Free Consultation
-          </Link>
-        </div>
-      </div>
-
       {/* ── Middle Grid ── */}
       <div className="footer__middle">
         <div className="container footer__grid">

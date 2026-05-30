@@ -1,0 +1,19 @@
+:root {
+  --primary: #7C3AED;
+  --primary-light: #9D5FF3;
+  --accent: #00E5A8;
+  --bg: #070B14;
+  --card-bg: #111827;
+  --card-border: #1E2A3A;
+  --text: #F8FAFC;
+  --muted: #94A3B8;
+  --white: #ffffff;
+
+  --font-base: 'Inter', sans-serif;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.3s ease;
+
+  --section-padding: 100px 0;
+  --container-width: 1200px;
+}

@@ -1,0 +1,46 @@
+.trusted {
+  padding: 40px 0;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  background: #0D1220;
+}
+
+.trusted__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.trusted__label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.trusted__label span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.trusted__logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+}
+
+.trusted__logo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  transition: opacity var(--transition), color var(--transition);
+}
+
+.trusted__logo:hover {
+  opacity: 1;
+  color: var(--text);
+}

@@ -1,0 +1,38 @@
+.why {
+  background: #0D1220;
+}
+
+.why__grid {
+  gap: 24px;
+}
+
+.why-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.why-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.why-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.why-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.why-card__desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.7;
+}

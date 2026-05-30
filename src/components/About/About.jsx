@@ -26,10 +26,6 @@ export default function About() {
           viewport={{ once: true }}
           custom={0}
         >
-          <span className="section-tag">Who We Are</span>
-          <h2 className="section-title" style={{ textAlign: 'left', margin: '12px 0 20px' }}>
-            We Help Brands <span className="highlight">Grow Online</span>
-          </h2>
           <p className="about__text">
             Trendox Marketing Solutions is a results-driven digital marketing agency dedicated to
             helping businesses of all sizes build a powerful online presence. We combine creativity,

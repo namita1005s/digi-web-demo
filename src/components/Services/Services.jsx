@@ -48,16 +48,6 @@ export default function Services() {
   return (
     <section className="section services" id="services">
       <div className="container">
-        <div className="section-header">
-          <span className="section-tag">What We Offer</span>
-          <h2 className="section-title">
-            Services That <span className="highlight">Drive Results</span>
-          </h2>
-          <p className="section-subtitle">
-            From strategy to execution, we cover every aspect of digital marketing to grow your business.
-          </p>
-        </div>
-
         <div className="grid-3 services__grid">
           {services.map((s, i) => (
             <motion.div

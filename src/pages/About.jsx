@@ -1,6 +1,5 @@
 import AboutSection from '../components/About/About'
 import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs'
-import Stats from '../components/Stats/Stats'
 import CTA from '../components/CTA/CTA'
 import './About.css'
 
@@ -17,7 +16,6 @@ export default function About() {
         </div>
       </section>
       <AboutSection />
-      <Stats />
       <WhyChooseUs />
       <CTA />
     </>

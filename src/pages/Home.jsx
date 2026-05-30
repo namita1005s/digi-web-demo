@@ -1,5 +1,4 @@
 import Hero from '../components/Hero/Hero'
-import TrustedBy from '../components/TrustedBy/TrustedBy'
 import Services from '../components/Services/Services'
 import About from '../components/About/About'
 import Stats from '../components/Stats/Stats'
@@ -14,7 +13,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TrustedBy />
       <Services />
       <About />
       <Stats />

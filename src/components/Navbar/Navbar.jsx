@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import './Navbar.css'
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -8,28 +8,33 @@ const navLinks = [
   { label: 'Services', to: '/services' },
   { label: 'FAQ', to: '/#faq' },
   { label: 'Contact', to: '/contact' },
-]
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const handleQuote = () => {
+    navigate('/contact');
+    setMenuOpen(false);
+  };
 
   return (
     <>
-      {/* Top Bar */}
       <div className="topbar">
-        <div className="container topbar-inner">
-          <div className="topbar-left">
-            <span>📞 +1 (800) 123-4567</span>
-            <span>✉️ hello@trendox.com</span>
+        <div className="container topbar__inner">
+          <div className="topbar__left">
+            <a href="tel:+11234567890">📞 +1 (123) 456-7890</a>
+            <a href="mailto:hello@trendox.com">✉ hello@trendox.com</a>
           </div>
-          <div className="topbar-right">
+          <div className="topbar__right">
             <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
             <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter">TW</a>
             <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
@@ -38,41 +43,42 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Navbar */}
       <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
-        <div className="container navbar-inner">
-          <Link to="/" className="navbar-logo">
+        <div className="container navbar__inner">
+          <Link to="/" className="navbar__logo">
             Trendox<span>.</span>
           </Link>
 
-          <ul className={`navbar-links${menuOpen ? ' navbar-links--open' : ''}`}>
-            {navLinks.map(link => (
-              <li key={link.label}>
+          <ul className={`navbar__links${menuOpen ? ' navbar__links--open' : ''}`}>
+            {navLinks.map(({ label, to }) => (
+              <li key={label}>
                 <NavLink
-                  to={link.to}
-                  className={({ isActive }) => isActive ? 'nav-link nav-link--active' : 'nav-link'}
+                  to={to}
+                  className={({ isActive }) => isActive ? 'active' : ''}
                   onClick={() => setMenuOpen(false)}
                 >
-                  {link.label}
+                  {label}
                 </NavLink>
               </li>
             ))}
-            <li>
-              <Link to="/contact" className="btn-primary navbar-cta" onClick={() => setMenuOpen(false)}>
-                Get Quote
-              </Link>
+            <li className="navbar__cta-mobile">
+              <button className="btn-primary" onClick={handleQuote}>Get Quote</button>
             </li>
           </ul>
 
+          <button className="btn-primary navbar__cta-desktop" onClick={handleQuote}>
+            Get Quote
+          </button>
+
           <button
-            className="navbar-toggle"
-            onClick={() => setMenuOpen(prev => !prev)}
+            className={`navbar__hamburger${menuOpen ? ' open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`hamburger${menuOpen ? ' hamburger--open' : ''}`} />
+            <span /><span /><span />
           </button>
         </div>
       </nav>
     </>
-  )
+  );
 }

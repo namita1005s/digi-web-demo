@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import './About.css'
+import { FaDesktop, FaCog, FaChartBar } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const features = [
-  { icon: '🖥️', label: 'Website Design' },
-  { icon: '⚙️', label: 'Web Development' },
-  { icon: '📊', label: 'Digital Marketing' },
+  { icon: <FaDesktop />, label: 'Website Design' },
+  { icon: <FaCog />, label: 'Web Development' },
+  { icon: <FaChartBar />, label: 'Digital Marketing' },
 ]
 
 const fadeUp = {

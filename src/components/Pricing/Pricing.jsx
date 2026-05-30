@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { FaCheck } from 'react-icons/fa'
 import './Pricing.css'
 
 const plans = [
@@ -62,7 +63,7 @@ export default function Pricing() {
               <ul className="pricing-card__features">
                 {plan.features.map(f => (
                   <li key={f}>
-                    <span className="pricing-card__check">✓</span> {f}
+                    <span className="pricing-card__check"><FaCheck /></span> {f}
                   </li>
                 ))}
               </ul>

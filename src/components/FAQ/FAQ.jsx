@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { FaPlus, FaMinus } from 'react-icons/fa'
 import './FAQ.css'
 
 const faqs = [
@@ -45,7 +46,7 @@ export default function FAQ() {
             >
               <button className="faq__question" onClick={() => setOpen(open === i ? null : i)}>
                 <span>{item.q}</span>
-                <span className="faq__icon">{open === i ? '−' : '+'}</span>
+                <span className="faq__icon">{open === i ? <FaMinus /> : <FaPlus />}</span>
               </button>
               <AnimatePresence>
                 {open === i && (

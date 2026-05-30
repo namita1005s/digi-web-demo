@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { FaQuoteLeft } from 'react-icons/fa'
 import './Testimonials.css'
 
 const testimonials = [
@@ -44,7 +45,8 @@ export default function Testimonials() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <p className="testimonial-card__feedback">"{t.feedback}"</p>
+              <FaQuoteLeft className="testimonial-card__quote" />
+              <p className="testimonial-card__feedback">{t.feedback}</p>
               <div className="testimonial-card__author">
                 <span className="testimonial-card__name">{t.name}</span>
                 <span className="testimonial-card__company">{t.company}</span>

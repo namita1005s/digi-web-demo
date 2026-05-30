@@ -27,6 +27,29 @@
   color: var(--muted);
 }
 
+.footer__socials {
+  display: flex;
+  gap: 12px;
+}
+
+.footer__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  color: var(--muted);
+  font-size: 0.85rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.footer__socials a:hover {
+  color: var(--primary-light);
+  border-color: var(--primary-light);
+}
+
 @media (max-width: 640px) {
   .footer__inner {
     flex-direction: column;

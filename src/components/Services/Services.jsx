@@ -1,34 +1,35 @@
 import { motion } from 'framer-motion'
 import './Services.css'
+import { FaPaintBrush, FaCode, FaChartLine, FaHashtag, FaBullseye, FaStar } from 'react-icons/fa'
 
 const services = [
   {
-    icon: '🎨',
+    icon: <FaPaintBrush />,
     title: 'Website Design',
     desc: 'Beautiful, modern websites crafted to represent your brand and convert visitors into customers.',
   },
   {
-    icon: '⚙️',
+    icon: <FaCode />,
     title: 'Website Development',
     desc: 'Fast, scalable, and secure web development solutions built with the latest technologies.',
   },
   {
-    icon: '📈',
+    icon: <FaChartLine />,
     title: 'SEO Services',
     desc: 'Rank higher on search engines and drive consistent organic traffic with proven SEO strategies.',
   },
   {
-    icon: '📱',
+    icon: <FaHashtag />,
     title: 'Social Media Marketing',
     desc: 'Build brand awareness and engage your audience across all major social platforms.',
   },
   {
-    icon: '💰',
+    icon: <FaBullseye />,
     title: 'PPC Advertising',
     desc: 'Maximize ROI with targeted Google Ads and paid social campaigns that deliver real results.',
   },
   {
-    icon: '✨',
+    icon: <FaStar />,
     title: 'Branding Solutions',
     desc: 'Create a powerful brand identity that stands out and leaves a lasting impression.',
   },

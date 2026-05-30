@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import './WhyChooseUs.css'
+import { FaTrophy, FaBullseye, FaGem, FaHandshake } from 'react-icons/fa'
 
 const reasons = [
-  { icon: '🏆', title: 'Experienced Team', desc: 'Our specialists bring years of hands-on digital marketing expertise across industries.' },
-  { icon: '🎯', title: 'Result Driven Strategy', desc: 'Every campaign is built around measurable KPIs and real business outcomes.' },
-  { icon: '💎', title: 'Affordable Pricing', desc: 'Premium quality services designed to fit budgets of all sizes without compromise.' },
-  { icon: '🤝', title: 'Dedicated Support', desc: 'A dedicated account manager is always available to keep your campaigns on track.' },
+  { icon: <FaTrophy />, title: 'Experienced Team', desc: 'Our specialists bring years of hands-on digital marketing expertise across industries.' },
+  { icon: <FaBullseye />, title: 'Result Driven Strategy', desc: 'Every campaign is built around measurable KPIs and real business outcomes.' },
+  { icon: <FaGem />, title: 'Affordable Pricing', desc: 'Premium quality services designed to fit budgets of all sizes without compromise.' },
+  { icon: <FaHandshake />, title: 'Dedicated Support', desc: 'A dedicated account manager is always available to keep your campaigns on track.' },
 ]
 
 export default function WhyChooseUs() {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { FaPhone, FaEnvelope, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import './Navbar.css';
 
 const navLinks = [
@@ -36,14 +37,14 @@ export default function Navbar() {
       <div className="topbar">
         <div className="container topbar__inner">
           <div className="topbar__left">
-            <a href="tel:+11234567890">📞 +1 (123) 456-7890</a>
-            <a href="mailto:hello@trendox.com">✉ hello@trendox.com</a>
+            <a href="tel:+11234567890"><FaPhone /> +1 (123) 456-7890</a>
+            <a href="mailto:hello@trendox.com"><FaEnvelope /> hello@trendox.com</a>
           </div>
           <div className="topbar__right">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter">TW</a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">LI</a>
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"><FaTwitter /></a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
           </div>
         </div>
       </div>

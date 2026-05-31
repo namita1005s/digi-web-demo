@@ -1,37 +1,54 @@
 import { motion } from 'framer-motion'
 import './WhyChooseUs.css'
-import { FaTrophy, FaBullseye, FaGem, FaHandshake } from 'react-icons/fa'
 
-const reasons = [
-  { icon: <FaTrophy />, title: 'Experienced Team', desc: 'Our specialists bring years of hands-on digital marketing expertise across industries.' },
-  { icon: <FaBullseye />, title: 'Result Driven Strategy', desc: 'Every campaign is built around measurable KPIs and real business outcomes.' },
-  { icon: <FaGem />, title: 'Affordable Pricing', desc: 'Premium quality services designed to fit budgets of all sizes without compromise.' },
-  { icon: <FaHandshake />, title: 'Dedicated Support', desc: 'A dedicated account manager is always available to keep your campaigns on track.' },
+const steps = [
+  {
+    num: '01',
+    title: 'Strategy',
+    desc: 'We audit your brand, research your market, and build a data-backed growth roadmap tailored to your goals.',
+  },
+  {
+    num: '02',
+    title: 'Execution',
+    desc: 'Our specialists execute across design, development, SEO, and paid media with precision and speed.',
+  },
+  {
+    num: '03',
+    title: 'Optimization',
+    desc: 'We continuously test, measure, and refine every campaign to maximize performance and reduce waste.',
+  },
+  {
+    num: '04',
+    title: 'Growth',
+    desc: 'Sustainable, compounding growth that scales with your business — not just a one-time spike.',
+  },
 ]
 
 export default function WhyChooseUs() {
   return (
-    <section className="section why" id="why">
+    <section className="section why section--alt" id="why">
       <div className="container">
-        <div className="section-header">
-          <span className="section-tag">Why Trendox</span>
-          <h2 className="section-title">Why Choose <span className="highlight">Us</span></h2>
-          <p className="section-subtitle">We don't just run campaigns — we build growth engines for your business.</p>
+        <div className="why__header">
+          <span className="section-tag">Our Process</span>
+          <h2 className="section-title">How We Drive<br /><span className="accent">Consistent Results</span></h2>
+          <p className="section-subtitle">
+            A proven four-step framework that turns strategy into sustainable business growth.
+          </p>
         </div>
 
-        <div className="grid-4 why__grid">
-          {reasons.map((r, i) => (
+        <div className="why__grid">
+          {steps.map((s, i) => (
             <motion.div
-              key={r.title}
+              key={s.num}
               className="why-card"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
             >
-              <div className="why-card__icon">{r.icon}</div>
-              <h3 className="why-card__title">{r.title}</h3>
-              <p className="why-card__desc">{r.desc}</p>
+              <span className="why-card__num">{s.num}</span>
+              <h3 className="why-card__title">{s.title}</h3>
+              <p className="why-card__desc">{s.desc}</p>
             </motion.div>
           ))}
         </div>

@@ -1,92 +1,177 @@
-import React, { useState, useEffect } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { FaPhone, FaEnvelope, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import './Navbar.css';
+import { useState, useEffect, useRef } from 'react'
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'
+import './Navbar.css'
+
+const serviceLinks = [
+  { label: 'Website Design', to: '/services/website-design' },
+  { label: 'Web Development', to: '/services/web-development' },
+  { label: 'SEO Services', to: '/services/seo' },
+  { label: 'Digital Marketing', to: '/services/digital-marketing' },
+  { label: 'SMM Services', to: '/services/smm' },
+  { label: 'PPC Advertising', to: '/services/ppc' },
+]
 
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'FAQ', to: '/#faq' },
+  { label: 'Services', to: '/services', hasDropdown: true },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'Career', to: '/career' },
   { label: 'Contact', to: '/contact' },
-];
+]
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const dropdownRef = useRef(null)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    if (location.hash) {
+      const el = document.getElementById(location.hash.slice(1))
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [location])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [menuOpen]);
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-  const handleQuote = () => {
-    navigate('/contact');
-    setMenuOpen(false);
-  };
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  const closeAll = () => { setMenuOpen(false); setDropdownOpen(false); setMobileServicesOpen(false) }
+  const isServicesActive = location.pathname.startsWith('/services')
 
   return (
-    <>
-      <div className="topbar">
-        <div className="container topbar__inner">
-          <div className="topbar__left">
-            <a href="tel:+11234567890"><FaPhone /> +1 (123) 456-7890</a>
-            <a href="mailto:hello@trendox.com"><FaEnvelope /> hello@trendox.com</a>
-          </div>
-          <div className="topbar__right">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"><FaTwitter /></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
-          </div>
-        </div>
-      </div>
+    <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
+      <div className="container navbar__inner">
+        <Link to="/" className="navbar__logo">
+          Trendox<span className="navbar__logo-dot">.</span>
+        </Link>
 
-      <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
-        <div className="container navbar__inner">
-          <Link to="/" className="navbar__logo">
-            Trendox<span>.</span>
-          </Link>
-
-          {menuOpen && <div className="navbar__overlay" onClick={() => setMenuOpen(false)} />}
-
-          <ul className={`navbar__links${menuOpen ? ' navbar__links--open' : ''}`}>
-            {navLinks.map(({ label, to }) => (
-              <li key={label}>
+        {/* Desktop nav */}
+        <ul className="navbar__links">
+          {navLinks.map(({ label, to, hasDropdown }) => (
+            <li key={label} className={hasDropdown ? 'navbar__item--dropdown' : ''} ref={hasDropdown ? dropdownRef : null}>
+              {hasDropdown ? (
+                <>
+                  <button
+                    className={`navbar__dropdown-trigger${isServicesActive ? ' active' : ''}`}
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onClick={() => setDropdownOpen(o => !o)}
+                  >
+                    {label}
+                    <span className={`navbar__chevron${dropdownOpen ? ' open' : ''}`}>›</span>
+                  </button>
+                  {dropdownOpen && (
+                    <div className="navbar__dropdown" onMouseLeave={() => setDropdownOpen(false)}>
+                      <Link
+                        to="/services"
+                        className="navbar__dropdown-overview"
+                        onClick={() => setDropdownOpen(false)}
+                      >
+                        All Services →
+                      </Link>
+                      {serviceLinks.map(s => (
+                        <Link
+                          key={s.to}
+                          to={s.to}
+                          className="navbar__dropdown-item"
+                          onClick={() => setDropdownOpen(false)}
+                        >
+                          {s.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
                 <NavLink
                   to={to}
                   className={({ isActive }) => isActive ? 'active' : ''}
-                  onClick={() => setMenuOpen(false)}
                 >
                   {label}
                 </NavLink>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        <button className="navbar__cta-btn" onClick={() => navigate('/contact')}>
+          Get Started
+        </button>
+
+        <button
+          className={`navbar__hamburger${menuOpen ? ' open' : ''}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="navbar__mobile-menu">
+          <ul className="navbar__mobile-links">
+            {navLinks.map(({ label, to, hasDropdown }) => (
+              <li key={label}>
+                {hasDropdown ? (
+                  <>
+                    <button
+                      className={`navbar__mobile-services-toggle${isServicesActive ? ' active' : ''}`}
+                      onClick={() => setMobileServicesOpen(o => !o)}
+                    >
+                      {label}
+                      <span className={`navbar__chevron${mobileServicesOpen ? ' open' : ''}`}>›</span>
+                    </button>
+                    {mobileServicesOpen && (
+                      <div className="navbar__mobile-dropdown">
+                        <Link to="/services" onClick={closeAll}>All Services</Link>
+                        {serviceLinks.map(s => (
+                          <Link key={s.to} to={s.to} onClick={closeAll}>{s.label}</Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <NavLink
+                    to={to}
+                    className={({ isActive }) => isActive ? 'active' : ''}
+                    onClick={closeAll}
+                  >
+                    {label}
+                  </NavLink>
+                )}
               </li>
             ))}
-            <li className="navbar__cta-mobile">
-              <button className="btn-primary" onClick={handleQuote}>Get Quote</button>
-            </li>
           </ul>
-
-          <button className="btn-primary navbar__cta-desktop" onClick={handleQuote}>
-            Get Quote
-          </button>
-
-          <button
-            className={`navbar__hamburger${menuOpen ? ' open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span /><span /><span />
+          <button className="navbar__cta-btn navbar__cta-mobile" onClick={() => { navigate('/contact'); closeAll() }}>
+            Get Started
           </button>
         </div>
-      </nav>
-    </>
-  );
+      )}
+
+      {menuOpen && <div className="navbar__overlay" onClick={closeAll} />}
+    </nav>
+  )
 }

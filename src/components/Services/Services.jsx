@@ -1,67 +1,45 @@
 import { motion } from 'framer-motion'
 import './Services.css'
-import { FaPaintBrush, FaCode, FaChartLine, FaHashtag, FaBullseye, FaStar } from 'react-icons/fa'
 
 const services = [
-  {
-    icon: <FaPaintBrush />,
-    title: 'Website Design',
-    desc: 'Beautiful, modern websites crafted to represent your brand and convert visitors into customers.',
-  },
-  {
-    icon: <FaCode />,
-    title: 'Website Development',
-    desc: 'Fast, scalable, and secure web development solutions built with the latest technologies.',
-  },
-  {
-    icon: <FaChartLine />,
-    title: 'SEO Services',
-    desc: 'Rank higher on search engines and drive consistent organic traffic with proven SEO strategies.',
-  },
-  {
-    icon: <FaHashtag />,
-    title: 'Social Media Marketing',
-    desc: 'Build brand awareness and engage your audience across all major social platforms.',
-  },
-  {
-    icon: <FaBullseye />,
-    title: 'PPC Advertising',
-    desc: 'Maximize ROI with targeted Google Ads and paid social campaigns that deliver real results.',
-  },
-  {
-    icon: <FaStar />,
-    title: 'Branding Solutions',
-    desc: 'Create a powerful brand identity that stands out and leaves a lasting impression.',
-  },
+  { id: 'design', icon: '✦', title: 'Website Design', desc: 'Beautiful, conversion-focused websites crafted to represent your brand with precision and purpose.' },
+  { id: 'dev',    icon: '⬡', title: 'Web Development', desc: 'Fast, scalable, and secure web solutions built with modern technologies and clean architecture.' },
+  { id: 'seo',   icon: '◎', title: 'SEO Optimization', desc: 'Rank higher, drive consistent organic traffic, and dominate search results with proven strategies.' },
+  { id: 'social',icon: '◈', title: 'Social Media Marketing', desc: 'Build brand awareness and engage your audience across all major social platforms at scale.' },
+  { id: 'ppc',   icon: '◆', title: 'PPC Advertising', desc: 'Maximize ROI with targeted paid campaigns that deliver measurable results across every channel.' },
+  { id: 'brand', icon: '❋', title: 'Brand Strategy', desc: 'Create a powerful brand identity that stands out, resonates, and leaves a lasting impression.' },
 ]
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.1 },
-  }),
-}
 
 export default function Services() {
   return (
     <section className="section services" id="services">
       <div className="container">
-        <div className="grid-3 services__grid">
+        <div className="services__header">
+          <div>
+            <span className="section-tag">What We Do</span>
+            <h2 className="section-title">Services Built for<br />Measurable Growth</h2>
+          </div>
+          <p className="section-subtitle services__header-sub">
+            Every service we offer is engineered around one goal — growing your business with strategy and precision.
+          </p>
+        </div>
+
+        <div className="services__bento">
           {services.map((s, i) => (
             <motion.div
-              key={s.title}
-              className="service-card"
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
+              key={s.id}
+              className="svc-card"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              custom={i}
+              transition={{ duration: 0.4, delay: i * 0.05, ease: 'easeOut' }}
             >
-              <div className="service-card__icon">{s.icon}</div>
-              <h3 className="service-card__title">{s.title}</h3>
-              <p className="service-card__desc">{s.desc}</p>
+              <span className="svc-card__icon">{s.icon}</span>
+              <div className="svc-card__body">
+                <h3 className="svc-card__title">{s.title}</h3>
+                <p className="svc-card__desc">{s.desc}</p>
+              </div>
+              <span className="svc-card__arrow">→</span>
             </motion.div>
           ))}
         </div>

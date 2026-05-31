@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaPlus, FaMinus } from 'react-icons/fa'
 import './FAQ.css'
 
 const faqs = [
   {
     q: 'What services does Trendox Marketing Solutions offer?',
-    a: 'We offer Website Design, Website Development, SEO Services, Social Media Marketing, PPC Advertising, and Branding Solutions — everything you need to grow online.',
+    a: 'We offer Website Design, Web Development, SEO, Social Media Marketing, PPC Advertising, and Brand Strategy — everything you need to grow online.',
   },
   {
     q: 'How long does it take to see results from digital marketing?',
@@ -14,7 +13,7 @@ const faqs = [
   },
   {
     q: 'Do you work with small businesses?',
-    a: 'Absolutely. Our Starter plan is designed specifically for small businesses. We tailor every strategy to your budget and goals.',
+    a: 'Absolutely. We tailor every strategy to your budget and goals, whether you’re a startup or an established brand looking to scale.',
   },
   {
     q: 'Will I get a dedicated account manager?',
@@ -22,7 +21,7 @@ const faqs = [
   },
   {
     q: 'Can I upgrade or change my plan later?',
-    a: 'Yes, you can upgrade, downgrade, or customize your plan at any time. We are flexible and grow with your business needs.',
+    a: 'Yes, you can upgrade, downgrade, or customize your engagement at any time. We are flexible and grow with your business needs.',
   },
 ]
 
@@ -32,37 +31,36 @@ export default function FAQ() {
   return (
     <section className="section faq" id="faq">
       <div className="container">
-        <div className="section-header">
-          <span className="section-tag">FAQ</span>
-          <h2 className="section-title">Frequently Asked <span className="highlight">Questions</span></h2>
-          <p className="section-subtitle">Got questions? We have answers.</p>
-        </div>
+        <div className="faq__layout">
+          <div className="faq__left">
+            <span className="section-tag">FAQ</span>
+            <h2 className="section-title">Frequently<br />Asked<br /><span className="accent">Questions</span></h2>
+            <p className="section-subtitle">Everything you need to know before getting started.</p>
+          </div>
 
-        <div className="faq__list">
-          {faqs.map((item, i) => (
-            <div
-              key={i}
-              className={`faq__item${open === i ? ' faq__item--open' : ''}`}
-            >
-              <button className="faq__question" onClick={() => setOpen(open === i ? null : i)}>
-                <span>{item.q}</span>
-                <span className="faq__icon">{open === i ? <FaMinus /> : <FaPlus />}</span>
-              </button>
-              <AnimatePresence>
-                {open === i && (
-                  <motion.div
-                    className="faq__answer"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <p>{item.a}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
+          <div className="faq__list">
+            {faqs.map((item, i) => (
+              <div key={i} className={`faq__item${open === i ? ' faq__item--open' : ''}`}>
+                <button className="faq__question" onClick={() => setOpen(open === i ? null : i)}>
+                  <span>{item.q}</span>
+                  <span className="faq__icon">{open === i ? '−' : '+'}</span>
+                </button>
+                <AnimatePresence>
+                  {open === i && (
+                    <motion.div
+                      className="faq__answer"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.25,0.1,0.25,1] }}
+                    >
+                      <p>{item.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

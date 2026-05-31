@@ -1,0 +1,101 @@
+.home {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Hero wrap: bottom fade bleeds into TrustedBy ── */
+.home__hero-wrap {
+  position: relative;
+}
+
+.home__hero-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── TrustedBy: slight negative pull to overlap hero fade ── */
+.home__trusted-wrap {
+  position: relative;
+  z-index: 3;
+  margin-top: -40px;
+}
+
+/* ── Services wrap: contains dot-grid accent ── */
+.home__services-wrap {
+  position: relative;
+}
+
+/* ── Stats wrap: no extra spacing, dividers handle it ── */
+.home__stats-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── WhyChooseUs wrap ── */
+.home__why-wrap {
+  position: relative;
+}
+
+/* ── Portfolio wrap ── */
+.home__portfolio-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Testimonials wrap ── */
+.home__testimonials-wrap {
+  position: relative;
+}
+
+/* ── FAQ wrap ── */
+.home__faq-wrap {
+  position: relative;
+}
+
+/* ─────────────────────────────────────────
+   Floating accent elements
+───────────────────────────────────────── */
+.home__accent {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dot-grid in Services section — bottom-right */
+.home__accent--dot-grid {
+  bottom: 80px;
+  right: -40px;
+  width: 280px;
+  height: 280px;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.055) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(ellipse at center, black 25%, transparent 68%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 25%, transparent 68%);
+  opacity: 0.7;
+}
+
+/* Subtle ring top-left in WhyChooseUs */
+.home__accent--ring-tl {
+  top: 60px;
+  left: -60px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: inset 0 0 0 40px rgba(0,0,0,0.015);
+}
+
+/* Thin vertical line accent right side in Testimonials */
+.home__accent--line-r {
+  top: 80px;
+  right: 48px;
+  width: 1px;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.08), transparent);
+}

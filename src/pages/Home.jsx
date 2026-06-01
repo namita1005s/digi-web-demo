@@ -107,10 +107,9 @@ export default function Home() {
       <div className="home__stats-wrap">
         <DepthOrb className="home__depth-orb--stats" />
         <Stats />
+        {/* Stats → WhyChooseUs: organic S-curve out of dark */}
+        <SectionDivider from={DRK} to={ALT} variant="masked" height={120} flip />
       </div>
-
-      {/* Stats → WhyChooseUs: organic S-curve out of dark */}
-      <SectionDivider from={DRK} to={ALT} variant="masked" height={120} flip accent />
 
       {/* ── WhyChooseUs ── */}
       <div className="home__why-wrap">
@@ -127,10 +126,9 @@ export default function Home() {
       <div className="home__portfolio-wrap">
         <DepthOrb className="home__depth-orb--portfolio" />
         <Portfolio />
+        {/* Portfolio → Testimonials: curve */}
+        <SectionDivider from={DRK} to={ALT} variant="curve" height={96} />
       </div>
-
-      {/* Portfolio → Testimonials: curve */}
-      <SectionDivider from={DRK} to={ALT} variant="curve" height={96} />
 
       {/* ── Testimonials ── */}
       <div className="home__testimonials-wrap">

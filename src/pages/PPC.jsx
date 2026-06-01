@@ -69,7 +69,7 @@ export default function PPC() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
               >
-                <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.04em', lineHeight: 1 }}>{r.metric}</div>
+                <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--text-inverse)', letterSpacing: '-0.04em', lineHeight: 1 }}>{r.metric}</div>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', marginTop: 8, fontWeight: 500 }}>{r.label}</div>
               </motion.div>
             ))}

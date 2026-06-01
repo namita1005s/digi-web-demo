@@ -37,7 +37,7 @@
 .stats__value {
   font-size: clamp(2.4rem, 4vw, 3.6rem);
   font-weight: 800;
-  color: #fff;
+  color: var(--text-inverse);
   line-height: 1;
   letter-spacing: -0.05em;
 }

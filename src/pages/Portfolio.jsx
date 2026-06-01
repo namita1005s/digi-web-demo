@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import CTA from '../components/CTA/CTA'
 import Testimonials from '../components/Testimonials/Testimonials'
-import './About.css'
+import './pages.css'
 import './Portfolio.css'
 
 const fadeUp = (delay = 0) => ({

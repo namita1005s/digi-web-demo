@@ -16,6 +16,7 @@ import SEOServices from './pages/SEOServices'
 import DigitalMarketing from './pages/DigitalMarketing'
 import SMM from './pages/SMM'
 import PPC from './pages/PPC'
+import NotFound from './pages/NotFound'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/career" element={<Career />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faqs" element={<FAQs />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>

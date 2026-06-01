@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Testimonials from '../components/Testimonials/Testimonials'
 import CTA from '../components/CTA/CTA'
 import Pricing from '../components/Pricing/Pricing'
-import './About.css'
+import './pages.css'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },

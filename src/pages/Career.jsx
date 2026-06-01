@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import CTA from '../components/CTA/CTA'
-import './About.css'
+import './pages.css'
 import './Career.css'
 
 const fadeUp = (delay = 0) => ({

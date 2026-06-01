@@ -4,7 +4,7 @@ import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs'
 import Stats from '../components/Stats/Stats'
 import Testimonials from '../components/Testimonials/Testimonials'
 import CTA from '../components/CTA/CTA'
-import './About.css'
+import './pages.css'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },

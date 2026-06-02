@@ -1,7 +1,15 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FaLocationDot, FaPhone, FaEnvelope } from 'react-icons/fa6'
 import './Contact.css'
+
+// ─── EmailJS config ───────────────────────────────────────────
+// Replace these three values with your own from emailjs.com
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'
+// ──────────────────────────────────────────────────────────────
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -15,15 +23,51 @@ const services = [
   'Social Media Marketing', 'PPC Advertising', 'Branding', 'Other',
 ]
 
-export default function Contact() {
-  const [focused, setFocused] = useState({})
-  const [values, setValues] = useState({})
+const initialValues = { firstName: '', lastName: '', email: '', phone: '', service: '', message: '' }
 
-  const handleFocus = key => setFocused(f => ({ ...f, [key]: true }))
-  const handleBlur  = key => setFocused(f => ({ ...f, [key]: false }))
-  const handleChange = (key, val) => setValues(v => ({ ...v, [key]: val }))
+export default function Contact() {
+  const formRef = useRef(null)
+  const [focused, setFocused] = useState({})
+  const [values, setValues]   = useState(initialValues)
+  const [errors, setErrors]   = useState({})
+  const [status, setStatus]   = useState('idle') // idle | loading | success | error
+
+  const handleFocus  = key => setFocused(f => ({ ...f, [key]: true }))
+  const handleBlur   = key => setFocused(f => ({ ...f, [key]: false }))
+  const handleChange = (key, val) => {
+    setValues(v => ({ ...v, [key]: val }))
+    if (errors[key]) setErrors(e => ({ ...e, [key]: '' }))
+  }
 
   const isActive = key => focused[key] || !!values[key]
+
+  const validate = () => {
+    const e = {}
+    if (!values.email.trim()) e.email = 'Email is required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) e.email = 'Enter a valid email'
+    if (!values.message.trim()) e.message = 'Message is required'
+    return e
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    const errs = validate()
+    if (Object.keys(errs).length) { setErrors(errs); return }
+
+    setStatus('loading')
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      )
+      setStatus('success')
+      setValues(initialValues)
+    } catch {
+      setStatus('error')
+    }
+  }
 
   return (
     <>
@@ -87,13 +131,15 @@ export default function Contact() {
 
           {/* Right — form */}
           <motion.div className="contact-form-card" {...fadeUp(0.1)}>
-            <form className="contact-form" onSubmit={e => e.preventDefault()}>
+            <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
 
               <div className="contact-form__row">
                 <div className={`cf-field${isActive('firstName') ? ' cf-field--active' : ''}`}>
                   <label className="cf-label" htmlFor="firstName">First Name</label>
                   <input
                     id="firstName" type="text" className="cf-input"
+                    name="first_name"
+                    value={values.firstName}
                     onFocus={() => handleFocus('firstName')}
                     onBlur={() => handleBlur('firstName')}
                     onChange={e => handleChange('firstName', e.target.value)}
@@ -103,6 +149,8 @@ export default function Contact() {
                   <label className="cf-label" htmlFor="lastName">Last Name</label>
                   <input
                     id="lastName" type="text" className="cf-input"
+                    name="last_name"
+                    value={values.lastName}
                     onFocus={() => handleFocus('lastName')}
                     onBlur={() => handleBlur('lastName')}
                     onChange={e => handleChange('lastName', e.target.value)}
@@ -111,19 +159,24 @@ export default function Contact() {
               </div>
 
               <div className="contact-form__row">
-                <div className={`cf-field${isActive('email') ? ' cf-field--active' : ''}`}>
+                <div className={`cf-field${isActive('email') ? ' cf-field--active' : ''}${errors.email ? ' cf-field--error' : ''}`}>
                   <label className="cf-label" htmlFor="email">Email Address <span>*</span></label>
                   <input
-                    id="email" type="email" className="cf-input" required
+                    id="email" type="email" className="cf-input"
+                    name="from_email"
+                    value={values.email}
                     onFocus={() => handleFocus('email')}
                     onBlur={() => handleBlur('email')}
                     onChange={e => handleChange('email', e.target.value)}
                   />
+                  {errors.email && <p className="cf-error">{errors.email}</p>}
                 </div>
                 <div className={`cf-field${isActive('phone') ? ' cf-field--active' : ''}`}>
                   <label className="cf-label" htmlFor="phone">Phone Number</label>
                   <input
                     id="phone" type="tel" className="cf-input"
+                    name="phone"
+                    value={values.phone}
                     onFocus={() => handleFocus('phone')}
                     onBlur={() => handleBlur('phone')}
                     onChange={e => handleChange('phone', e.target.value)}
@@ -135,28 +188,55 @@ export default function Contact() {
                 <label className="cf-label" htmlFor="service">Service Interested In</label>
                 <select
                   id="service" className="cf-input cf-select"
+                  name="service"
+                  value={values.service}
                   onFocus={() => handleFocus('service')}
                   onBlur={() => handleBlur('service')}
                   onChange={e => handleChange('service', e.target.value)}
-                  defaultValue=""
                 >
                   <option value="" disabled />
                   {services.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
 
-              <div className={`cf-field${isActive('message') ? ' cf-field--active' : ''}`}>
+              <div className={`cf-field${isActive('message') ? ' cf-field--active' : ''}${errors.message ? ' cf-field--error' : ''}`}>
                 <label className="cf-label" htmlFor="message">Message <span>*</span></label>
                 <textarea
-                  id="message" className="cf-input cf-textarea" rows={5} required
+                  id="message" className="cf-input cf-textarea" rows={5}
+                  name="message"
+                  value={values.message}
                   onFocus={() => handleFocus('message')}
                   onBlur={() => handleBlur('message')}
                   onChange={e => handleChange('message', e.target.value)}
                 />
+                {errors.message && <p className="cf-error">{errors.message}</p>}
               </div>
 
-              <button type="submit" className="contact-submit">
-                Send Message <span className="contact-submit__arrow">→</span>
+              <AnimatePresence>
+                {status === 'success' && (
+                  <motion.div
+                    className="cf-feedback cf-feedback--success"
+                    initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                  >
+                    ✓ Message sent! We'll get back to you within 24 hours.
+                  </motion.div>
+                )}
+                {status === 'error' && (
+                  <motion.div
+                    className="cf-feedback cf-feedback--error"
+                    initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                  >
+                    Something went wrong. Please try again or email us directly.
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <button
+                type="submit"
+                className="contact-submit"
+                disabled={status === 'loading'}
+              >
+                {status === 'loading' ? 'Sending…' : (<>Send Message <span className="contact-submit__arrow">→</span></>)}
               </button>
             </form>
           </motion.div>

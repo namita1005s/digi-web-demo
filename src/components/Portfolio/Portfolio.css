@@ -3,7 +3,7 @@
   position: relative;
   overflow: hidden;
   padding-bottom: 80px;
-  z-index: 2;
+  z-index: 1;
 }
 
 /* large radial glow */

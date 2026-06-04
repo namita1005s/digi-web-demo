@@ -52,6 +52,12 @@
   background: var(--bg);
 }
 
+/* ── Pricing wrap ── */
+.home__pricing-wrap {
+  position: relative;
+  background: var(--bg);
+}
+
 /* ─────────────────────────────────────────
    Floating accent elements
 ───────────────────────────────────────── */

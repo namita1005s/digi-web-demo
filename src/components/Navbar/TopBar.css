@@ -1,0 +1,77 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  height: 40px;
+  background: #0F0F10;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.topbar--hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1200px;
+}
+
+.topbar__contacts {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar__item {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.topbar__item:hover { color: #fff; }
+
+.topbar__sep {
+  color: rgba(255,255,255,0.2);
+  font-size: 13px;
+  user-select: none;
+}
+
+.topbar__cta {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.topbar__cta:hover { color: #fff; }
+
+.topbar__arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.topbar__cta:hover .topbar__arrow { transform: translateX(4px); }
+
+@media (max-width: 640px) {
+  .topbar { height: 36px; }
+  .topbar__email,
+  .topbar__sep { display: none; }
+}

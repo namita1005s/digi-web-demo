@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import './Services.css'
 
 const services = [
@@ -11,6 +12,7 @@ const services = [
 ]
 
 export default function Services() {
+  const navigate = useNavigate()
   return (
     <section className="section services" id="services">
       <div className="container">
@@ -43,6 +45,24 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          className="services__footer-bar"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="sfb__glow" aria-hidden />
+          <p className="sfb__text">
+            Growth, Performance &amp; Digital Excellence
+            <span className="sfb__text-light"> Under One Roof</span>
+          </p>
+          <button className="sfb__cta" onClick={() => navigate('/contact')}>
+            Discuss Your Requirements →
+          </button>
+        </motion.div>
+
       </div>
     </section>
   )

@@ -8,6 +8,7 @@ import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs'
 import Portfolio from '../components/Portfolio/Portfolio'
 import Testimonials from '../components/Testimonials/Testimonials'
 import FAQ from '../components/FAQ/FAQ'
+import Pricing from '../components/Pricing/Pricing'
 import CTA from '../components/CTA/CTA'
 import SectionDivider from '../components/SectionDivider/SectionDivider'
 import './Home.css'
@@ -147,7 +148,17 @@ export default function Home() {
         <motion.div {...revealUp}>
           <FAQ />
         </motion.div>
-        {/* FAQ → CTA: curve */}
+        {/* FAQ → Pricing: angle into bg */}
+        <SectionDivider from={BG} to={BG} variant="angle" height={80} />
+      </div>
+
+      {/* ── Custom Pricing ── */}
+      <div className="home__pricing-wrap">
+        <DepthOrb className="home__depth-orb--pricing" />
+        <motion.div {...revealUpSlow}>
+          <Pricing />
+        </motion.div>
+        {/* Pricing → CTA: curve into dark */}
         <SectionDivider from={BG} to={DRK} variant="curve" height={96} flip />
       </div>
 

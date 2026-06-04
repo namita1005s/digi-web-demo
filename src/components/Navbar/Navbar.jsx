@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import TopBar from './TopBar'
 import './Navbar.css'
@@ -156,7 +156,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
-  const dropdownRef = useRef(null)
+  const openTimer = useRef(null)
+  const closeTimer = useRef(null)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -182,17 +183,21 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  useEffect(() => {
-    const handleClick = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClick)
-    return () => document.removeEventListener('mousedown', handleClick)
+  const [activeTab, setActiveTab] = useState(0)
+
+  const scheduleOpen = useCallback(() => {
+    clearTimeout(closeTimer.current)
+    openTimer.current = setTimeout(() => setDropdownOpen(true), 150)
   }, [])
 
-  const [activeTab, setActiveTab] = useState(0)
+  const scheduleClose = useCallback(() => {
+    clearTimeout(openTimer.current)
+    closeTimer.current = setTimeout(() => setDropdownOpen(false), 200)
+  }, [])
+
+  const cancelClose = useCallback(() => {
+    clearTimeout(closeTimer.current)
+  }, [])
 
   const closeAll = () => { setMenuOpen(false); setDropdownOpen(false); setMobileServicesOpen(false) }
   const isServicesActive = location.pathname.startsWith('/services')
@@ -210,69 +215,70 @@ export default function Navbar() {
         {/* Desktop nav */}
         <ul className="navbar__links">
           {navLinks.map(({ label, to, hasDropdown }) => (
-            <li key={label} className={hasDropdown ? 'navbar__item--dropdown' : ''} ref={hasDropdown ? dropdownRef : null}>
+            <li key={label} className={hasDropdown ? 'navbar__item--dropdown' : ''}>
               {hasDropdown ? (
                 <>
                   <button
                     className={`navbar__dropdown-trigger${isServicesActive ? ' active' : ''}`}
-                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseEnter={scheduleOpen}
+                    onMouseLeave={scheduleClose}
                     onClick={() => setDropdownOpen(o => !o)}
                   >
                     {label}
                     <span className={`navbar__chevron${dropdownOpen ? ' open' : ''}`}>›</span>
                   </button>
-                  {dropdownOpen && (
-                    <div className="mega-menu" onMouseLeave={() => setDropdownOpen(false)}>
-                      <div className="container">
-                        {/* Tab cards row */}
-                        <div className="mega-menu__tabs">
-                          {megaMenuData.map((m, i) => (
-                            <button
-                              key={m.tab}
-                              className={`mega-menu__tab${activeTab === i ? ' active' : ''}`}
-                              onMouseEnter={() => setActiveTab(i)}
-                              onClick={() => setActiveTab(i)}
-                            >
-                              <span className="mega-menu__tab-icon">{m.icon}</span>
-                              <span className="mega-menu__tab-label">{m.tabLine2}</span>
-                            </button>
-                          ))}
-                        </div>
-                        {/* Body */}
-                        <div className="mega-menu__body">
-                          <div className="mega-menu__left">
-                            <h3 className="mega-menu__heading">{activeData.heading}</h3>
-                            <div className="mega-menu__grid">
-                              {activeData.services.map((s, i) => (
-                                <Link
-                                  key={s.label}
-                                  to={s.to}
-                                  className={`mega-menu__service-item${i === 0 ? ' first' : ''}`}
-                                  onClick={() => setDropdownOpen(false)}
-                                >
-                                  {s.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                          <div className="mega-menu__right">
-                            <div className="mega-menu__card">
-                              <div className="mega-menu__card-orb mega-menu__card-orb--1" />
-                              <div className="mega-menu__card-orb mega-menu__card-orb--2" />
-                              <h4 className="mega-menu__card-headline">{activeData.card.headline}</h4>
+                  <div
+                    className={`mega-menu${dropdownOpen ? ' mega-menu--open' : ''}`}
+                    onMouseEnter={cancelClose}
+                    onMouseLeave={scheduleClose}
+                  >
+                    <div className="container">
+                      <div className="mega-menu__tabs">
+                        {megaMenuData.map((m, i) => (
+                          <button
+                            key={m.tab}
+                            className={`mega-menu__tab${activeTab === i ? ' active' : ''}`}
+                            onMouseEnter={() => setActiveTab(i)}
+                            onClick={() => setActiveTab(i)}
+                          >
+                            <span className="mega-menu__tab-icon">{m.icon}</span>
+                            <span className="mega-menu__tab-label">{m.tabLine2}</span>
+                          </button>
+                        ))}
+                      </div>
+                      <div className="mega-menu__body">
+                        <div className="mega-menu__left">
+                          <h3 className="mega-menu__heading">{activeData.heading}</h3>
+                          <div className="mega-menu__grid">
+                            {activeData.services.map((s, i) => (
                               <Link
-                                to={activeData.card.to}
-                                className="mega-menu__card-cta"
+                                key={s.label}
+                                to={s.to}
+                                className={`mega-menu__service-item${i === 0 ? ' first' : ''}`}
                                 onClick={() => setDropdownOpen(false)}
                               >
-                                {activeData.card.cta}
+                                {s.label}
                               </Link>
-                            </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="mega-menu__right">
+                          <div className="mega-menu__card">
+                            <div className="mega-menu__card-orb mega-menu__card-orb--1" />
+                            <div className="mega-menu__card-orb mega-menu__card-orb--2" />
+                            <h4 className="mega-menu__card-headline">{activeData.card.headline}</h4>
+                            <Link
+                              to={activeData.card.to}
+                              className="mega-menu__card-cta"
+                              onClick={() => setDropdownOpen(false)}
+                            >
+                              {activeData.card.cta}
+                            </Link>
                           </div>
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
                 </>
               ) : (
                 <NavLink

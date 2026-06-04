@@ -74,11 +74,11 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 .highlight { color: var(--text); }
 
 .section-header {
-  margin-bottom: 56px;
+  margin-bottom: 36px;
 }
 
 .section-header .section-subtitle {
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .divider { display: none; }

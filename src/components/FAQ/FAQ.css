@@ -1,9 +1,9 @@
-.faq { background: var(--bg); }
+.faq { background: var(--bg); padding: 48px 0; }
 
 .faq__layout {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
-  gap: 80px;
+  gap: 56px;
   align-items: start;
 }
 
@@ -28,7 +28,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: 22px 0;
+  padding: 18px 0;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text);
@@ -57,12 +57,12 @@
 .faq__answer { overflow: hidden; }
 
 .faq__answer p {
-  padding: 0 0 22px;
+  padding: 0 0 18px;
   font-size: 0.9rem;
   color: var(--text-muted);
   line-height: 1.8;
 }
 
 @media (max-width: 768px) {
-  .faq__layout { grid-template-columns: 1fr; gap: 48px; }
+  .faq__layout { grid-template-columns: 1fr; gap: 32px; }
 }

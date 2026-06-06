@@ -3,7 +3,7 @@
 ───────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 87vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,13 +13,28 @@
   background: var(--bg);
 }
 
-/* Radial depth glow — top right */
+/* Subtle grid pattern */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+
+/* Radial depth glow */
 .hero__bg-glow {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 72% 28%, rgba(0,0,0,0.055) 0%, transparent 58%),
-    radial-gradient(circle at 18% 80%, rgba(0,0,0,0.03) 0%, transparent 50%);
+    radial-gradient(ellipse 60% 55% at 72% 38%, rgba(0,0,0,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 18% 75%, rgba(0,0,0,0.03) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -99,13 +114,6 @@
   0%   { transform: scale(1); opacity: 0.6; }
   70%  { transform: scale(2.4); opacity: 0; }
   100% { transform: scale(2.4); opacity: 0; }
-}
-
-.hero__stars {
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  color: #111;
-  line-height: 1;
 }
 
 .hero__trust-badge-text {
@@ -214,50 +222,37 @@
   box-shadow: 0 10px 28px rgba(0,0,0,0.16);
 }
 
-/* ── TRUST METRICS ROW ── */
-.hero__metrics-row {
+/* ── TRUST INDICATORS ── */
+.hero__trust-indicators {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 20px;
   flex-wrap: wrap;
   padding-top: 4px;
 }
 
-.hero__metric-item {
+.hero__trust-item {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 0 26px;
-  position: relative;
-}
-
-.hero__metric-item:first-child { padding-left: 0; }
-
-.hero__metric-item + .hero__metric-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 26px;
-  background: rgba(0,0,0,0.1);
-}
-
-.hero__metric-item .hero__metric-value {
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  color: var(--text);
-  line-height: 1;
-}
-
-.hero__metric-item .hero__metric-label {
-  font-size: 0.66rem;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
   font-weight: 500;
-  color: var(--text-subtle);
-  letter-spacing: 0.015em;
+  color: var(--text-muted);
   white-space: nowrap;
+}
+
+.hero__trust-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #111;
+  color: #f7f7f5;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 700;
 }
 
 /* ─────────────────────────────────────────

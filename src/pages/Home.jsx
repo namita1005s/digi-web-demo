@@ -109,7 +109,7 @@ export default function Home() {
         <DepthOrb className="home__depth-orb--stats" />
         <Stats />
         {/* Stats → WhyChooseUs: organic S-curve out of dark */}
-        <SectionDivider from={DRK} to={ALT} variant="masked" height={120} flip />
+        <SectionDivider from={DRK} to={ALT} variant="masked" height={56} flip />
       </div>
 
       {/* ── WhyChooseUs ── */}

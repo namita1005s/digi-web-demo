@@ -19,18 +19,11 @@ const kpis = [
 
 const channels = [['SEO', '42%'], ['PPC', '28%'], ['Social', '30%']]
 
-const trustMetrics = [
-  { value: '100+', label: 'Projects Delivered' },
-  { value: '50+', label: 'Happy Clients' },
-  { value: '95%', label: 'Client Retention' },
-  { value: '4+', label: 'Years Experience' },
-]
-
 const floatCards = [
   {
     cls: 'hero__float-card--1',
     icon: '↑',
-    value: '184%',
+    value: '+184%',
     label: 'Organic Growth',
     initial: { opacity: 0, x: 20, y: -10 },
     animate: { opacity: 1, x: 0, y: [0, -8, 0] },
@@ -55,9 +48,9 @@ const floatCards = [
   },
   {
     cls: 'hero__float-card--3',
-    icon: '$',
-    value: '$284K',
-    label: 'Revenue Generated',
+    icon: '✦',
+    value: '1,200+',
+    label: 'Leads Generated',
     initial: { opacity: 0, y: 18 },
     animate: { opacity: 1, y: [0, -6, 0] },
     transition: {
@@ -92,41 +85,40 @@ export default function Hero() {
         {/* ── LEFT CONTENT ── */}
         <div className="hero__content">
 
-          {/* Trust Badge */}
+          {/* Agency Badge */}
           <motion.div className="hero__trust-badge" {...fadeUp(0)}>
             <span className="hero__badge-pulse" />
-            <span className="hero__stars">★★★★★</span>
-            <span className="hero__trust-badge-text">Trusted by 50+ Businesses</span>
+            <span className="hero__trust-badge-text">Growth-Focused Digital Agency</span>
           </motion.div>
 
           {/* Headline */}
           <motion.h1 className="hero__title" {...fadeUp(0.1)}>
-            We Build Brands That<br />
-            <span className="hero__title-accent">Outperform</span> Competitors.
+            Helping Brands Achieve<br />
+            <span className="hero__title-accent">Sustainable Digital</span> Growth
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p className="hero__subtitle" {...fadeUp(0.2)}>
-            From strategy and web development to SEO and performance marketing,
-            we help businesses generate measurable growth and long-term results.
+            We combine strategy, design, development and performance marketing to help
+            ambitious businesses generate leads, increase visibility and scale revenue.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div className="hero__actions" {...fadeUp(0.3)}>
             <Link to="/contact" className="hero__btn-primary">
-              Get Free Consultation <span className="hero__btn-arrow">→</span>
+              Book Strategy Call <span className="hero__btn-arrow">→</span>
             </Link>
-            <Link to="/portfolio" className="hero__btn-ghost">
-              View Our Work
+            <Link to="/services" className="hero__btn-ghost">
+              Explore Services
             </Link>
           </motion.div>
 
-          {/* Trust Metrics Row */}
-          <motion.div className="hero__metrics-row" {...fadeUp(0.42)}>
-            {trustMetrics.map((m, i) => (
-              <div key={i} className="hero__metric-item">
-                <span className="hero__metric-value">{m.value}</span>
-                <span className="hero__metric-label">{m.label}</span>
+          {/* Trust Indicators */}
+          <motion.div className="hero__trust-indicators" {...fadeUp(0.42)}>
+            {['100+ Projects Delivered', '50+ Happy Clients', '95% Client Retention'].map((item) => (
+              <div key={item} className="hero__trust-item">
+                <span className="hero__trust-check">✓</span>
+                <span>{item}</span>
               </div>
             ))}
           </motion.div>

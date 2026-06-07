@@ -38,14 +38,22 @@
 }
 
 .footer__logo {
-  font-size: 1.2rem;
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  color: var(--text-inverse);
+  display: flex;
+  align-items: center;
   width: fit-content;
 }
 
-.footer__logo span { color: rgba(255,255,255,0.35); }
+.footer__logo-img {
+  height: 85px;
+  width: auto;
+  display: block;
+  opacity: 0.85;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s ease;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.footer__logo:hover .footer__logo-img { opacity: 1; }
 
 .footer__about {
   font-size: 0.875rem;

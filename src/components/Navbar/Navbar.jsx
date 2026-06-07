@@ -209,7 +209,13 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}${topBarHidden ? ' navbar--top' : ''}`}>
       <div className="container navbar__inner">
         <Link to="/" className="navbar__logo">
-          Trendox<span className="navbar__logo-dot">.</span>
+          <img
+            src="/trendoxlogo.png"
+            alt="Trendox"
+            className="navbar__logo-img"
+            width="auto"
+            height="44"
+          />
         </Link>
 
         {/* Desktop nav */}

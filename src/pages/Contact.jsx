@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom'
 import './pages.css'
 import './Contact.css'
 
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID  || ''
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || ''
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  || ''
 
 const vp = { once: true, margin: '-30px' }
 const up = (d = 0) => ({
@@ -34,9 +34,9 @@ const INFO_CARDS = [
   {
     icon: <FaPhone />,
     label: 'Call Us',
-    value: '+91 XXXXX XXXXX',
+    value: '+91 885-353-3552',
     sub: 'Mon–Sat, 10am–7pm IST',
-    href: 'tel:+91XXXXXXXXXX',
+    href: 'tel:+918853533552',
   },
   {
     icon: <FaLocationDot />,

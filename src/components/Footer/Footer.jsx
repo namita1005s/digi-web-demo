@@ -25,7 +25,7 @@ const services = [
 
 const contact = [
   { label: 'hello@trendoxmarketing.com', href: 'mailto:hello@trendoxmarketing.com' },
-  { label: '+91 XXXXX XXXXX', href: 'tel:+91XXXXXXXXXX' },
+  { label: '+91 885-353-3552', href: 'tel:+918853533552' },
   { label: 'Lucknow, Uttar Pradesh, India' },
   { label: 'www.trendoxmarketing.com', href: 'https://www.trendoxmarketing.com' },
 ]
@@ -45,7 +45,13 @@ export default function Footer() {
 
           <div className="footer__col footer__col--brand">
             <Link to="/" className="footer__logo">
-              Trendox<span>.</span>
+              <img
+                src="/trendoxlogo.png"
+                alt="Trendox"
+                className="footer__logo-img"
+                width="auto"
+                height="65"
+              />
             </Link>
             <p className="footer__about">
               We help ambitious brands grow through strategy, design,
@@ -101,8 +107,8 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Trendox Marketing Solutions. All Rights Reserved.
           </p>
           <div className="footer__bottom-links">
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <Link to="/terms">Terms &amp; Conditions</Link>
+            <Link to="/faqs">Privacy Policy</Link>
+            <Link to="/faqs">Terms &amp; Conditions</Link>
           </div>
         </div>
       </div>

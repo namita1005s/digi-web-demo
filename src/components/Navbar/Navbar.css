@@ -26,18 +26,38 @@
   justify-content: space-between;
   height: 64px;
   position: relative;
+  overflow: visible;
 }
 
 .navbar__logo {
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  color: var(--text);
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
   z-index: 1;
+  /* Reserve only enough layout space for the nav gap;
+     the visual logo overflows via transform without affecting height */
+  margin-right: 8px;
+  padding: 0;
 }
 
-.navbar__logo-dot { color: var(--text); }
+.navbar__logo-img {
+  /* Intrinsic layout height stays small — scale does the visual work */
+  height: 52px;
+  width: auto;
+  display: block;
+  opacity: 0.9;
+  transform: scale(1.15);
+  transform-origin: left center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  image-rendering: -webkit-optimize-contrast;
+  /* overflow won't push flex siblings */
+  will-change: transform;
+}
+
+.navbar__logo:hover .navbar__logo-img {
+  opacity: 1;
+  transform: scale(1.18);
+}
 
 /* ── Desktop nav ── */
 .navbar__links {
@@ -496,6 +516,11 @@
   .navbar__links { display: none; }
   .navbar__cta-btn:not(.navbar__cta-mobile) { display: none; }
   .navbar__hamburger { display: flex; }
+  .navbar__logo-img { height: 38px; transform: scale(1.1); }
+}
+
+@media (max-width: 480px) {
+  .navbar__logo-img { height: 32px; transform: scale(1.05); }
 }
 
 @media (max-width: 860px) {

@@ -1,0 +1,176 @@
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import CTA from '../CTA/CTA'
+import './Blog.css'
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.5, delay, ease: 'easeOut' },
+})
+
+const articles = [
+  {
+    id: 1,
+    tag: 'SEO',
+    title: '10 Technical SEO Fixes That Will Double Your Organic Traffic',
+    excerpt: 'Most websites are leaving rankings on the table due to fixable technical issues. Here are the ten highest-impact fixes we apply to every new client site.',
+    author: 'Aryan Verma',
+    date: 'Jan 14, 2025',
+    readTime: '7 min read',
+    image: 'https://images.pexels.com/photos/270637/pexels-photo-270637.jpeg?w=1200&h=600&fit=crop',
+    content: 'Full article content here...',
+  },
+  {
+    id: 2,
+    tag: 'PPC',
+    title: 'How We Achieved 4.5x ROAS on a ₹15L/Month Google Ads Budget',
+    excerpt: 'A behind-the-scenes breakdown of the campaign structure, bidding strategy, and creative testing that drove exceptional returns for an e-commerce client.',
+    author: 'Vikram Patel',
+    date: 'Jan 08, 2025',
+    readTime: '9 min read',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop',
+    content: 'Full article content here...',
+  },
+  {
+    id: 3,
+    tag: 'Web Design',
+    title: 'The 5 UX Principles Behind Every High-Converting Landing Page',
+    excerpt: 'Conversion rate optimisation isn\'t magic — it\'s psychology. We break down the five principles we apply to every landing page we design.',
+    author: 'Priya Sharma',
+    date: 'Dec 28, 2024',
+    readTime: '6 min read',
+    image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=500&fit=crop',
+    content: 'Full article content here...',
+  },
+  {
+    id: 4,
+    tag: 'Social Media',
+    title: 'Why Your Instagram Reach Dropped and How to Fix It in 2025',
+    excerpt: 'The algorithm changed again. Here\'s what\'s actually working for our clients right now — and what you should stop doing immediately.',
+    author: 'Sneha Joshi',
+    date: 'Dec 20, 2024',
+    readTime: '5 min read',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=500&fit=crop',
+    content: 'Full article content here...',
+  },
+  {
+    id: 5,
+    tag: 'Strategy',
+    title: 'Full-Funnel Marketing: The Framework We Use for Every Client',
+    excerpt: 'Siloed marketing channels waste budget. This is the integrated framework we use to connect awareness, consideration, and conversion into one cohesive engine.',
+    author: 'Aryan Verma',
+    date: 'Dec 12, 2024',
+    readTime: '8 min read',
+    image: 'https://images.unsplash.com/photo-1552581234-26160f608093?w=800&h=500&fit=crop',
+    content: 'Full article content here...',
+  },
+  {
+    id: 6,
+    tag: 'Web Development',
+    title: 'Why We Moved All Client Sites to Next.js (And You Should Too)',
+    excerpt: 'Performance, SEO, and developer experience — Next.js wins on all three. Here\'s our migration process and the results we\'ve seen across 20+ projects.',
+    author: 'Rahul Gupta',
+    date: 'Dec 05, 2024',
+    readTime: '7 min read',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop',
+    content: 'Full article content here...',
+  },
+  {
+    id: 7,
+    tag: 'SEO',
+    title: 'Local SEO in 2025: The Complete Guide for Service Businesses',
+    excerpt: 'Google Business Profile, local citations, review strategy, and geo-targeted content — everything a local business needs to dominate their area.',
+    author: 'Neha Singh',
+    date: 'Nov 28, 2024',
+    readTime: '10 min read',
+    image: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=800&h=500&fit=crop',
+    content: 'Full article content here...',
+  },
+  {
+    id: 8,
+    tag: 'PPC',
+    title: 'Meta Ads vs Google Ads: Which Should You Prioritise in 2025?',
+    excerpt: 'The answer depends on your funnel stage, audience, and product type. We break down the decision framework we use with every new client.',
+    author: 'Vikram Patel',
+    date: 'Nov 18, 2024',
+    readTime: '6 min read',
+    image: 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&h=500&fit=crop',
+    content: 'Full article content here...',
+  },
+  {
+    id: 9,
+    tag: 'Branding',
+    title: 'Brand Strategy Before Marketing: Why Most Campaigns Fail',
+    excerpt: 'Pouring budget into ads without a clear brand position is like filling a leaky bucket. Here\'s how to fix the foundation before scaling spend.',
+    author: 'Priya Sharma',
+    date: 'Nov 10, 2024',
+    readTime: '5 min read',
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop',
+    content: 'Full article content here...',
+  },
+]
+
+export default function Blog() {
+  return (
+    <>
+      <section className="page-hero">
+        <div className="container page-hero__inner">
+          <motion.span className="section-tag" {...fadeUp(0)}>Blog</motion.span>
+          <motion.h1 className="page-hero__title" {...fadeUp(0.06)}>
+            Insights, Strategy<br />& Agency Thinking
+          </motion.h1>
+          <motion.p className="page-hero__subtitle" {...fadeUp(0.12)}>
+            Practical guides, case study breakdowns, and marketing strategy from the Trendox team.
+          </motion.p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="blog-grid">
+            {articles.map((article, i) => (
+              <motion.article
+                key={article.id}
+                className="blog-card"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.06, ease: 'easeOut' }}
+                whileHover={{ y: -8 }}
+              >
+                <Link to={`/blog/${article.id}`} className="blog-card__link">
+                  <div className="blog-card__image">
+                    <img src={article.image} alt={article.title} />
+                    <div className="blog-card__overlay">
+                      <span className="blog-card__read-btn">Read Article →</span>
+                    </div>
+                  </div>
+                  <div className="blog-card__body">
+                    <span className="blog-card__tag">{article.tag}</span>
+                    <h2 className="blog-card__title">{article.title}</h2>
+                    <p className="blog-card__excerpt">{article.excerpt}</p>
+                    <div className="blog-card__footer">
+                      <div className="blog-card__author">
+                        <div className="blog-card__avatar">{article.author[0]}</div>
+                        <span>{article.author}</span>
+                      </div>
+                      <div className="blog-card__meta">
+                        <span>{article.date}</span>
+                        <span className="blog-card__dot">·</span>
+                        <span>{article.readTime}</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link> 
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+ 
+      <CTA />
+    </>
+  )
+}

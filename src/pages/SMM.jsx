@@ -1,108 +1,39 @@
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import Testimonials from '../components/Testimonials/Testimonials'
-import CTA from '../components/CTA/CTA'
-import Stats from '../components/Stats/Stats'
-import './pages.css'
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5, delay, ease: 'easeOut' },
-})
-
-const features = [
-  { icon: '◎', title: 'Content Strategy', desc: 'Platform-native content calendars built around your audience, brand voice, and business goals.' },
-  { icon: '✦', title: 'Community Management', desc: 'Daily engagement, comment moderation, and DM handling to build a loyal, active community.' },
-  { icon: '◈', title: 'Paid Social Ads', desc: 'Targeted Meta, Instagram, and LinkedIn ad campaigns that drive traffic, leads, and sales.' },
-  { icon: '◆', title: 'Influencer Outreach', desc: 'Micro and macro influencer partnerships that expand your reach to qualified audiences.' },
-  { icon: '⬡', title: 'Creative Production', desc: 'Scroll-stopping graphics, reels, and carousels designed to perform on every platform.' },
-  { icon: '❋', title: 'Analytics & Reporting', desc: 'Monthly performance reports with reach, engagement, follower growth, and conversion data.' },
-]
-
-const platforms = ['Instagram', 'Facebook', 'LinkedIn', 'X (Twitter)', 'YouTube', 'Pinterest', 'TikTok', 'Threads']
+import ServicePage from '../components/ServicePage/ServicePage'
 
 export default function SMM() {
   return (
-    <>
-      <section className="page-hero">
-        <div className="container page-hero__inner">
-          <motion.span className="section-tag" {...fadeUp(0)}>Social Media Marketing</motion.span>
-          <motion.h1 className="page-hero__title" {...fadeUp(0.06)}>
-            Turn Followers Into<br />Loyal Customers
-          </motion.h1>
-          <motion.p className="page-hero__subtitle" {...fadeUp(0.12)}>
-            Strategic social media management that builds brand authority, grows engaged audiences, and converts attention into revenue.
-          </motion.p>
-          <motion.div style={{ display: 'flex', gap: 12, marginTop: 8 }} {...fadeUp(0.18)}>
-            <Link to="/contact" className="btn-primary">Start Growing →</Link>
-            <Link to="/portfolio" className="btn-outline">See Results</Link>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-tag">What's Included</span>
-            <h2 className="section-title">Everything Your Social<br />Presence Needs</h2>
-            <p className="section-subtitle">From strategy to execution — we handle every aspect of your social media growth.</p>
-          </div>
-          <div className="about-values__grid">
-            {features.map((f, i) => (
-              <motion.div
-                key={f.title}
-                className="about-value-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.07, ease: 'easeOut' }}
-              >
-                <span className="about-value-card__icon">{f.icon}</span>
-                <h3 className="about-value-card__title">{f.title}</h3>
-                <p className="about-value-card__desc">{f.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--alt">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-tag">Platforms</span>
-            <h2 className="section-title">We Manage Every<br />Major Platform</h2>
-            <p className="section-subtitle">Wherever your audience is, we show up with the right content at the right time.</p>
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            {platforms.map((p, i) => (
-              <motion.span
-                key={p}
-                style={{
-                  padding: '10px 20px',
-                  border: '1px solid var(--border)',
-                  borderRadius: 'var(--radius-pill)',
-                  fontSize: '0.875rem',
-                  fontWeight: 600,
-                  color: 'var(--text-muted)',
-                  background: 'var(--surface)',
-                }}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-              >
-                {p}
-              </motion.span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Stats />
-      <Testimonials />
-      <CTA />
-    </>
+    <ServicePage
+      badge="Social Media Marketing"
+      headline={<>Turn Followers Into<br /><em>Loyal Customers.</em></>}
+      description="Strategic social media management that builds brand authority, grows engaged audiences, and converts attention into revenue."
+      cta1={{ label: 'Start Growing →', to: '/contact' }}
+      cta2={{ label: 'See Results', to: '/portfolio' }}
+      stats={[
+        { val: '+210%', label: 'Avg. Follower Growth' },
+        { val: '8+', label: 'Platforms Managed' },
+        { val: '3.8x', label: 'Avg. Engagement Lift' },
+        { val: '95%', label: 'Client Retention Rate' },
+      ]}
+      delivers={[
+        { icon: '◎', title: 'Content Strategy', desc: 'Platform-native content calendars built around your audience, brand voice, and business goals.' },
+        { icon: '✦', title: 'Community Management', desc: 'Daily engagement, comment moderation, and DM handling to build a loyal, active community.' },
+        { icon: '◈', title: 'Paid Social Ads', desc: 'Targeted Meta, Instagram, and LinkedIn ad campaigns that drive traffic, leads, and sales.' },
+        { icon: '◆', title: 'Influencer Outreach', desc: 'Micro and macro influencer partnerships that expand your reach to qualified audiences.' },
+        { icon: '⬡', title: 'Creative Production', desc: 'Scroll-stopping graphics, reels, and carousels designed to perform on every platform.' },
+        { icon: '❋', title: 'Analytics & Reporting', desc: 'Monthly performance reports with reach, engagement, follower growth, and conversion data.' },
+      ]}
+      why={[
+        { title: 'Platform-Native Content', body: 'We don\'t repurpose — we create content built specifically for each platform\'s algorithm and audience.' },
+        { title: 'Brand Voice First', body: 'Every post sounds like you. We embed your tone and values before writing a single caption.' },
+        { title: 'Paid + Organic Together', body: 'Organic builds trust; paid amplifies reach. We run both in sync for maximum impact.' },
+        { title: 'Transparent Reporting', body: 'Monthly reports with real metrics — reach, engagement, link clicks, and lead attribution.' },
+      ]}
+      faqs={[
+        { q: 'Which platforms do you manage?', a: 'Instagram, Facebook, LinkedIn, X, YouTube, Pinterest, TikTok, and Threads — tailored to where your audience is.' },
+        { q: 'How many posts per week do you publish?', a: 'Typically 4–7 posts per week depending on the platform and your chosen package.' },
+        { q: 'Do you handle customer replies and DMs?', a: 'Yes — community management including comments and DMs is included in all plans.' },
+        { q: 'Can we approve content before it goes live?', a: 'Absolutely. We share a monthly content calendar for your review and approval before scheduling.' },
+      ]}
+    />
   )
 }

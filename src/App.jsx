@@ -17,6 +17,7 @@ import SEOServices from './pages/SEOServices'
 import DigitalMarketing from './pages/DigitalMarketing'
 import SMM from './pages/SMM'
 import PPC from './pages/PPC'
+import AIAutomation from './pages/AIAutomation'
 import NotFound from './pages/NotFound'
 
 function ScrollToTop() {
@@ -40,6 +41,7 @@ export default function App() {
         <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
         <Route path="/services/smm" element={<SMM />} />
         <Route path="/services/ppc" element={<PPC />} />
+        <Route path="/services/ai-automation" element={<AIAutomation />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />

@@ -81,13 +81,13 @@ function FAQAccordion({ items }) {
  *  description   string   — hero subtitle
  *  cta1          { label, to }
  *  cta2          { label, to }
- *  heroImage     string   — URL for hero dashboard image
+ *  heroVisual    jsx      — right-column service illustration
+ *  heroMetrics   [{ icon, val, label }] — floating metric cards (2–3)
  *  stats         [{ val, label, sub }]   — 4 items
  *  delivers      [{ icon, title, desc }] — 6 items (bento grid)
  *  why           [{ title, body }]       — 3-4 items
  *  caseStudy     { image, tag, title, results: [{val,label}], cta }
  *  faqs          [{ q, a }]
- *  processSteps  — optional; if omitted uses shared <Process />
  */
 export default function ServicePage({
   badge,
@@ -95,7 +95,8 @@ export default function ServicePage({
   description,
   cta1 = { label: 'Get Started →', to: '/contact' },
   cta2 = { label: 'See Results', to: '/portfolio' },
-  heroImage,
+  heroVisual,
+  heroMetrics,
   stats,
   delivers,
   why,
@@ -118,14 +119,31 @@ export default function ServicePage({
               <Link to={cta2.to} className="btn-outline">{cta2.label}</Link>
             </motion.div>
           </div>
-          {heroImage && (
+          {heroVisual && (
             <motion.div
-              className="sp-hero__visual"
+              className="sp-hero__visual-wrap"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <img src={heroImage} alt="" loading="eager" />
+              <div className="sp-hero__visual">
+                {heroVisual}
+              </div>
+              {heroMetrics?.map((m, i) => (
+                <motion.div
+                  key={i}
+                  className={`sp-hero__metric sp-hero__metric--${i}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span className="sp-hero__metric-icon">{m.icon}</span>
+                  <div>
+                    <div className="sp-hero__metric-val">{m.val}</div>
+                    <div className="sp-hero__metric-label">{m.label}</div>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
           )}
         </div>

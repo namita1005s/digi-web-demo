@@ -1,114 +1,562 @@
-.career-list {
+/* Career Page · cp- namespace */
+
+.cp {
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+/* ── Shared ─────────────────────────────────────── */
+.cp-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  border: 1px solid var(--border-hover);
+  padding: 5px 13px;
+  border-radius: var(--radius-pill);
+}
+.cp-tag--inv {
+  color: rgba(255,255,255,0.35);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.cp-h2 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1.0;
+  color: var(--text);
+}
+.cp-h2 em { font-style: italic; font-weight: 300; }
+.cp-h2--inv { color: #fff; }
+.cp-h2--inv em { color: rgba(255,255,255,0.5); }
+
+.cp-section-head {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+.cp-section-head--center {
+  align-items: center;
+  text-align: center;
+  max-width: 100%;
+}
+.cp-section-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 2px;
 }
 
-.career-card {
-  background: var(--surface);
+
+
+/* ══ 2. WHY JOIN ════════════════════════════════ */
+.cp-why {
+  background: var(--fog, #f0ede8);
+  padding: clamp(48px, 6vw, 80px) 0;
+}
+.cp-why__head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+.cp-why__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.cp-why__card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow var(--t-fast), transform var(--t-fast);
+}
+.cp-why__card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.cp-why__num {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-subtle);
+}
+.cp-why__card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1.2;
+}
+.cp-why__card p {
+  font-size: 0.875rem;
+  color: #3a3a3a;
+  line-height: 1.78;
+}
+
+
+/* ══ 3. BENEFITS BENTO ══════════════════════════ */
+.cp-benefits {
+  background: #fff;
+  padding: clamp(48px, 6vw, 80px) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.cp-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 12px;
+}
+.cp-bento__cell {
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 28px 32px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow var(--t-fast), transform var(--t-fast), border-color var(--t-fast);
+}
+.cp-bento__cell:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+.cp-bento__cell--wide {
+  grid-column: span 2;
+  background: var(--text);
+  border-color: var(--text);
+}
+.cp-bento__cell--wide .cp-bento__icon,
+.cp-bento__cell--wide strong,
+.cp-bento__cell--wide p {
+  color: rgba(255,255,255,0.9);
+}
+.cp-bento__cell--wide p { color: rgba(255,255,255,0.5); }
+.cp-bento__icon {
+  font-size: 1.1rem;
+  color: var(--text-subtle);
+}
+.cp-bento__cell strong {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+.cp-bento__cell p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+
+/* ══ 4. HIRING PROCESS ══════════════════════════ */
+.cp-process {
+  position: relative;
+  background: var(--bg);
+  padding: clamp(48px, 6vw, 80px) 0;
+  overflow: hidden;
+}
+.cp-process__grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+}
+.cp-process__track {
+  position: relative;
+  height: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.cp-process__track::before {
+  content: '';
+  position: absolute;
+  top: 44px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+}
+.cp-process__connector-fill {
+  position: absolute;
+  top: 44px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--text), rgba(0,0,0,0.1));
+  transform-origin: left center;
+}
+.cp-process__row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: stretch;
+}
+.cp-process__card {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: var(--radius-lg);
+  padding: 20px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--t-base), box-shadow var(--t-base);
+  cursor: default;
+  z-index: 1;
+}
+.cp-process__card:hover {
+  border-color: rgba(0,0,0,0.18);
+  box-shadow: var(--shadow-md);
+}
+.cp-process__ghost {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  color: rgba(0,0,0,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.cp-process__step {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+.cp-process__title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  line-height: 1.2;
+}
+.cp-process__body {
+  font-size: 0.8rem;
+  color: #374151;
+  line-height: 1.6;
+}
+.cp-process__arrow {
+  position: absolute;
+  top: 42px;
+  right: -11px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.09);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  z-index: 2;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+
+/* ══ 5. OPEN POSITIONS ══════════════════════════ */
+.cp-positions {
+  background: var(--bg-alt, #efefea);
+  padding: clamp(48px, 6vw, 80px) 0;
+}
+.cp-jobs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cp-job {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  transition: box-shadow var(--t-base), transform var(--t-base);
+  transition: box-shadow var(--t-base), transform var(--t-base), border-color var(--t-base);
 }
-
-.career-card:hover {
+.cp-job:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
+  border-color: var(--border-hover);
 }
-
-.career-card__left {
+.cp-job__left {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   flex: 1;
 }
-
-.career-card__meta {
+.cp-job__meta {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
-
-.career-card__dept {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+.cp-job__dept {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-subtle);
+  color: var(--text);
   background: var(--bg-alt);
   border: 1px solid var(--border);
   padding: 3px 10px;
   border-radius: var(--radius-pill);
 }
-
-.career-card__type {
+.cp-job__dot-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-subtle);
+  flex-shrink: 0;
+}
+.cp-job__type {
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--text-muted);
 }
-
-.career-card__location {
+.cp-job__location {
   font-size: 0.75rem;
   color: var(--text-subtle);
 }
-
-.career-card__title {
+.cp-job__title {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.03em;
+  line-height: 1.25;
 }
-
-.career-card__desc {
-  font-size: 0.875rem;
+.cp-job__desc {
+  font-size: 0.855rem;
   color: var(--text-muted);
-  line-height: 1.7;
-  max-width: 600px;
+  line-height: 1.72;
+  max-width: 580px;
 }
-
-.career-card__cta {
+.cp-job__btn {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  background: var(--text);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
+  transition: background var(--t-fast), transform var(--t-fast);
 }
+.cp-job__btn:hover { background: #333; transform: translateY(-1px); }
 
-.career-open-app {
-  margin-top: 48px;
-  padding: 40px;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
+
+/* ══ 6. TEAM & CULTURE ══════════════════════════ */
+.cp-culture {
+  background: #fff;
+  padding: clamp(48px, 6vw, 80px) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.cp-culture__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 12px;
+}
+.cp-culture__img {
   border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+.cp-culture__img--tall {
+  grid-row: span 2;
+  aspect-ratio: 3 / 4;
+}
+.cp-culture__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(15%);
+  transition: transform 0.7s ease, filter 0.4s ease;
+}
+.cp-culture__img:hover img { transform: scale(1.04); filter: grayscale(0%); }
+
+
+/* ══ 6. PREMIUM CTA ═════════════════════════════ */
+.cp-cta {
+  background: var(--bg-dark);
+  padding: clamp(56px, 8vw, 112px) 0;
+  position: relative;
+  overflow: hidden;
+}
+.cp-cta__noise {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.cp-cta__wrap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.cp-cta__card {
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-xl, 20px);
+  padding: clamp(40px, 6vw, 72px) clamp(32px, 6vw, 80px);
+  max-width: 680px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+  overflow: hidden;
+}
+.cp-cta__glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cp-cta__icon {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 4px;
+}
+.cp-cta__h2 {
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1.0;
+  color: #fff;
+}
+.cp-cta__h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.42);
+}
+.cp-cta__sub {
+  font-size: 0.975rem;
+  color: rgba(255,255,255,0.42);
+  max-width: 44ch;
+  line-height: 1.78;
+  margin-top: -4px;
+}
+.cp-cta__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+.cp-cta__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 30px;
+  border-radius: var(--radius-sm);
+  transition: opacity var(--t-fast), transform var(--t-fast);
+  white-space: nowrap;
+}
+.cp-cta__btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+.cp-cta__btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
+  white-space: nowrap;
+}
+.cp-cta__btn-ghost:hover {
+  border-color: rgba(255,255,255,0.45);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
-.career-open-app__text {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-muted);
+
+/* ══ Responsive ═════════════════════════════════ */
+@media (max-width: 1024px) {
+  .cp-why__grid { grid-template-columns: repeat(2, 1fr); }
+  .cp-bento { grid-template-columns: repeat(2, 1fr); }
+  .cp-bento__cell--wide { grid-column: span 2; }
+  .cp-process__row { grid-template-columns: repeat(2, 1fr); }
+  .cp-process__track { display: none; }
+  .cp-process__arrow { display: none; }
 }
 
 @media (max-width: 768px) {
-  .career-card {
+  .cp-why__grid { grid-template-columns: repeat(2, 1fr); }
+  .cp-bento { grid-template-columns: 1fr; }
+  .cp-bento__cell--wide { grid-column: span 1; }
+  .cp-culture__grid {
+    grid-template-columns: 1fr;
+  }
+  .cp-culture__img--tall { grid-row: span 1; aspect-ratio: 16/9; }
+  .cp-job {
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
-    padding: 24px;
+    gap: 18px;
+    padding: 22px 20px;
   }
+  .cp-job__btn { width: 100%; justify-content: center; }
+}
 
-  .career-card__cta { width: 100%; justify-content: center; }
-
-  .career-open-app {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 28px 24px;
-  }
+@media (max-width: 540px) {
+  .cp-why__grid { grid-template-columns: 1fr; }
+  .cp-process__row { grid-template-columns: 1fr; }
+  .cp-cta__actions { flex-direction: column; }
+  .cp-cta__btn-primary,
+  .cp-cta__btn-ghost { width: 100%; justify-content: center; }
 }

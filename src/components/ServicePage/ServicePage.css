@@ -29,6 +29,9 @@
   grid-template-columns: 1fr 1fr;
   gap: clamp(40px, 6vw, 80px);
   align-items: center;
+  /* extra padding so floating metric cards aren't clipped */
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .sp-hero__content {
@@ -68,24 +71,61 @@
   flex-wrap: wrap;
 }
 
+/* visual wrap — positions the card + floating metrics */
+.sp-hero__visual-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
 .sp-hero__visual {
-  border-radius: var(--radius-xl);
+  border-radius: 22px;
   overflow: hidden;
-  aspect-ratio: 16 / 10;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.11), 0 0 0 1px var(--border);
-  background: var(--bg-alt);
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.13), 0 0 0 1px var(--border);
+  background: #fff;
+  width: 100%;
+}
+
+/* floating metric cards */
+.sp-hero__metric {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.sp-hero__metric--0 { bottom: -18px; left: -20px; }
+.sp-hero__metric--1 { top: -18px;    right: -16px; }
+.sp-hero__metric--2 { bottom: 44px;  right: -20px; }
+
+.sp-hero__metric-icon {
+  font-size: 1.1rem;
+  line-height: 1;
   flex-shrink: 0;
 }
 
-.sp-hero__visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.7s ease;
+.sp-hero__metric-val {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1.1;
 }
 
-.sp-hero__visual:hover img { transform: scale(1.03); }
+.sp-hero__metric-label {
+  font-size: 0.68rem;
+  color: var(--text-subtle);
+  font-weight: 500;
+  line-height: 1.2;
+}
 
 /* ══ 2. STATS ═════════════════════════════════════════════════════ */
 .sp-stats {
@@ -358,7 +398,10 @@
 /* ══ Responsive ═══════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .sp-hero__inner { grid-template-columns: 1fr; }
-  .sp-hero__visual { max-width: 560px; width: 100%; aspect-ratio: 16/9; }
+  .sp-hero__visual-wrap { max-width: 560px; width: 100%; margin: 40px auto 0; }
+  .sp-hero__metric--0 { bottom: -14px; left: 8px; }
+  .sp-hero__metric--1 { top: -14px;   right: 8px; }
+  .sp-hero__metric--2 { bottom: 50px; right: 8px; }
   .sp-stats__grid { grid-template-columns: repeat(2, 1fr); }
   .sp-stats__cell:nth-child(2) { border-right: none; }
   .sp-stats__cell { border-bottom: 1px solid rgba(255,255,255,0.07); }
@@ -372,8 +415,12 @@
 }
 
 @media (max-width: 640px) {
-  .sp-hero { padding-top: 112px; padding-bottom: 48px; }
+  .sp-hero { padding-top: 112px; padding-bottom: 64px; }
   .sp-hero__h1 { font-size: clamp(2.1rem, 8vw, 3rem); }
+  .sp-hero__metric { padding: 8px 11px; gap: 7px; }
+  .sp-hero__metric--0 { bottom: -12px; left: 6px; }
+  .sp-hero__metric--1 { top: -12px;   right: 6px; }
+  .sp-hero__metric--2 { display: none; }
   .sp-delivers__grid { grid-template-columns: 1fr; }
   .sp-why__grid { grid-template-columns: 1fr 1fr; }
   .sp-stats__grid { grid-template-columns: repeat(2, 1fr); }

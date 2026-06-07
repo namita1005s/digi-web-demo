@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import CTA from '../components/CTA/CTA'
 import Testimonials from '../components/Testimonials/Testimonials'
 import './pages.css'
@@ -74,18 +75,120 @@ const cases = [
   },
 ]
 
+const pfFloatCards = [
+  {
+    cls: 'ph-float--1',
+    icon: '◆',
+    value: '100+',
+    label: 'Projects Delivered',
+    initial: { opacity: 0, x: 20, y: -10 },
+    animate: { opacity: 1, x: 0, y: [0, -8, 0] },
+    transition: {
+      opacity: { duration: 0.5, delay: 0.85 },
+      x:       { duration: 0.5, delay: 0.85 },
+      y:       { duration: 4.4, delay: 0.85, repeat: Infinity, ease: 'easeInOut' },
+    },
+  },
+  {
+    cls: 'ph-float--2',
+    icon: '✦',
+    value: '4.8x',
+    label: 'Avg. ROAS',
+    initial: { opacity: 0, x: -20, y: 10 },
+    animate: { opacity: 1, x: 0, y: [0, 7, 0] },
+    transition: {
+      opacity: { duration: 0.5, delay: 1.0 },
+      x:       { duration: 0.5, delay: 1.0 },
+      y:       { duration: 5.0, delay: 1.0, repeat: Infinity, ease: 'easeInOut' },
+    },
+  },
+  {
+    cls: 'ph-float--3',
+    icon: '↑',
+    value: '95%',
+    label: 'Client Retention',
+    initial: { opacity: 0, y: 18 },
+    animate: { opacity: 1, y: [0, -6, 0] },
+    transition: {
+      opacity: { duration: 0.5, delay: 1.15 },
+      y:       { duration: 5.2, delay: 1.15, repeat: Infinity, ease: 'easeInOut' },
+    },
+  },
+]
+
 export default function Portfolio() {
   return (
     <>
-      <section className="page-hero">
-        <div className="container page-hero__inner">
-          <motion.span className="section-tag" {...fadeUp(0)}>Our Work</motion.span>
-          <motion.h1 className="page-hero__title" {...fadeUp(0.06)}>
-            Results That Speak<br />for Themselves
-          </motion.h1>
-          <motion.p className="page-hero__subtitle" {...fadeUp(0.12)}>
-            A curated selection of campaigns and projects that delivered measurable business impact.
-          </motion.p>
+      <section className="ph">
+        <div className="ph__bg-glow" />
+        <div className="ph__noise" />
+        <div className="container ph__inner">
+          <div className="ph__content">
+            <motion.div className="hero__trust-badge" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
+              <span className="hero__badge-pulse" />
+              <span className="hero__trust-badge-text">Our Work</span>
+            </motion.div>
+            <motion.h1 className="ph__title" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}>
+              Results That Speak<br />
+              <span className="hero__title-accent">for Themselves</span>
+            </motion.h1>
+            <motion.p className="ph__subtitle" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}>
+              A curated selection of campaigns and projects that delivered measurable business impact.
+            </motion.p>
+            <motion.div className="hero__actions" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}>
+              <a href="#cases" className="hero__btn-primary">View Case Studies <span className="hero__btn-arrow">→</span></a>
+              <Link to="/contact" className="hero__btn-ghost">Start a Project</Link>
+            </motion.div>
+          </div>
+          <motion.div
+            className="ph__visual"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="ph__visual-glow" />
+            <div className="ph__parallax">
+              <motion.div
+                className="ph__panel"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <div className="ph__panel-header">
+                  <span className="ph__panel-title">Impact Overview</span>
+                  <span className="ph__panel-badge">All Time</span>
+                </div>
+                <div className="ph__topics">
+                  {[['Nexora Tech', '+180% Traffic'], ['Veltrix Solutions', '+60% Conversions'], ['Brandify Co.', '4.5x ROAS'], ['Optica Retail', '+220% Engagement'], ['FinEdge Capital', '3.2x Leads'], ['Luminary Studios', '98 PageSpeed']].map(([client, result]) => (
+                    <div key={client} className="ph__topic-row">
+                      <span className="ph__topic-dot" />
+                      <span className="ph__topic-name">{client}</span>
+                      <span className="ph__topic-count">{result}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="ph__panel-divider" />
+                <div className="ph__readtime">
+                  <span className="ph__readtime-label">Avg. Growth</span>
+                  <span className="ph__readtime-value">+168%</span>
+                </div>
+              </motion.div>
+              {pfFloatCards.map((card) => (
+                <motion.div
+                  key={card.cls}
+                  className={`hero__float-card ph-float ${card.cls}`}
+                  initial={card.initial}
+                  animate={card.animate}
+                  transition={card.transition}
+                >
+                  <span className="hero__float-icon">{card.icon}</span>
+                  <div>
+                    <div className="hero__float-value">{card.value}</div>
+                    <div className="hero__float-label">{card.label}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 

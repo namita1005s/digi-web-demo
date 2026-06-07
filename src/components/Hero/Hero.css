@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding-top: 72px;
+  padding-top: 70px; /* TopBar (40px) + Navbar (64px) */
   background: var(--bg);
 }
 
@@ -607,6 +607,10 @@
   .hero__float-card--1 { right: -8px; top: -12px; }
   .hero__float-card--2 { left: -8px; }
   .hero__float-card--3 { right: -8px; bottom: -12px; }
+}
+
+@media (max-width: 640px) {
+  .hero { padding-top: 100px; } /* TopBar (36px) + Navbar (64px) */
 }
 
 @media (max-width: 600px) {

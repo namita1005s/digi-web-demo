@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   max-width: 520px;
 }
 .cp-section-head--center {
@@ -59,13 +59,13 @@
 /* ══ 2. WHY JOIN ════════════════════════════════ */
 .cp-why {
   background: var(--fog, #f0ede8);
-  padding: clamp(48px, 6vw, 80px) 0;
+  padding: 80px 0;
 }
 .cp-why__head {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   max-width: 520px;
 }
 .cp-why__grid {
@@ -107,7 +107,7 @@
 /* ══ 3. BENEFITS BENTO ══════════════════════════ */
 .cp-benefits {
   background: #fff;
-  padding: clamp(48px, 6vw, 80px) 0;
+  padding: 80px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -164,7 +164,7 @@
 .cp-process {
   position: relative;
   background: var(--bg);
-  padding: clamp(48px, 6vw, 80px) 0;
+  padding: 80px 0;
   overflow: hidden;
 }
 .cp-process__grid-bg {
@@ -277,7 +277,7 @@
 /* ══ 5. OPEN POSITIONS ══════════════════════════ */
 .cp-positions {
   background: var(--bg-alt, #efefea);
-  padding: clamp(48px, 6vw, 80px) 0;
+  padding: 80px 0;
 }
 .cp-jobs {
   display: flex;
@@ -373,7 +373,7 @@
 /* ══ 6. TEAM & CULTURE ══════════════════════════ */
 .cp-culture {
   background: #fff;
-  padding: clamp(48px, 6vw, 80px) 0;
+  padding: 80px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -407,7 +407,7 @@
 /* ══ 6. PREMIUM CTA ═════════════════════════════ */
 .cp-cta {
   background: var(--bg-dark);
-  padding: clamp(56px, 8vw, 112px) 0;
+  padding: 80px 0;
   position: relative;
   overflow: hidden;
 }
@@ -431,7 +431,7 @@
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius-xl, 20px);
-  padding: clamp(40px, 6vw, 72px) clamp(32px, 6vw, 80px);
+  padding: clamp(36px, 5vw, 56px) clamp(28px, 5vw, 64px);
   max-width: 680px;
   width: 100%;
   display: flex;

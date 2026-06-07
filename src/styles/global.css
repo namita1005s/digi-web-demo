@@ -74,7 +74,7 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 .highlight { color: var(--text); }
 
 .section-header {
-  margin-bottom: 36px;
+  margin-bottom: 48px;
 }
 
 .section-header .section-subtitle {

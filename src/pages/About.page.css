@@ -74,7 +74,7 @@
   position: relative;
   z-index: 2;
   padding-top: 104px;
-  padding-bottom: clamp(36px, 5vw, 60px);
+  padding-bottom: clamp(32px, 4vw, 52px);
   width: 100%;
 }
 .ap-eyebrow {
@@ -171,7 +171,7 @@
 /* ══ 2. STATS ════════════════════════════════ */
 .ap-stats {
   background: var(--ink);
-  padding: clamp(28px, 4vw, 48px) 0;
+  padding: clamp(40px, 4vw, 56px) 0;
 }
 .ap-stats__grid {
   display: grid;
@@ -207,7 +207,7 @@
 /* ══ 3. WHO WE ARE ═══════════════════════════ */
 .ap-who {
   background: #fff;
-  padding: clamp(56px, 7vw, 96px) 0;
+  padding: 80px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -239,7 +239,7 @@
   gap: 0;
 }
 .ap-who__body .ap-tag { margin-bottom: 16px; }
-.ap-who__body .ap-h2 { margin-bottom: 24px; }
+.ap-who__body .ap-h2 { margin-bottom: 20px; }
 .ap-who__body p {
   font-size: 1rem;
   color: #3a3a3a;
@@ -280,13 +280,13 @@
 /* ══ 5. WHY CHOOSE US ════════════════════════ */
 .ap-why {
   background: var(--fog);
-  padding: clamp(48px, 6vw, 80px) 0;
+  padding: 80px 0;
 }
 .ap-why__head {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   max-width: 520px;
 }
 .ap-why__grid {
@@ -328,7 +328,7 @@
 /* ══ 6. TESTIMONIAL ══════════════════════════ */
 .ap-testi {
   background: var(--ink);
-  padding: clamp(32px, 4.5vw, 56px) 0;
+  padding: 64px 0;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
 .ap-testi__inner {

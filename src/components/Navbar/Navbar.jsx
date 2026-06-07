@@ -214,9 +214,11 @@ export default function Navbar() {
             alt="Trendox"
             className="navbar__logo-img"
             width="auto"
-            height="44"
+            height="52"
           />
         </Link>
+        {/* Spacer holds left side of flex row — logo is position:absolute above it */}
+        <div className="navbar__logo-spacer" aria-hidden="true" />
 
         {/* Desktop nav */}
         <ul className="navbar__links">

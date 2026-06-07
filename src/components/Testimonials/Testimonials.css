@@ -1,11 +1,11 @@
 .testimonials {
   background: var(--bg-alt);
-  padding: clamp(40px, 5vw, 64px) 0;
+  padding: 64px 0;
   overflow: hidden;
 }
 
 .testimonials__head {
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 /* ── Marquee track ─────────────────────────────── */

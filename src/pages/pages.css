@@ -48,8 +48,8 @@
   align-items: center;
   gap: 56px;
   width: 100%;
-  padding-top: 40px;
-  padding-bottom: 80px;
+  padding-top: 32px;
+  padding-bottom: 60px;
   position: relative;
   z-index: 1;
 }
@@ -73,7 +73,7 @@
   color: var(--text-muted);
   line-height: 1.82;
   max-width: 460px;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 
 .ph__visual {
@@ -211,8 +211,8 @@
 @media (max-width: 900px) {
   .ph__inner {
     grid-template-columns: 1fr;
-    padding-bottom: 60px;
-    gap: 48px;
+    padding-bottom: 48px;
+    gap: 40px;
   }
   .ph__parallax { max-width: 500px; margin: 0 auto; }
   .ph-float--1  { right: -8px; top: -10px; }
@@ -221,8 +221,8 @@
 }
 
 @media (max-width: 600px) {
-  .ph { padding-top: 96px; }
-  .ph__inner { padding-bottom: 48px; }
+  .ph { padding-top: 88px; }
+  .ph__inner { padding-bottom: 40px; }
   .ph-float--2 { display: none; }
 }
 
@@ -234,7 +234,7 @@
    LEGACY — centred page-hero (About page)
 ───────────────────────────────────────── */
 .page-hero {
-  padding: 100px 0 72px;
+  padding: 88px 0 56px;
   text-align: center;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
@@ -349,7 +349,7 @@
 }
 
 @media (max-width: 640px) {
-  .page-hero { padding: 80px 0 52px; }
+  .page-hero { padding: 72px 0 44px; }
   .about-values__grid { grid-template-columns: 1fr; }
   .about-team__grid   { grid-template-columns: repeat(2, 1fr); }
 }

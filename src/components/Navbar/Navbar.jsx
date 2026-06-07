@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import TopBar from './TopBar'
 import './Navbar.css'
@@ -178,10 +179,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
 
   const [activeTab, setActiveTab] = useState(0)
 
@@ -313,9 +310,12 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="navbar__mobile-menu">
+    </nav>
+
+    {createPortal(
+      <>
+        <div className={`navbar__overlay${menuOpen ? ' navbar__overlay--visible' : ''}`} onClick={closeAll} />
+        <div className={`navbar__mobile-menu${menuOpen ? ' navbar__mobile-menu--open' : ''}`}>
           <ul className="navbar__mobile-links">
             {navLinks.map(({ label, to, hasDropdown }) => (
               <li key={label}>
@@ -353,10 +353,9 @@ export default function Navbar() {
             Get Started
           </button>
         </div>
-      )}
-
-      {menuOpen && <div className="navbar__overlay" onClick={closeAll} />}
-    </nav>
+      </>,
+      document.body
+    )}
     </>
   )
 }

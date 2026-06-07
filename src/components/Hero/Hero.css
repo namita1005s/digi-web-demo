@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: clip;
   padding-top: 104px; /* TopBar (40px) + Navbar (64px) */
   background: var(--bg);
 }

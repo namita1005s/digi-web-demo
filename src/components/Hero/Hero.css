@@ -610,7 +610,7 @@
 }
 
 @media (max-width: 640px) {
-  .hero { padding-top: 88px; } /* TopBar (36px) + Navbar (64px) */
+  .hero { padding-top: 80px; }
 }
 
 @media (max-width: 600px) {
@@ -623,4 +623,7 @@
 
 @media (max-width: 400px) {
   .hero__float-card { display: none; }
+  .hero__trust-indicators { gap: 12px; }
+  .hero__trust-item { font-size: 0.72rem; }
+  .hero__inner { gap: 28px; padding-bottom: 48px; }
 }

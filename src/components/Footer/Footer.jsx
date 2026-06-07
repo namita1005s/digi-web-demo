@@ -107,8 +107,8 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Trendox Marketing Solutions. All Rights Reserved.
           </p>
           <div className="footer__bottom-links">
-            <Link to="/faqs">Privacy Policy</Link>
-            <Link to="/faqs">Terms &amp; Conditions</Link>
+            <Link to="/contact">Privacy Policy</Link>
+            <Link to="/contact">Terms &amp; Conditions</Link>
           </div>
         </div>
       </div>

@@ -6,11 +6,11 @@ import './pages.css'
 
 export default function ServicesPage() {
   return (
-    <>
+    <div style={{ paddingTop: '104px' }}>
       <ServicesSection />
       <Pricing />
       <FAQ />
       <CTA />
-    </>
+    </div>
   )
 }

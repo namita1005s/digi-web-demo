@@ -128,3 +128,9 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 }
 
 @media (max-width: 768px) { .container { padding: 0 20px; } }
+@media (max-width: 375px) { .container { padding: 0 16px; } }
+
+@media (max-width: 375px) {
+  .section-title { font-size: clamp(1.6rem, 7.5vw, 2rem); }
+  .btn-primary, .btn-outline { padding: 11px 20px; font-size: 0.825rem; }
+}

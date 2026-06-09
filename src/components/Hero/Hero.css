@@ -15,14 +15,16 @@
   z-index: 0;
 }
 
-/* Mountain-style white waves */
+/* Mountain-style white waves — bottom only */
 .hero__mountains {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 55%;
   z-index: 1;
   pointer-events: none;
+  display: block;
 }
 
 /* Radial light bloom top-left */
@@ -53,10 +55,10 @@
   display: grid;
   grid-template-columns: 50% 50%;
   align-items: center;
-  gap: 48px;
+  gap: 38px;
   width: 100%;
-  padding-top: 56px;
-  padding-bottom: 100px;
+  padding-top: 22px;
+  padding-bottom: 60px;
   position: relative;
   z-index: 2;
 }

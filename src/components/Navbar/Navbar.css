@@ -281,12 +281,12 @@
 .mega-menu__service-item:hover::before { background: #111; }
 
 .mega-menu__service-item.first {
-  color: #0055cc;
+  color: #111111;
   font-weight: 600;
 }
 
-.mega-menu__service-item.first::before { background: #0055cc; }
-.mega-menu__service-item.first:hover { background: #eef3ff; color: #003d99; }
+.mega-menu__service-item.first::before { background: #111111; }
+.mega-menu__service-item.first:hover { background: #f5f5f5; color: #000; }
 
 /* ── Right promo card ── */
 .mega-menu__right {
@@ -306,7 +306,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  background: linear-gradient(145deg, #0a2540 0%, #1a3a5c 100%);
+  background: #111111;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -321,7 +321,7 @@
 .mega-menu__card-orb--1 {
   width: 160px;
   height: 160px;
-  background: rgba(100,180,255,0.15);
+  background: rgba(255,255,255,0.05);
   bottom: -60px;
   right: -40px;
 }
@@ -329,7 +329,7 @@
 .mega-menu__card-orb--2 {
   width: 100px;
   height: 100px;
-  background: rgba(150,210,255,0.1);
+  background: rgba(255,255,255,0.04);
   top: -30px;
   left: -20px;
 }
@@ -350,7 +350,7 @@
   gap: 6px;
   font-size: 0.78rem;
   font-weight: 700;
-  color: #0a2540;
+  color: #111111;
   padding: 9px 18px;
   background: #fff;
   border-radius: var(--radius-pill);
@@ -363,7 +363,7 @@
 }
 
 .mega-menu__card-cta:hover {
-  background: #e8f0fe;
+  background: #eeeeee;
   transform: translateY(-1px);
 }
 

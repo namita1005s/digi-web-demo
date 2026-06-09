@@ -7,35 +7,35 @@ const WebDevVisual = () => (
     <rect x="16" y="16" width="448" height="328" rx="10" fill="#fff" />
     <rect x="16" y="16" width="448" height="36" rx="10" fill="#EBEBEB" />
     <rect x="16" y="38" width="448" height="14" fill="#EBEBEB" />
-    <circle cx="36" cy="34" r="6" fill="#FF6B6B" />
-    <circle cx="54" cy="34" r="6" fill="#FFD93D" />
-    <circle cx="72" cy="34" r="6" fill="#6BCB77" />
+    <circle cx="36" cy="34" r="6" fill="#DDDDDD" />
+    <circle cx="54" cy="34" r="6" fill="#CCCCCC" />
+    <circle cx="72" cy="34" r="6" fill="#BBBBBB" />
     <rect x="90" y="26" width="280" height="16" rx="8" fill="#fff" />
     {/* Code editor — left panel */}
-    <rect x="16" y="52" width="220" height="292" fill="#1E1E2E" />
+    <rect x="16" y="52" width="220" height="292" fill="#1E1E1E" />
     {/* line numbers + code lines */}
     {[0,1,2,3,4,5,6,7,8,9,10,11,12].map(i => (
-      <rect key={i} x="38" y={72 + i * 20} width="4" height="8" rx="2" fill="#555577" />
+      <rect key={i} x="38" y={72 + i * 20} width="4" height="8" rx="2" fill="#444444" />
     ))}
     {/* code tokens */}
-    <rect x="52" y="72" width="28" height="8" rx="2" fill="#C084FC" />
-    <rect x="86" y="72" width="44" height="8" rx="2" fill="#60A5FA" />
-    <rect x="136" y="72" width="16" height="8" rx="2" fill="#F8F8F2" />
-    <rect x="52" y="92" width="20" height="8" rx="2" fill="#34D399" />
-    <rect x="78" y="92" width="60" height="8" rx="2" fill="#F8F8F2" />
-    <rect x="52" y="112" width="36" height="8" rx="2" fill="#C084FC" />
-    <rect x="94" y="112" width="50" height="8" rx="2" fill="#60A5FA" />
-    <rect x="52" y="132" width="24" height="8" rx="2" fill="#34D399" />
-    <rect x="82" y="132" width="80" height="8" rx="2" fill="#F8F8F2" />
-    <rect x="52" y="152" width="44" height="8" rx="2" fill="#C084FC" />
-    <rect x="102" y="152" width="30" height="8" rx="2" fill="#FCD34D" />
-    <rect x="52" y="172" width="16" height="8" rx="2" fill="#34D399" />
-    <rect x="74" y="172" width="56" height="8" rx="2" fill="#F8F8F2" />
-    <rect x="52" y="192" width="60" height="8" rx="2" fill="#60A5FA" />
-    <rect x="52" y="212" width="28" height="8" rx="2" fill="#C084FC" />
-    <rect x="86" y="212" width="44" height="8" rx="2" fill="#F8F8F2" />
+    <rect x="52" y="72" width="28" height="8" rx="2" fill="#888888" />
+    <rect x="86" y="72" width="44" height="8" rx="2" fill="#aaaaaa" />
+    <rect x="136" y="72" width="16" height="8" rx="2" fill="#cccccc" />
+    <rect x="52" y="92" width="20" height="8" rx="2" fill="#999999" />
+    <rect x="78" y="92" width="60" height="8" rx="2" fill="#cccccc" />
+    <rect x="52" y="112" width="36" height="8" rx="2" fill="#888888" />
+    <rect x="94" y="112" width="50" height="8" rx="2" fill="#aaaaaa" />
+    <rect x="52" y="132" width="24" height="8" rx="2" fill="#999999" />
+    <rect x="82" y="132" width="80" height="8" rx="2" fill="#cccccc" />
+    <rect x="52" y="152" width="44" height="8" rx="2" fill="#888888" />
+    <rect x="102" y="152" width="30" height="8" rx="2" fill="#bbbbbb" />
+    <rect x="52" y="172" width="16" height="8" rx="2" fill="#999999" />
+    <rect x="74" y="172" width="56" height="8" rx="2" fill="#cccccc" />
+    <rect x="52" y="192" width="60" height="8" rx="2" fill="#aaaaaa" />
+    <rect x="52" y="212" width="28" height="8" rx="2" fill="#888888" />
+    <rect x="86" y="212" width="44" height="8" rx="2" fill="#cccccc" />
     {/* cursor blink */}
-    <rect x="52" y="232" width="2" height="14" rx="1" fill="#60A5FA" opacity="0.9" />
+    <rect x="52" y="232" width="2" height="14" rx="1" fill="#aaaaaa" opacity="0.9" />
     {/* Preview panel */}
     <rect x="236" y="52" width="228" height="292" fill="#fff" />
     {/* Preview nav */}
@@ -56,12 +56,12 @@ const WebDevVisual = () => (
       </g>
     ))}
     {/* PageSpeed badge */}
-    <rect x="248" y="228" width="204" height="48" rx="8" fill="#F0FDF4" />
-    <circle cx="270" cy="252" r="14" fill="#22C55E" opacity="0.15" />
-    <circle cx="270" cy="252" r="8" fill="#22C55E" />
+    <rect x="248" y="228" width="204" height="48" rx="8" fill="#F0F0F0" />
+    <circle cx="270" cy="252" r="14" fill="#555555" opacity="0.15" />
+    <circle cx="270" cy="252" r="8" fill="#555555" />
     <rect x="288" y="246" width="30" height="7" rx="3" fill="#111" />
     <rect x="288" y="257" width="50" height="5" rx="2" fill="#DADADB" />
-    <rect x="386" y="244" width="36" height="16" rx="4" fill="#22C55E" />
+    <rect x="386" y="244" width="36" height="16" rx="4" fill="#333333" />
     <rect x="392" y="249" width="24" height="6" rx="2" fill="#fff" />
   </svg>
 )

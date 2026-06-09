@@ -14,7 +14,7 @@ const SMMVisual = () => (
         <rect x="60" y={55 + i * 98} width="60" height="6" rx="3" fill="#DADADB" />
         <rect x="60" y={65 + i * 98} width="40" height="5" rx="2" fill="#EBEBEB" />
         <rect x="34" y={78 + i * 98} width="128" height="56" rx="6"
-          fill={i === 0 ? '#111' : i === 1 ? '#E8F4FD' : '#F0FDF4'} />
+          fill={i === 0 ? '#111' : i === 1 ? '#E8E8E8' : '#F0F0F0'} />
         {i === 0 && <>
           <rect x="44" y="88" width="60" height="6" rx="3" fill="#555" />
           <rect x="44" y="98" width="90" height="5" rx="2" fill="#333" />
@@ -26,7 +26,7 @@ const SMMVisual = () => (
     {/* Analytics panel */}
     <rect x="188" y="20" width="272" height="148" rx="10" fill="#fff" />
     <rect x="202" y="34" width="90" height="7" rx="3" fill="#111" />
-    <text x="408" y="42" fontSize="9" fill="#22C55E" fontFamily="Inter,sans-serif" fontWeight="700">+210%</text>
+    <text x="408" y="42" fontSize="9" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="700">+210%</text>
     {/* Follower growth sparkline */}
     <polyline points="202,130 228,120 254,115 280,100 306,88 332,75 358,60 384,50 410,42 436,34"
       stroke="#111" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />

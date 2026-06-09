@@ -3,9 +3,9 @@
 .ap {
   --ink: #0e0e0e;
   --chalk: #fafaf8;
-  --fog: #f0ede8;
-  --gold: #c8a96e;
-  --gold-dim: rgba(200,169,110,0.18);
+  --fog: #f0f0ee;
+  --gold: #888888;
+  --gold-dim: rgba(136,136,136,0.18);
   --w10: rgba(255,255,255,0.10);
   --w18: rgba(255,255,255,0.18);
   --w35: rgba(255,255,255,0.35);
@@ -279,7 +279,7 @@
 
 /* ══ 5. WHY CHOOSE US ════════════════════════ */
 .ap-why {
-  background: var(--fog);
+  background: var(--bg-alt);
   padding: 80px 0;
 }
 .ap-why__head {

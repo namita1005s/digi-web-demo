@@ -13,8 +13,8 @@ const PPCVisual = () => (
     <rect x="30" y="68" width="60" height="7" rx="3" fill="#DADADB" />
     <text x="30" y="108" fontSize="28" fontWeight="800" fill="#111" fontFamily="Inter,sans-serif">4.5x</text>
     <rect x="30" y="118" width="50" height="6" rx="3" fill="#DADADB" />
-    <rect x="152" y="66" width="50" height="16" rx="6" fill="#F0FDF4" />
-    <text x="160" y="78" fontSize="9" fill="#22C55E" fontFamily="Inter,sans-serif" fontWeight="700">+38% ROI</text>
+    <rect x="152" y="66" width="50" height="16" rx="6" fill="#E8E8E8" />
+    <text x="160" y="78" fontSize="9" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="700">+38% ROI</text>
     {/* CPA card */}
     <rect x="228" y="56" width="116" height="90" rx="10" fill="#fff" />
     <rect x="242" y="68" width="50" height="6" rx="3" fill="#DADADB" />

@@ -58,7 +58,7 @@
 
 /* ══ 2. WHY JOIN ════════════════════════════════ */
 .cp-why {
-  background: var(--fog, #f0ede8);
+  background: var(--bg-alt);
   padding: 80px 0;
 }
 .cp-why__head {
@@ -252,7 +252,7 @@
 }
 .cp-process__body {
   font-size: 0.8rem;
-  color: #374151;
+  color: #444444;
   line-height: 1.6;
 }
 .cp-process__arrow {

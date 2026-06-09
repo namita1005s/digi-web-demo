@@ -148,9 +148,9 @@
   justify-content: center;
 }
 
-.svc-block__icon--challenge { background: #FEF3C7; color: #B45309; }
-.svc-block__icon--solution  { background: #E0E7FF; color: #4338CA; }
-.svc-block__icon--results   { background: #DCFCE7; color: #166534; }
+.svc-block__icon--challenge { background: #e8e8e8; color: #333333; }
+.svc-block__icon--solution  { background: #d4d4d4; color: #111111; }
+.svc-block__icon--results   { background: #c8c8c8; color: #222222; }
 
 .svc-block p {
   font-size: 0.82rem;

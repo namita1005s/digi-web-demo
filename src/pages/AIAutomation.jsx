@@ -34,7 +34,7 @@ const AIAutomationVisual = () => (
     <text x="28" y="332" fontSize="20" fontWeight="900" fill="#fff" fontFamily="Inter,sans-serif">70%</text>
     <rect x="172" y="290" width="136" height="54" rx="8" fill="#1A1A1A" />
     <text x="184" y="310" fontSize="8" fill="#666" fontFamily="Inter,sans-serif">Faster Operations</text>
-    <text x="184" y="332" fontSize="20" fontWeight="900" fill="#4ADE80" fontFamily="Inter,sans-serif">10X</text>
+    <text x="184" y="332" fontSize="20" fontWeight="900" fill="#ffffff" fontFamily="Inter,sans-serif">10X</text>
     <rect x="328" y="290" width="136" height="54" rx="8" fill="#1A1A1A" />
     <text x="340" y="310" fontSize="8" fill="#666" fontFamily="Inter,sans-serif">Average ROI</text>
     <text x="340" y="332" fontSize="20" fontWeight="900" fill="#fff" fontFamily="Inter,sans-serif">3.5X</text>

@@ -24,8 +24,8 @@ const SEOVisual = () => (
     <rect x="80" y="60" width="270" height="148" rx="12" fill="#fff" />
     <rect x="96" y="74" width="110" height="8" rx="3" fill="#111" />
     <rect x="96" y="88" width="70" height="6" rx="3" fill="#DADADB" />
-    <rect x="300" y="72" width="34" height="16" rx="6" fill="#F0FDF4" />
-    <text x="306" y="84" fontSize="9" fill="#16A34A" fontFamily="Inter,sans-serif" fontWeight="800">+182%</text>
+    <rect x="300" y="72" width="34" height="16" rx="6" fill="#E8E8E8" />
+    <text x="306" y="84" fontSize="9" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="800">+182%</text>
 
     {/* Chart bars with trend */}
     {[22, 30, 26, 40, 36, 52, 44, 62, 58, 76, 88, 96].map((h, i) => (
@@ -82,8 +82,8 @@ const SEOVisual = () => (
     {[
       ['Backlinks', '3,240', '#fff'],
       ['Domain Auth.', '68', '#fff'],
-      ['Crawl Errors', '0', '#4ADE80'],
-      ['Index Rate', '99%', '#4ADE80'],
+      ['Crawl Errors', '0', '#ffffff'],
+      ['Index Rate', '99%', '#ffffff'],
     ].map(([label, val, clr], i) => (
       <g key={label}>
         <rect x="376" y={208 + i * 36} width="112" height="28" rx="7" fill="#1A1A1A" />

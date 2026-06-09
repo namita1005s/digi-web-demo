@@ -25,23 +25,23 @@ const DigitalMarketingVisual = () => (
     <rect x="20" y="40" width="148" height="40" rx="8" fill="#fff" />
     <rect x="32" y="50" width="40" height="6" rx="3" fill="#111" />
     <rect x="32" y="60" width="70" height="5" rx="2" fill="#DADADB" />
-    <rect x="130" y="47" width="26" height="12" rx="4" fill="#F0FDF4" />
-    <text x="135" y="57" fontSize="8" fill="#16A34A" fontFamily="Inter,sans-serif" fontWeight="700">SEO</text>
+    <rect x="130" y="47" width="26" height="12" rx="4" fill="#E8E8E8" />
+    <text x="135" y="57" fontSize="8" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="700">SEO</text>
     <rect x="20" y="90" width="148" height="40" rx="8" fill="#fff" />
     <rect x="32" y="100" width="40" height="6" rx="3" fill="#111" />
     <rect x="32" y="110" width="70" height="5" rx="2" fill="#DADADB" />
-    <rect x="126" y="97" width="32" height="12" rx="4" fill="#EFF6FF" />
-    <text x="129" y="107" fontSize="8" fill="#2563EB" fontFamily="Inter,sans-serif" fontWeight="700">PPC</text>
+    <rect x="126" y="97" width="32" height="12" rx="4" fill="#E8E8E8" />
+    <text x="129" y="107" fontSize="8" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="700">PPC</text>
     <rect x="20" y="140" width="148" height="40" rx="8" fill="#fff" />
     <rect x="32" y="150" width="40" height="6" rx="3" fill="#111" />
     <rect x="32" y="160" width="70" height="5" rx="2" fill="#DADADB" />
-    <rect x="120" y="147" width="38" height="12" rx="4" fill="#FFF7ED" />
-    <text x="123" y="157" fontSize="8" fill="#EA580C" fontFamily="Inter,sans-serif" fontWeight="700">SMM</text>
+    <rect x="120" y="147" width="38" height="12" rx="4" fill="#EEEEEE" />
+    <text x="123" y="157" fontSize="8" fill="#444444" fontFamily="Inter,sans-serif" fontWeight="700">SMM</text>
     <rect x="20" y="190" width="148" height="40" rx="8" fill="#fff" />
     <rect x="32" y="200" width="44" height="6" rx="3" fill="#111" />
     <rect x="32" y="210" width="70" height="5" rx="2" fill="#DADADB" />
-    <rect x="116" y="197" width="42" height="12" rx="4" fill="#FAF5FF" />
-    <text x="119" y="207" fontSize="7" fill="#7C3AED" fontFamily="Inter,sans-serif" fontWeight="700">Email</text>
+    <rect x="116" y="197" width="42" height="12" rx="4" fill="#EEEEEE" />
+    <text x="119" y="207" fontSize="7" fill="#555555" fontFamily="Inter,sans-serif" fontWeight="700">Email</text>
     {/* ROAS card bottom */}
     <rect x="20" y="290" width="440" height="56" rx="10" fill="#111" />
     <text x="40" y="312" fontSize="9" fill="#888" fontFamily="Inter,sans-serif">Average ROAS</text>
@@ -51,7 +51,7 @@ const DigitalMarketingVisual = () => (
     <text x="196" y="332" fontSize="22" fontWeight="900" fill="#fff" fontFamily="Inter,sans-serif">+320%</text>
     <rect x="340" y="300" width="1" height="36" fill="#333" />
     <text x="356" y="312" fontSize="9" fill="#888" fontFamily="Inter,sans-serif">Channels</text>
-    <text x="356" y="332" fontSize="22" fontWeight="900" fill="#4ADE80" fontFamily="Inter,sans-serif">6+</text>
+    <text x="356" y="332" fontSize="22" fontWeight="900" fill="#ffffff" fontFamily="Inter,sans-serif">6+</text>
   </svg>
 )
 

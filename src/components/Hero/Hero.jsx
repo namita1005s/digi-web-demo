@@ -134,7 +134,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT VISUAL ── */}
+        {/* ── RIGHT VISUAL — 3D Graph ── */}
         <motion.div
           className="hero__visual"
           ref={visualRef}
@@ -146,80 +146,112 @@ export default function Hero() {
           style={{ perspective: 1200 }}
         >
           <motion.div
-            className="hero__visual-inner"
+            className="hero__3d-wrap"
             style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
           >
-            {/* Central glowing orb */}
+            {/* Glow orb */}
             <div className="hero__orb" />
 
-            {/* Service cards grid */}
-            <div className="hero__cards-grid">
-              {serviceCards.map((card, i) => (
-                <motion.div
-                  key={card.title}
-                  className="hero__service-card"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: [0, i % 2 === 0 ? -6 : 6, 0] }}
-                  transition={{
-                    opacity: { duration: 0.5, delay: card.delay },
-                    y: { duration: 4 + i * 0.4, delay: card.delay, repeat: Infinity, ease: 'easeInOut' },
-                  }}
-                >
-                  <span className="hero__card-icon" style={{ background: card.color }}>
-                    {card.icon}
-                  </span>
-                  <div>
-                    <div className="hero__card-title">{card.title}</div>
-                    <div className="hero__card-desc">{card.desc}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            {/* 3D Graph card */}
+            <div className="h3d">
 
-            {/* Stat badges */}
-            {statBadges.map((b) => (
-              <motion.div
-                key={b.label}
-                className={`hero__stat-badge ${b.cls}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: b.delay }}
-              >
-                <span className="hero__stat-icon">{b.icon}</span>
-                <div>
-                  <div className="hero__stat-value">{b.value}</div>
-                  <div className="hero__stat-label">{b.label}</div>
+              {/* Header */}
+              <div className="h3d__header">
+                <div className="h3d__header-left">
+                  <span className="h3d__dot" />
+                  <span className="h3d__title">Growth Analytics</span>
                 </div>
-              </motion.div>
-            ))}
-
-            {/* Central display card */}
-            <motion.div
-              className="hero__center-card"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <div className="hero__center-card-header">
-                <span className="hero__center-icon">🚀</span>
-                <span className="hero__center-title">Campaign Performance</span>
+                <span className="h3d__badge">+284% YoY</span>
               </div>
-              <div className="hero__center-bars">
-                {[40, 65, 45, 80, 55, 90, 70, 100].map((h, i) => (
+
+              {/* Isometric 3D bars */}
+              <div className="h3d__scene">
+                {/* Grid floor */}
+                <div className="h3d__floor" />
+
+                {[
+                  { h: 38, label: 'Jan' },
+                  { h: 52, label: 'Feb' },
+                  { h: 44, label: 'Mar' },
+                  { h: 68, label: 'Apr' },
+                  { h: 58, label: 'May' },
+                  { h: 82, label: 'Jun' },
+                  { h: 72, label: 'Jul' },
+                  { h: 100, label: 'Aug' },
+                ].map((bar, i) => (
                   <motion.div
                     key={i}
-                    className="hero__cbar"
-                    style={{ height: `${h}%` }}
+                    className="h3d__col"
                     initial={{ scaleY: 0 }}
                     animate={{ scaleY: 1 }}
-                    transition={{ duration: 0.4, delay: 0.6 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.6, delay: 0.4 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <div className="h3d__bar-wrap" style={{ height: `${bar.h}%` }}>
+                      <div className="h3d__bar-top" />
+                      <div className="h3d__bar-front" />
+                      <div className="h3d__bar-side" />
+                    </div>
+                    <span className="h3d__label">{bar.label}</span>
+                  </motion.div>
+                ))}
+
+                {/* Trend line overlay */}
+                <svg className="h3d__trend" viewBox="0 0 280 120" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
+                      <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+                    </linearGradient>
+                  </defs>
+                  <motion.path
+                    d="M0,98 C30,88 55,72 80,62 C105,52 120,68 150,52 C175,38 200,22 230,12 C250,6 265,4 280,0"
+                    fill="none" stroke="rgba(255,255,255,0.55)" strokeWidth="2" strokeLinecap="round"
+                    initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.4, delay: 1, ease: 'easeInOut' }}
                   />
+                  <motion.path
+                    d="M0,98 C30,88 55,72 80,62 C105,52 120,68 150,52 C175,38 200,22 230,12 C250,6 265,4 280,0 L280,120 L0,120 Z"
+                    fill="url(#trendGrad)"
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 1.6 }}
+                  />
+                </svg>
+              </div>
+
+              {/* Footer metrics */}
+              <div className="h3d__footer">
+                {[{ val: '3.2M', lbl: 'Impressions' }, { val: '184%', lbl: 'Traffic' }, { val: '4.8x', lbl: 'ROAS' }].map(m => (
+                  <div key={m.lbl} className="h3d__metric">
+                    <span className="h3d__metric-val">{m.val}</span>
+                    <span className="h3d__metric-lbl">{m.lbl}</span>
+                  </div>
                 ))}
               </div>
-              <div className="hero__center-footer">
-                <span className="hero__center-metric">+284% Growth</span>
-                <span className="hero__center-period">Last 12 months</span>
+            </div>
+
+            {/* Floating badges */}
+            <motion.div className="hero__stat-badge hero__badge--tl"
+              initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+            >
+              <span className="hero__stat-icon">↑</span>
+              <div>
+                <div className="hero__stat-value">+184%</div>
+                <div className="hero__stat-label">Organic Traffic</div>
               </div>
             </motion.div>
+
+            <motion.div className="hero__stat-badge hero__badge--br"
+              initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+            >
+              <span className="hero__stat-icon">◆</span>
+              <div>
+                <div className="hero__stat-value">4.8x</div>
+                <div className="hero__stat-label">Avg. ROAS</div>
+              </div>
+            </motion.div>
+
           </motion.div>
         </motion.div>
       </div>

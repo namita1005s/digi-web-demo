@@ -101,17 +101,17 @@ function DesktopFlow({ active, inView }) {
       <svg ref={svgRef} className="tm-svg" viewBox={`0 0 ${vbW} ${vbH}`} preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="tm-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stopColor="rgba(0,0,0,0.25)" stopOpacity="1"/>
-            <stop offset="50%"  stopColor="rgba(0,0,0,0.12)" stopOpacity="1"/>
-            <stop offset="100%" stopColor="rgba(0,0,0,0.25)" stopOpacity="1"/>
+            <stop offset="0%"   stopColor="rgba(255,255,255,0.2)" stopOpacity="1"/>
+            <stop offset="50%"  stopColor="rgba(255,255,255,0.08)" stopOpacity="1"/>
+            <stop offset="100%" stopColor="rgba(255,255,255,0.2)" stopOpacity="1"/>
           </linearGradient>
           <filter id="tm-glow">
             <feGaussianBlur stdDeviation="3" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
           <radialGradient id="tm-particle-grad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stopColor="#111" stopOpacity="1"/>
-            <stop offset="100%" stopColor="rgba(0,0,0,0)" stopOpacity="0"/>
+            <stop offset="0%"   stopColor="#ffffff" stopOpacity="1"/>
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" stopOpacity="0"/>
           </radialGradient>
         </defs>
 
@@ -132,8 +132,8 @@ function DesktopFlow({ active, inView }) {
         {/* Moving particle */}
         {inView && pathLen > 0 && (
           <>
-            <circle cx={particlePos.x} cy={particlePos.y} r="12" fill="url(#tm-particle-grad)" opacity="0.25"/>
-            <circle cx={particlePos.x} cy={particlePos.y} r="4.5" fill="#111" filter="url(#tm-glow)" opacity="0.9"/>
+            <circle cx={particlePos.x} cy={particlePos.y} r="12" fill="url(#tm-particle-grad)" opacity="0.2"/>
+            <circle cx={particlePos.x} cy={particlePos.y} r="4.5" fill="#ffffff" filter="url(#tm-glow)" opacity="0.85"/>
           </>
         )}
 
@@ -163,7 +163,7 @@ function DesktopFlow({ active, inView }) {
         })}
 
         {/* Loop label sits inside the return arc, well below cards */}
-        <text x={vbW / 2} y="368" textAnchor="middle" fontSize="12" fill="rgba(0,0,0,0.25)" opacity="1" fontFamily="sans-serif" letterSpacing="3">
+        <text x={vbW / 2} y="368" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.2)" opacity="1" fontFamily="sans-serif" letterSpacing="3">
           ↺  CONTINUOUS LOOP
         </text>
       </svg>
@@ -191,7 +191,7 @@ function MobileFlow({ active, inView }) {
             <div className="tm-mobile__connector">
               <motion.div
                 className="tm-mobile__line"
-                style={{ background: `linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.06))` }}
+                style={{ background: `linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.04))` }}
                 initial={{ scaleY: 0 }}
                 animate={inView ? { scaleY: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}

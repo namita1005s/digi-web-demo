@@ -14,7 +14,6 @@ import './Home.css'
 const BG  = 'var(--bg)'
 const ALT = 'var(--bg-alt)'
 const DRK = 'var(--bg-dark)'
-const DEEP = 'var(--bg-dark)'
 
 const revealUp = {
   initial: { opacity: 0, y: 36 },
@@ -85,54 +84,54 @@ export default function Home() {
         <ParallaxAccent className="home__accent--hero-ring" speed={0.2} />
       </div>
 
-      {/* ── TrustedBy ── same bg as hero wave, no gap */}
+      {/* ── TrustedBy ── Light */}
       <div className="home__trusted-wrap">
         <TrustedBy />
-        <SectionDivider from={BG} to={BG} variant="angle" height={56} />
       </div>
 
-      {/* ── Services ── */}
+      {/* ── Services ── White */}
       <div className="home__services-wrap">
         <ParallaxAccent className="home__accent--dot-grid-br" speed={0.4} />
         <DriftLine className="home__drift-line--services" />
         <motion.div {...revealUp}>
           <Services />
         </motion.div>
-        <SectionDivider from={BG} to={ALT} variant="tilt" height={80} />
+        <SectionDivider from={BG} to={ALT} variant="tilt" height={40} />
       </div>
 
-      {/* ── Portfolio (Our Impact) ── light alt bg */}
+      {/* ── Portfolio (Our Impact) ── Warm Grey */}
       <div className="home__portfolio-wrap">
         <Portfolio />
       </div>
 
-      {/* ── Process (Trendox Method) ── continues on light bg */}
+      {/* ── Process ── Dark */}
       <div className="home__process-wrap">
+        <SectionDivider from={ALT} to={DRK} variant="curve" height={60} />
         <motion.div {...revealUp}>
           <Process />
         </motion.div>
-        <SectionDivider from={ALT} to={ALT} variant="curve" height={60} />
+        <SectionDivider from={DRK} to={BG} variant="curve" height={72} flip />
       </div>
 
-      {/* ── Testimonials ── */}
+      {/* ── Testimonials ── Light */}
       <div className="home__testimonials-wrap">
         <ParallaxAccent className="home__accent--line-r" speed={0.35} />
         <DriftLine className="home__drift-line--testimonials" />
         <motion.div {...revealUp}>
           <Testimonials />
         </motion.div>
-        <SectionDivider from={ALT} to={BG} variant="curve" height={90} flip />
+        <SectionDivider from={BG} to={BG} variant="angle" height={56} />
       </div>
 
-      {/* ── FAQ ── */}
+      {/* ── FAQ ── White */}
       <div className="home__faq-wrap">
         <motion.div {...revealUp}>
           <FAQ />
         </motion.div>
-        <SectionDivider from={BG} to={BG} variant="angle" height={56} />
+        <SectionDivider from={BG} to={ALT} variant="tilt" height={72} />
       </div>
 
-      {/* ── CTA ── light bg, wave transition handled inside Footer */}
+      {/* ── CTA ── Dark */}
       <div className="home__cta-wrap">
         <CTA />
       </div>

@@ -20,10 +20,10 @@
 .home__trusted-wrap  { position: relative; background: var(--bg); }
 .home__services-wrap { position: relative; background: var(--bg); }
 .home__portfolio-wrap{ position: relative; background: var(--bg-alt); }
-.home__process-wrap  { position: relative; background: var(--bg-alt); }
-.home__testimonials-wrap { position: relative; background: var(--bg-alt); }
+.home__process-wrap  { position: relative; background: var(--bg-dark); }
+.home__testimonials-wrap { position: relative; background: var(--bg); }
 .home__faq-wrap      { position: relative; background: var(--bg); }
-.home__cta-wrap      { position: relative; background: var(--bg); }
+.home__cta-wrap      { position: relative; background: var(--bg-alt); }
 
 /* Stitch dividers flush — no pixel gap between wrapper and divider */
 .home__trusted-wrap  .sdiv,

@@ -4,7 +4,7 @@
   position: relative;
 }
 
-/* Wave transition from light CTA into dark footer */
+/* Wave transition from grey CTA into dark footer */
 .footer__wave {
   display: block;
   width: 100%;

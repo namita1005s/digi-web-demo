@@ -3,84 +3,46 @@
   overflow-x: hidden;
 }
 
-/* ── Hero wrap: bottom fade bleeds into TrustedBy ── */
-.home__hero-wrap {
-  position: relative;
+/* ── Continuous grain thread — runs the full page as one canvas ── */
+.home::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 
-.home__hero-fade { display: none; }
+/* ── Section wrappers — backgrounds must match divider from/to exactly ── */
+.home__hero-wrap     { position: relative; }
+.home__trusted-wrap  { position: relative; background: var(--bg); }
+.home__services-wrap { position: relative; background: var(--bg); }
+.home__portfolio-wrap{ position: relative; background: #050816; }
+.home__process-wrap  { position: relative; background: #050816; }
+.home__testimonials-wrap { position: relative; background: var(--bg-alt); }
+.home__faq-wrap      { position: relative; background: var(--bg); }
 
-/* ── TrustedBy: no negative margin — dividers handle transitions ── */
-.home__trusted-wrap {
-  position: relative;
-  z-index: 1;
+/* Stitch dividers flush — no pixel gap between wrapper and divider */
+.home__trusted-wrap  .sdiv,
+.home__services-wrap .sdiv,
+.home__process-wrap  .sdiv,
+.home__testimonials-wrap .sdiv,
+.home__faq-wrap      .sdiv {
+  display: block;
+  margin-top: -1px;
 }
 
-/* ── Services wrap ── */
-.home__services-wrap {
-  position: relative;
-  background: var(--bg);
-}
-
-/* ── Stats wrap ── */
-.home__stats-wrap {
-  position: relative;
-  background: var(--bg-dark);
-}
-
-/* ── WhyChooseUs wrap ── */
-.home__why-wrap {
-  position: relative;
-  background: var(--bg-alt);
-}
-
-/* ── Portfolio (Our Impact) wrap ── */
-.home__portfolio-wrap {
-  position: relative;
-  background: #050816;
-}
-
-/* ── Process wrap ── */
-.home__process-wrap {
-  position: relative;
-  background: #050816;
-}
-
-/* ── Testimonials wrap ── */
-.home__testimonials-wrap {
-  position: relative;
-  background: var(--bg-alt);
-}
-
-/* ── Growth Metrics wrap ── */
-.home__growth-wrap {
-  position: relative;
-  background: var(--bg);
-}
-
-/* ── FAQ wrap ── */
-.home__faq-wrap {
-  position: relative;
-  background: var(--bg);
-}
-
-/* ── Pricing wrap ── */
-.home__pricing-wrap {
-  position: relative;
-  background: var(--bg);
-}
-
-/* ─────────────────────────────────────────
-   Floating accent elements
-───────────────────────────────────────── */
+/* ── Floating accent elements ── */
 .home__accent {
   position: absolute;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Dot-grid in Services section — bottom-right */
-.home__accent--dot-grid {
+/* Dot-grid Services — bottom-right */
+.home__accent--dot-grid-br {
   bottom: 80px;
   right: -40px;
   width: 280px;
@@ -89,24 +51,37 @@
   background-size: 18px 18px;
   mask-image: radial-gradient(ellipse at center, black 25%, transparent 68%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 25%, transparent 68%);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
-/* Subtle ring top-left in WhyChooseUs */
-.home__accent--ring-tl {
-  top: 60px;
-  left: -60px;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.05);
-}
-
-/* Thin vertical line accent right side in Testimonials */
+/* Thin vertical line in Testimonials */
 .home__accent--line-r {
   top: 80px;
   right: 48px;
   width: 1px;
   height: 120px;
   background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.08), transparent);
+}
+
+/* Drift lines */
+.home__drift-line {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,0.04) 30%, rgba(0,0,0,0.04) 70%, transparent);
+}
+
+.home__drift-line--services     { top: 40%; }
+.home__drift-line--testimonials { top: 55%; }
+
+/* Depth orb */
+.home__depth-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
 }

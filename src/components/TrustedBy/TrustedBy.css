@@ -3,6 +3,7 @@
   background: var(--bg);
   overflow: hidden;
   position: relative;
+  border-top: 1px solid var(--border);
 }
 
 .trusted__label-row {

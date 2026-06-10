@@ -1,8 +1,9 @@
 .cta {
   background: var(--bg-dark);
-  padding: 80px 0;
+  padding: 72px 0 80px;
   position: relative;
   overflow: hidden;
+  margin-top: -1px;
 }
 
 /* large radial glow that bleeds into footer */

@@ -14,6 +14,7 @@ import './Home.css'
 const BG  = 'var(--bg)'
 const ALT = 'var(--bg-alt)'
 const DRK = 'var(--bg-dark)'
+const DEEP = '#050816'
 
 const revealUp = {
   initial: { opacity: 0, y: 36 },
@@ -78,41 +79,39 @@ export default function Home() {
   return (
     <div className="home">
 
-      {/* ── Hero ── flows into TrustedBy via gradient bleed */}
+      {/* ── Hero ── wave bleeds to var(--bg) */}
       <div className="home__hero-wrap">
         <Hero />
-        <div className="home__hero-fade" />
         <ParallaxAccent className="home__accent--hero-ring" speed={0.2} />
       </div>
 
-      {/* ── TrustedBy ── pulled up to overlap hero fade */}
-      <motion.div className="home__trusted-wrap" {...revealUp}>
+      {/* ── TrustedBy ── same bg as hero wave, no gap */}
+      <div className="home__trusted-wrap">
         <TrustedBy />
-      </motion.div>
+        <SectionDivider from={BG} to={BG} variant="angle" height={56} />
+      </div>
 
       {/* ── Services ── */}
       <div className="home__services-wrap">
         <ParallaxAccent className="home__accent--dot-grid-br" speed={0.4} />
-        <ParallaxAccent className="home__accent--dot-grid-tl" speed={0.25} />
         <DriftLine className="home__drift-line--services" />
         <motion.div {...revealUp}>
           <Services />
         </motion.div>
-        <SectionDivider from={BG} to={ALT} variant="angle" height={108} />
+        <SectionDivider from={BG} to={DEEP} variant="tilt" height={100} />
       </div>
 
-      {/* ── Portfolio (Our Impact) ── */}
+      {/* ── Portfolio (Our Impact) ── continuous deep bg from Services divider */}
       <div className="home__portfolio-wrap">
         <Portfolio />
-        {/* Impact → Process: seamless same bg */}
       </div>
 
-      {/* ── Process (Trendox Method) ── */}
+      {/* ── Process (Trendox Method) ── same deep bg, no break */}
       <div className="home__process-wrap">
         <motion.div {...revealUp}>
           <Process />
         </motion.div>
-        <SectionDivider from="#050816" to={BG} variant="curve" height={96} />
+        <SectionDivider from={DEEP} to={ALT} variant="curve" height={96} />
       </div>
 
       {/* ── Testimonials ── */}
@@ -122,21 +121,18 @@ export default function Home() {
         <motion.div {...revealUp}>
           <Testimonials />
         </motion.div>
-        {/* Testimonials → FAQ: soft curve */}
-        <SectionDivider from={ALT} to={BG} variant="curve" height={100} flip />
+        <SectionDivider from={ALT} to={BG} variant="curve" height={90} flip />
       </div>
 
       {/* ── FAQ ── */}
       <div className="home__faq-wrap">
-        <ParallaxAccent className="home__accent--faq-grid" speed={0.2} />
         <motion.div {...revealUp}>
           <FAQ />
         </motion.div>
-        {/* FAQ → Pricing: angle into bg */}
-        <SectionDivider from={BG} to={BG} variant="angle" height={80} />
+        <SectionDivider from={BG} to={DRK} variant="angle" height={88} />
       </div>
 
-      {/* ── CTA ── radial glow bleeds into Footer */}
+      {/* ── CTA ── same dark bg from divider, bleeds into Footer */}
       <CTA />
 
     </div>

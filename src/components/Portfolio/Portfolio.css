@@ -1,6 +1,6 @@
 /* ── OurImpact / Portfolio section ── */
 .impact {
-  background: var(--bg-dark);
+  background: var(--bg-alt);
   position: relative;
   overflow: hidden;
   padding: 72px 0 0;
@@ -19,14 +19,14 @@
   height: 500px;
   top: -120px;
   left: -100px;
-  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%);
 }
 .impact__orb--b {
   width: 400px;
   height: 400px;
   bottom: -80px;
   right: -60px;
-  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,0,0,0.025) 0%, transparent 70%);
 }
 
 .impact__inner {
@@ -49,9 +49,9 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text-subtle);
+  background: transparent;
+  border: 1px solid var(--border-hover);
   border-radius: 100px;
   padding: 4px 14px;
   margin-bottom: 16px;
@@ -61,16 +61,13 @@
   font-size: clamp(1.6rem, 3.5vw, 2.4rem);
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: #fff;
+  color: var(--text);
   line-height: 1.2;
   margin: 0;
 }
 
 .impact__gradient {
-  background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.6) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-subtle);
 }
 
 /* ── 3-col grid ── */
@@ -101,26 +98,26 @@
 .impact__pillar-title {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #e2e8f0;
+  color: var(--text);
   letter-spacing: -0.02em;
   margin: 0 0 4px;
   transition: color 0.2s;
 }
 
 .impact__pillar:hover .impact__pillar-title {
-  color: #ffffff;
+  color: var(--text);
 }
 
 .impact__pillar-desc {
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.38);
+  color: var(--text-muted);
   line-height: 1.65;
   margin: 0;
 }
 
 .impact__divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent);
+  background: var(--border);
 }
 
 /* ── Center column ── */
@@ -144,7 +141,7 @@
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.08), rgba(255,255,255,0.5), transparent, rgba(255,255,255,0.5));
+  background: conic-gradient(from 0deg, rgba(0,0,0,0.18), rgba(0,0,0,0.04), rgba(0,0,0,0.18), transparent, rgba(0,0,0,0.18));
   animation: spin 6s linear infinite;
   z-index: 0;
 }
@@ -153,7 +150,7 @@
   position: absolute;
   inset: 3px;
   border-radius: 50%;
-  background: var(--bg-dark);
+  background: var(--bg-alt);
 }
 
 @keyframes spin {
@@ -167,14 +164,14 @@
   border-radius: 50%;
   overflow: hidden;
   z-index: 1;
-  background: #1a1a1a;
+  background: var(--surface);
 }
 
 .impact__circle-glow {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  box-shadow: inset 0 0 60px rgba(255,255,255,0.05), 0 0 80px rgba(255,255,255,0.06);
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.05), 0 0 40px rgba(0,0,0,0.06);
   z-index: 2;
   pointer-events: none;
 }
@@ -202,18 +199,19 @@
   flex-direction: column;
   align-items: center;
   gap: 1px;
-  background: rgba(20, 20, 20, 0.9);
+  background: var(--surface);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid var(--border-hover);
   border-radius: 10px;
   padding: 6px 10px;
   min-width: 58px;
+  box-shadow: var(--shadow-sm);
 }
 
 .impact__badge-val {
   font-size: 0.75rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text);
   letter-spacing: -0.02em;
   line-height: 1;
 }
@@ -221,7 +219,7 @@
 .impact__badge-lbl {
   font-size: 0.55rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.4);
+  color: var(--text-subtle);
   text-transform: uppercase;
   letter-spacing: 0.07em;
 }
@@ -246,30 +244,29 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.18);
-  color: rgba(255,255,255,0.8);
+  background: var(--text);
+  border: 1px solid var(--text);
+  color: var(--text-inverse);
   font-size: 0.65rem;
   font-weight: 900;
   flex-shrink: 0;
-  transition: background 0.2s, border-color 0.2s;
+  transition: opacity 0.2s;
 }
 
 .impact__achieve:hover .impact__check {
-  background: rgba(255,255,255,0.18);
-  border-color: rgba(255,255,255,0.4);
+  opacity: 0.75;
 }
 
 .impact__achieve-text {
   font-size: 0.82rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-muted);
   letter-spacing: -0.01em;
   transition: color 0.2s;
 }
 
 .impact__achieve:hover .impact__achieve-text {
-  color: #e2e8f0;
+  color: var(--text);
 }
 
 /* ── Responsive ── */

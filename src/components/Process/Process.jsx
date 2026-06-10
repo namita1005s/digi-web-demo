@@ -3,12 +3,12 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import './Process.css'
 
 const STEPS = [
-  { id: 0, label: 'Strategy',            icon: '◎', color: 'rgba(255,255,255,0.85)', glow: 'rgba(255,255,255,0.12)'  },
-  { id: 1, label: 'Content Creation',    icon: '✦', color: 'rgba(255,255,255,0.75)', glow: 'rgba(255,255,255,0.10)' },
-  { id: 2, label: 'Knowledge Base',      icon: '⬡', color: 'rgba(255,255,255,0.80)', glow: 'rgba(255,255,255,0.11)'  },
-  { id: 3, label: 'Content Updates',     icon: '↺', color: 'rgba(255,255,255,0.75)', glow: 'rgba(255,255,255,0.10)' },
-  { id: 4, label: 'Auditing',            icon: '⬖', color: 'rgba(255,255,255,0.80)', glow: 'rgba(255,255,255,0.11)'  },
-  { id: 5, label: 'Strategy Refinement', icon: '◈', color: 'rgba(255,255,255,0.85)', glow: 'rgba(255,255,255,0.12)' },
+  { id: 0, label: 'Strategy',            icon: '◎' },
+  { id: 1, label: 'Content Creation',    icon: '✦' },
+  { id: 2, label: 'Knowledge Base',      icon: '⬡' },
+  { id: 3, label: 'Content Updates',     icon: '↺' },
+  { id: 4, label: 'Auditing',            icon: '⬖' },
+  { id: 5, label: 'Strategy Refinement', icon: '◈' },
 ]
 
 /* ── Floating particles background ── */
@@ -101,17 +101,17 @@ function DesktopFlow({ active, inView }) {
       <svg ref={svgRef} className="tm-svg" viewBox={`0 0 ${vbW} ${vbH}`} preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="tm-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stopColor="rgba(255,255,255,0.6)" stopOpacity="1"/>
-            <stop offset="50%"  stopColor="rgba(255,255,255,0.3)" stopOpacity="1"/>
-            <stop offset="100%" stopColor="rgba(255,255,255,0.6)" stopOpacity="1"/>
+            <stop offset="0%"   stopColor="rgba(0,0,0,0.25)" stopOpacity="1"/>
+            <stop offset="50%"  stopColor="rgba(0,0,0,0.12)" stopOpacity="1"/>
+            <stop offset="100%" stopColor="rgba(0,0,0,0.25)" stopOpacity="1"/>
           </linearGradient>
           <filter id="tm-glow">
             <feGaussianBlur stdDeviation="3" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
           <radialGradient id="tm-particle-grad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stopColor="#fff" stopOpacity="1"/>
-            <stop offset="100%" stopColor="rgba(255,255,255,0)" stopOpacity="0"/>
+            <stop offset="0%"   stopColor="#111" stopOpacity="1"/>
+            <stop offset="100%" stopColor="rgba(0,0,0,0)" stopOpacity="0"/>
           </radialGradient>
         </defs>
 
@@ -132,8 +132,8 @@ function DesktopFlow({ active, inView }) {
         {/* Moving particle */}
         {inView && pathLen > 0 && (
           <>
-            <circle cx={particlePos.x} cy={particlePos.y} r="12" fill="url(#tm-particle-grad)" opacity="0.45"/>
-            <circle cx={particlePos.x} cy={particlePos.y} r="4.5" fill="#fff" filter="url(#tm-glow)" opacity="0.95"/>
+            <circle cx={particlePos.x} cy={particlePos.y} r="12" fill="url(#tm-particle-grad)" opacity="0.25"/>
+            <circle cx={particlePos.x} cy={particlePos.y} r="4.5" fill="#111" filter="url(#tm-glow)" opacity="0.9"/>
           </>
         )}
 
@@ -152,10 +152,10 @@ function DesktopFlow({ active, inView }) {
             >
               <div
                 className={`tm-card${isActive ? ' tm-card--active' : ''}`}
-                style={{ '--c': step.color, '--g': step.glow, width: cardW, height: cardH }}
+                style={{ width: cardW, height: cardH }}
               >
-                {isActive && <span className="tm-pulse" style={{ '--c': step.color }}/>}
-                <span className="tm-card__icon" style={{ color: step.color }}>{step.icon}</span>
+                {isActive && <span className="tm-pulse" />}
+                <span className="tm-card__icon">{step.icon}</span>
                 <span className="tm-card__label">{step.label}</span>
               </div>
             </foreignObject>
@@ -163,7 +163,7 @@ function DesktopFlow({ active, inView }) {
         })}
 
         {/* Loop label sits inside the return arc, well below cards */}
-        <text x={vbW / 2} y="368" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.3)" opacity="0.8" fontFamily="sans-serif" letterSpacing="3">
+        <text x={vbW / 2} y="368" textAnchor="middle" fontSize="12" fill="rgba(0,0,0,0.25)" opacity="1" fontFamily="sans-serif" letterSpacing="3">
           ↺  CONTINUOUS LOOP
         </text>
       </svg>
@@ -179,20 +179,19 @@ function MobileFlow({ active, inView }) {
         <div key={step.id} className="tm-mobile__item">
           <motion.div
             className={`tm-card tm-card--mobile${active === i ? ' tm-card--active' : ''}`}
-            style={{ '--c': step.color, '--g': step.glow }}
             initial={{ opacity: 0, x: -24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}
           >
-            {active === i && <span className="tm-pulse" style={{ '--c': step.color }}/>}
-            <span className="tm-card__icon" style={{ color: step.color }}>{step.icon}</span>
+            {active === i && <span className="tm-pulse" />}
+            <span className="tm-card__icon">{step.icon}</span>
             <span className="tm-card__label">{step.label}</span>
           </motion.div>
           {i < STEPS.length - 1 ? (
             <div className="tm-mobile__connector">
               <motion.div
                 className="tm-mobile__line"
-                style={{ background: `linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1))` }}
+                style={{ background: `linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.06))` }}
                 initial={{ scaleY: 0 }}
                 animate={inView ? { scaleY: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}

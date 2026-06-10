@@ -98,20 +98,20 @@ export default function Home() {
         <motion.div {...revealUp}>
           <Services />
         </motion.div>
-        <SectionDivider from={BG} to={DRK} variant="tilt" height={100} />
+        <SectionDivider from={BG} to={ALT} variant="tilt" height={80} />
       </div>
 
-      {/* ── Portfolio (Our Impact) ── continuous deep bg from Services divider */}
+      {/* ── Portfolio (Our Impact) ── light alt bg */}
       <div className="home__portfolio-wrap">
         <Portfolio />
       </div>
 
-      {/* ── Process (Trendox Method) ── same deep bg, no break */}
+      {/* ── Process (Trendox Method) ── continues on light bg */}
       <div className="home__process-wrap">
         <motion.div {...revealUp}>
           <Process />
         </motion.div>
-        <SectionDivider from={DRK} to={ALT} variant="curve" height={96} />
+        <SectionDivider from={ALT} to={ALT} variant="curve" height={60} />
       </div>
 
       {/* ── Testimonials ── */}
@@ -129,11 +129,13 @@ export default function Home() {
         <motion.div {...revealUp}>
           <FAQ />
         </motion.div>
-        <SectionDivider from={BG} to={DRK} variant="angle" height={88} />
+        <SectionDivider from={BG} to={BG} variant="angle" height={56} />
       </div>
 
-      {/* ── CTA ── same dark bg from divider, bleeds into Footer */}
-      <CTA />
+      {/* ── CTA ── light bg, wave transition handled inside Footer */}
+      <div className="home__cta-wrap">
+        <CTA />
+      </div>
 
     </div>
   )

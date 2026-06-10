@@ -19,17 +19,19 @@
 .home__hero-wrap     { position: relative; }
 .home__trusted-wrap  { position: relative; background: var(--bg); }
 .home__services-wrap { position: relative; background: var(--bg); }
-.home__portfolio-wrap{ position: relative; background: var(--bg-dark); }
-.home__process-wrap  { position: relative; background: var(--bg-dark); }
+.home__portfolio-wrap{ position: relative; background: var(--bg-alt); }
+.home__process-wrap  { position: relative; background: var(--bg-alt); }
 .home__testimonials-wrap { position: relative; background: var(--bg-alt); }
 .home__faq-wrap      { position: relative; background: var(--bg); }
+.home__cta-wrap      { position: relative; background: var(--bg); }
 
 /* Stitch dividers flush — no pixel gap between wrapper and divider */
 .home__trusted-wrap  .sdiv,
 .home__services-wrap .sdiv,
 .home__process-wrap  .sdiv,
 .home__testimonials-wrap .sdiv,
-.home__faq-wrap      .sdiv {
+.home__faq-wrap      .sdiv,
+.home__cta-wrap      .sdiv {
   display: block;
   margin-top: -1px;
 }

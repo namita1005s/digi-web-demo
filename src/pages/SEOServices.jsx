@@ -2,99 +2,102 @@ import ServicePage from '../components/ServicePage/ServicePage'
 
 const SEOVisual = () => (
   <svg viewBox="0 0 520 390" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block' }}>
-    <rect width="520" height="390" fill="#F8F8F6" />
+    <defs>
+      <linearGradient id="seo-bg" x1="0" y1="0" x2="520" y2="390" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#E8E4DE" />
+        <stop offset="100%" stopColor="#D6D0C8" />
+      </linearGradient>
+      <linearGradient id="seo-card" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#F5F2ED" />
+        <stop offset="100%" stopColor="#EBE6DD" />
+      </linearGradient>
+      <linearGradient id="seo-dark" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#4A4540" />
+        <stop offset="100%" stopColor="#3A3530" />
+      </linearGradient>
+      <filter id="seo-shadow" x="-10%" y="-10%" width="120%" height="130%">
+        <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#00000022" />
+      </filter>
+      <filter id="seo-shadow-sm" x="-5%" y="-5%" width="115%" height="125%">
+        <feDropShadow dx="0" dy="3" stdDeviation="5" floodColor="#00000018" />
+      </filter>
+    </defs>
+    <rect width="520" height="390" fill="url(#seo-bg)" />
 
-    {/* Dashboard header */}
-    <rect width="520" height="48" fill="#fff" />
-    <rect x="18" y="15" width="88" height="18" rx="5" fill="#EBEBEB" />
-    <rect x="200" y="17" width="120" height="14" rx="7" fill="#F2F2F2" />
-    <circle cx="480" cy="24" r="11" fill="#EBEBEB" />
-    <circle cx="452" cy="24" r="11" fill="#EBEBEB" />
+    {/* ── 3D isometric base platform ── */}
+    {/* Bottom face */}
+    <polygon points="100,310 260,360 420,310 260,260" fill="#C8C2B8" />
+    {/* Left face */}
+    <polygon points="100,220 100,310 260,360 260,270" fill="#B8B2A8" />
+    {/* Right face */}
+    <polygon points="420,220 420,310 260,360 260,270" fill="#D0CAC0" />
+    {/* Top face */}
+    <polygon points="100,220 260,270 420,220 260,170" fill="#DDD8D0" />
 
-    {/* Left sidebar */}
-    <rect x="0" y="48" width="68" height="342" fill="#fff" />
-    <rect x="14" y="66" width="40" height="8" rx="3" fill="#DADADB" />
-    <rect x="14" y="86" width="40" height="8" rx="3" fill="#DADADB" />
-    <rect x="8" y="104" width="52" height="20" rx="5" fill="#111" />
-    <rect x="14" y="136" width="40" height="8" rx="3" fill="#DADADB" />
-    <rect x="14" y="156" width="40" height="8" rx="3" fill="#DADADB" />
-    <rect x="14" y="176" width="40" height="8" rx="3" fill="#DADADB" />
+    {/* ── Floating card 1 — Traffic chart ── */}
+    <g filter="url(#seo-shadow)" transform="translate(60,40)">
+      <rect width="220" height="130" rx="14" fill="url(#seo-card)" />
+      {/* 3D side */}
+      <polygon points="220,14 224,18 224,138 220,134" fill="#D8D2C8" />
+      <polygon points="14,130 18,134 224,134 220,130" fill="#CDC8BE" />
+      <rect x="16" y="14" width="80" height="7" rx="3" fill="#8A8278" />
+      <rect x="16" y="26" width="50" height="5" rx="2" fill="#C0BAB0" />
+      {/* bars */}
+      {[18,26,22,34,30,44,38,52,48,60,70,78].map((h,i)=>(
+        <rect key={i} x={16+i*16} y={108-h*0.72} width="11" height={h*0.72} rx="3"
+          fill={i>=9?'#7A7268':i>=6?'#9A9288':'#C8C2B8'} />
+      ))}
+      {/* trend line */}
+      <polyline points="21,107 37,99 53,102 69,93 85,96 101,87 117,90 133,81 149,84 165,74 181,66 197,62"
+        stroke="#7A7268" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+      {/* badge */}
+      <rect x="154" y="12" width="50" height="18" rx="7" fill="#7A7268" />
+      <text x="163" y="25" fontSize="9" fill="#F0ECE6" fontFamily="Inter,sans-serif" fontWeight="800">+182%</text>
+    </g>
 
-    {/* Organic traffic chart */}
-    <rect x="80" y="60" width="270" height="148" rx="12" fill="#fff" />
-    <rect x="96" y="74" width="110" height="8" rx="3" fill="#111" />
-    <rect x="96" y="88" width="70" height="6" rx="3" fill="#DADADB" />
-    <rect x="300" y="72" width="34" height="16" rx="6" fill="#E8E8E8" />
-    <text x="306" y="84" fontSize="9" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="800">+182%</text>
+    {/* ── Floating card 2 — Keyword ranks ── */}
+    <g filter="url(#seo-shadow)" transform="translate(240,80)">
+      <rect width="210" height="150" rx="14" fill="url(#seo-card)" />
+      <polygon points="210,14 214,18 214,158 210,154" fill="#D8D2C8" />
+      <polygon points="14,150 18,154 214,154 210,150" fill="#CDC8BE" />
+      <rect x="16" y="14" width="90" height="7" rx="3" fill="#8A8278" />
+      {[['SEO Services','#1'],['Local SEO','#2'],['Technical SEO','#1'],['Link Building','#3']].map(([kw,rank],i)=>(
+        <g key={kw}>
+          <rect x="16" y={34+i*26} width="120" height="7" rx="3" fill="#D8D2C8" />
+          <rect x="156" y={30+i*26} width="34" height="16" rx="6"
+            fill={rank==='#1'?'#6A6560':rank==='#2'?'#8A8278':'#A8A29A'} />
+          <text x={rank==='#1'?163:162} y={42+i*26} fontSize="8" fill="#F0ECE6"
+            fontFamily="Inter,sans-serif" fontWeight="800">{rank}</text>
+        </g>
+      ))}
+    </g>
 
-    {/* Chart bars with trend */}
-    {[22, 30, 26, 40, 36, 52, 44, 62, 58, 76, 88, 96].map((h, i) => (
-      <rect key={i} x={96 + i * 20} y={178 - h * 0.82} width="13" height={h * 0.82} rx="3"
-        fill={i >= 9 ? '#111' : i >= 6 ? '#555' : '#E8E8E8'} />
-    ))}
-    {/* Trend line */}
-    <polyline points="102,171 122,161 142,164 162,149 182,152 202,141 222,144 242,132 262,135 282,122 302,111 322,105"
-      stroke="#111" strokeWidth="2" fill="none" strokeLinecap="round" strokeDasharray="3 2" opacity="0.35" />
+    {/* ── Floating card 3 — SEO health ring ── */}
+    <g filter="url(#seo-shadow)" transform="translate(130,200)">
+      <rect width="130" height="130" rx="14" fill="url(#seo-dark)" />
+      <polygon points="130,14 134,18 134,138 130,134" fill="#302C28" />
+      <polygon points="14,130 18,134 134,134 130,130" fill="#282420" />
+      <circle cx="65" cy="65" r="38" stroke="#5A5550" strokeWidth="7" fill="none" />
+      <circle cx="65" cy="65" r="38" stroke="#C8C2B8" strokeWidth="7" fill="none"
+        strokeDasharray="190" strokeDashoffset="48" strokeLinecap="round"
+        transform="rotate(-90 65 65)" />
+      <text x="65" y="62" fontSize="18" fontWeight="900" fill="#F0ECE6"
+        fontFamily="Inter,sans-serif" textAnchor="middle">94</text>
+      <text x="65" y="76" fontSize="7" fill="#908A82"
+        fontFamily="Inter,sans-serif" textAnchor="middle">SEO HEALTH</text>
+    </g>
 
-    {/* Keyword rankings table */}
-    <rect x="80" y="220" width="270" height="158" rx="12" fill="#fff" />
-    <rect x="96" y="234" width="100" height="8" rx="3" fill="#111" />
-    {/* Table header */}
-    <rect x="96" y="252" width="245" height="1" fill="#F0F0F0" />
-    <rect x="96" y="256" width="110" height="6" rx="2" fill="#DADADB" />
-    <rect x="264" y="256" width="30" height="6" rx="2" fill="#DADADB" />
-    <rect x="316" y="256" width="25" height="6" rx="2" fill="#DADADB" />
-
-    {/* Keyword rows */}
-    {[
-      ['best seo agency', '#1', '#3'],
-      ['seo services london', '#2', '#8'],
-      ['technical seo audit', '#1', '#4'],
-      ['local seo company', '#3', '#11'],
-    ].map(([kw, cur, prev], i) => (
-      <g key={kw}>
-        <rect x="96" y={272 + i * 24} width="156" height="7" rx="3" fill="#EBEBEB" />
-        <rect x={264} y={272 + i * 24} width="26" height="14" rx="5"
-          fill={cur === '#1' ? '#111' : cur === '#2' ? '#333' : '#555'} />
-        <text x={cur === '#1' ? 268 : 267} y={282 + i * 24} fontSize="8" fill="#fff"
-          fontFamily="Inter,sans-serif" fontWeight="800">{cur}</text>
-        <rect x="316" y={274 + i * 24} width="22" height="10" rx="4" fill="#F2F2F2" />
-        <text x="320" y={282 + i * 24} fontSize="8" fill="#999"
-          fontFamily="Inter,sans-serif" fontWeight="600">{prev}</text>
-        <rect x="96" y={287 + i * 24} width="245" height="1" fill="#F8F8F8" />
-      </g>
-    ))}
-
-    {/* Right panel — search visibility score */}
-    <rect x="362" y="60" width="140" height="318" rx="12" fill="#111" />
-    <rect x="376" y="76" width="80" height="7" rx="3" fill="#444" />
-    {/* Score ring */}
-    <circle cx="432" cy="142" r="40" stroke="#333" strokeWidth="8" fill="none" />
-    <circle cx="432" cy="142" r="40" stroke="#fff" strokeWidth="8" fill="none"
-      strokeDasharray="201" strokeDashoffset="50" strokeLinecap="round"
-      transform="rotate(-90 432 142)" />
-    <text x="432" y="147" fontSize="20" fontWeight="900" fill="#fff"
-      fontFamily="Inter,sans-serif" textAnchor="middle">94</text>
-    <text x="432" y="160" fontSize="8" fill="#666"
-      fontFamily="Inter,sans-serif" textAnchor="middle">SEO Health</text>
-
-    {/* Mini metric rows */}
-    {[
-      ['Backlinks', '3,240', '#fff'],
-      ['Domain Auth.', '68', '#fff'],
-      ['Crawl Errors', '0', '#ffffff'],
-      ['Index Rate', '99%', '#ffffff'],
-    ].map(([label, val, clr], i) => (
-      <g key={label}>
-        <rect x="376" y={208 + i * 36} width="112" height="28" rx="7" fill="#1A1A1A" />
-        <text x="384" y={219 + i * 36} fontSize="8" fill="#666" fontFamily="Inter,sans-serif">{label}</text>
-        <text x="384" y={230 + i * 36} fontSize="10" fill={clr} fontFamily="Inter,sans-serif" fontWeight="800">{val}</text>
-      </g>
-    ))}
-
-    {/* Bottom rank badges */}
-    <rect x="376" y="360" width="48" height="12" rx="3" fill="#222" />
-    <text x="384" y="370" fontSize="7" fill="#888" fontFamily="Inter,sans-serif">Page 1 Avg</text>
+    {/* ── Mini stat pills ── */}
+    <g filter="url(#seo-shadow-sm)" transform="translate(58,200)">
+      <rect width="58" height="44" rx="10" fill="url(#seo-dark)" />
+      <text x="29" y="20" fontSize="7" fill="#908A82" fontFamily="Inter,sans-serif" textAnchor="middle">Domain</text>
+      <text x="29" y="34" fontSize="12" fontWeight="900" fill="#F0ECE6" fontFamily="Inter,sans-serif" textAnchor="middle">68</text>
+    </g>
+    <g filter="url(#seo-shadow-sm)" transform="translate(58,255)">
+      <rect width="58" height="44" rx="10" fill="url(#seo-dark)" />
+      <text x="29" y="20" fontSize="7" fill="#908A82" fontFamily="Inter,sans-serif" textAnchor="middle">Links</text>
+      <text x="29" y="34" fontSize="12" fontWeight="900" fill="#F0ECE6" fontFamily="Inter,sans-serif" textAnchor="middle">3.2k</text>
+    </g>
   </svg>
 )
 

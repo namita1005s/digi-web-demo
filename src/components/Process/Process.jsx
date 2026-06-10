@@ -1,95 +1,248 @@
-import { motion } from 'framer-motion'
+import { motion, useInView, useAnimation, animate } from 'framer-motion'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import './Process.css'
 
 const STEPS = [
-  {
-    n: '01', title: 'Discover',
-    body: 'We audit your brand, research competitors and identify the exact growth levers for your market.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-      </svg>
-    ),
-  },
-  {
-    n: '02', title: 'Strategy',
-    body: '90-day roadmap with clear KPIs, channel priorities, and budget allocation tailored to your goals.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 20h20M6 20V10l6-6 6 6v10"/><path d="M10 20v-5h4v5"/>
-      </svg>
-    ),
-  },
-  {
-    n: '03', title: 'Execute',
-    body: 'Creative, campaigns, and content shipped fast — then iterated even faster based on live data.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-      </svg>
-    ),
-  },
-  {
-    n: '04', title: 'Optimize',
-    body: 'Monthly performance reviews and continuous optimisation compound into sustainable, scalable growth.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
-      </svg>
-    ),
-  },
+  { id: 0, label: 'Strategy',            icon: '◎', color: '#38bdf8', glow: 'rgba(56,189,248,0.35)'  },
+  { id: 1, label: 'Content Creation',    icon: '✦', color: '#818cf8', glow: 'rgba(129,140,248,0.35)' },
+  { id: 2, label: 'Knowledge Base',      icon: '⬡', color: '#34d399', glow: 'rgba(52,211,153,0.35)'  },
+  { id: 3, label: 'Content Updates',     icon: '↺', color: '#f472b6', glow: 'rgba(244,114,182,0.35)' },
+  { id: 4, label: 'Auditing',            icon: '⬖', color: '#fb923c', glow: 'rgba(251,146,60,0.35)'  },
+  { id: 5, label: 'Strategy Refinement', icon: '◈', color: '#a78bfa', glow: 'rgba(167,139,250,0.35)' },
 ]
 
-const up = (d = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-40px' },
-  transition: { duration: 0.6, delay: d, ease: [0.16, 1, 0.3, 1] },
-})
+/* ── Floating particles background ── */
+function Particles() {
+  const dots = Array.from({ length: 18 }, (_, i) => i)
+  return (
+    <div className="tm-particles" aria-hidden>
+      {dots.map(i => (
+        <motion.span
+          key={i}
+          className="tm-particle"
+          style={{ left: `${5 + (i * 5.5) % 92}%`, top: `${10 + (i * 17) % 78}%` }}
+          animate={{ y: [0, -14, 0], opacity: [0.18, 0.45, 0.18] }}
+          transition={{ duration: 3 + (i % 4), repeat: Infinity, delay: (i * 0.37) % 3, ease: 'easeInOut' }}
+        />
+      ))}
+    </div>
+  )
+}
+
+/* ── Desktop: horizontal flow with SVG arc ── */
+function DesktopFlow({ active, inView }) {
+  const svgRef = useRef(null)
+  const [pathLen, setPathLen] = useState(0)
+  const [particlePos, setParticlePos] = useState({ x: 0, y: 0 })
+
+  // viewBox: 1600×380 — big canvas, lots of breathing room
+  // Cards: 170×96, wave amplitude 130px so top cards and bottom cards are clearly separated
+  const cardW = 170, cardH = 96
+  const vbW = 1600, vbH = 380
+
+  // 6 cards spread across full width, alternating top (cy=40) and bottom (cy=220)
+  // Path entry/exit points are at card bottom-center (top row) or card top-center (bottom row)
+  // so the line leaves/enters cards cleanly and never overlaps text
+  const colX = [80, 356, 632, 908, 1184, 1460]
+  const positions = [
+    { cx: colX[0], cy: 30  },   // top
+    { cx: colX[1], cy: 215 },   // bottom
+    { cx: colX[2], cy: 30  },   // top
+    { cx: colX[3], cy: 215 },   // bottom
+    { cx: colX[4], cy: 30  },   // top
+    { cx: colX[5], cy: 215 },   // bottom
+  ]
+
+  // Path connection points: exit from bottom of top-cards, enter top of bottom-cards
+  const pts = positions.map((p, i) =>
+    i % 2 === 0
+      ? { x: p.cx, y: p.cy + cardH + 18 }   // 18px below card bottom (top-row card)
+      : { x: p.cx, y: p.cy - 18 }            // 18px above card top (bottom-row card)
+  )
+
+  function cubicPath(points) {
+    let d = `M ${points[0].x} ${points[0].y}`
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1], curr = points[i]
+      const mid = (curr.x - prev.x) / 2
+      d += ` C ${prev.x + mid} ${prev.y}, ${prev.x + mid} ${curr.y}, ${curr.x} ${curr.y}`
+    }
+    // return loop sweeps below all cards at y=350
+    const last = points[points.length - 1]
+    d += ` C ${last.x + 100} ${last.y + 110}, ${points[0].x - 100} ${points[0].y + 110}, ${points[0].x} ${points[0].y}`
+    return d
+  }
+
+  const pathD = cubicPath(pts)
+
+  useEffect(() => {
+    if (!svgRef.current) return
+    const p = svgRef.current.querySelector('#tm-flow-path')
+    if (p) setPathLen(p.getTotalLength())
+  }, [])
+
+  useEffect(() => {
+    if (!pathLen || !inView || !svgRef.current) return
+    const path = svgRef.current.querySelector('#tm-flow-path')
+    let raf, start = null, dur = 7000
+    function step(ts) {
+      if (!start) start = ts
+      const t = ((ts - start) % dur) / dur
+      const pt = path.getPointAtLength(t * pathLen)
+      setParticlePos({ x: pt.x, y: pt.y })
+      raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [pathLen, inView])
+
+  return (
+    <div className="tm-desktop">
+      <svg ref={svgRef} className="tm-svg" viewBox={`0 0 ${vbW} ${vbH}`} preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="tm-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stopColor="#38bdf8" stopOpacity="0.7"/>
+            <stop offset="35%"  stopColor="#818cf8" stopOpacity="0.8"/>
+            <stop offset="65%"  stopColor="#34d399" stopOpacity="0.8"/>
+            <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.7"/>
+          </linearGradient>
+          <filter id="tm-glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="tm-particle-grad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#fff" stopOpacity="1"/>
+            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0"/>
+          </radialGradient>
+        </defs>
+
+        {/* Main flow path */}
+        <motion.path
+          id="tm-flow-path"
+          d={pathD}
+          fill="none"
+          stroke="url(#tm-grad)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          filter="url(#tm-glow)"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={inView ? { pathLength: 1, opacity: 1 } : {}}
+          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+        />
+
+        {/* Moving particle */}
+        {inView && pathLen > 0 && (
+          <>
+            <circle cx={particlePos.x} cy={particlePos.y} r="12" fill="url(#tm-particle-grad)" opacity="0.45"/>
+            <circle cx={particlePos.x} cy={particlePos.y} r="4.5" fill="#fff" filter="url(#tm-glow)" opacity="0.95"/>
+          </>
+        )}
+
+        {/* Cards rendered as foreignObject */}
+        {STEPS.map((step, i) => {
+          const pos = positions[i]
+          const isActive = active === i
+          return (
+            <foreignObject
+              key={step.id}
+              x={pos.cx - cardW / 2}
+              y={pos.cy}
+              width={cardW}
+              height={cardH}
+              style={{ overflow: 'visible' }}
+            >
+              <div
+                className={`tm-card${isActive ? ' tm-card--active' : ''}`}
+                style={{ '--c': step.color, '--g': step.glow, width: cardW, height: cardH }}
+              >
+                {isActive && <span className="tm-pulse" style={{ '--c': step.color }}/>}
+                <span className="tm-card__icon" style={{ color: step.color }}>{step.icon}</span>
+                <span className="tm-card__label">{step.label}</span>
+              </div>
+            </foreignObject>
+          )
+        })}
+
+        {/* Loop label sits inside the return arc, well below cards */}
+        <text x={vbW / 2} y="368" textAnchor="middle" fontSize="12" fill="#a78bfa" opacity="0.6" fontFamily="sans-serif" letterSpacing="3">
+          ↺  CONTINUOUS LOOP
+        </text>
+      </svg>
+    </div>
+  )
+}
+
+/* ── Mobile: vertical flow ── */
+function MobileFlow({ active, inView }) {
+  return (
+    <div className="tm-mobile">
+      {STEPS.map((step, i) => (
+        <div key={step.id} className="tm-mobile__item">
+          <motion.div
+            className={`tm-card tm-card--mobile${active === i ? ' tm-card--active' : ''}`}
+            style={{ '--c': step.color, '--g': step.glow }}
+            initial={{ opacity: 0, x: -24 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+          >
+            {active === i && <span className="tm-pulse" style={{ '--c': step.color }}/>}
+            <span className="tm-card__icon" style={{ color: step.color }}>{step.icon}</span>
+            <span className="tm-card__label">{step.label}</span>
+          </motion.div>
+          {i < STEPS.length - 1 ? (
+            <div className="tm-mobile__connector">
+              <motion.div
+                className="tm-mobile__line"
+                style={{ background: `linear-gradient(180deg, ${step.color}, ${STEPS[i+1].color})` }}
+                initial={{ scaleY: 0 }}
+                animate={inView ? { scaleY: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+              />
+            </div>
+          ) : (
+            <div className="tm-mobile__loop">↺ loops back to Strategy</div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default function Process() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    if (!inView) return
+    const id = setInterval(() => setActive(a => (a + 1) % STEPS.length), 2000)
+    return () => clearInterval(id)
+  }, [inView])
+
   return (
-    <section className="process" id="process">
-      <div className="process__grid-bg" aria-hidden="true" />
+    <section className="tm" ref={ref}>
+      <Particles />
+      <div className="tm__orb tm__orb--1" />
+      <div className="tm__orb tm__orb--2" />
+      <div className="tm__grid" aria-hidden />
+
       <div className="container">
-        <motion.div className="process__head" {...up(0)}>
-          <span className="section-tag">How We Work</span>
-          <h2 className="section-title">A Process Built for <em>Results.</em></h2>
-          <p className="process__sub">A proven framework that transforms strategy into measurable business growth.</p>
+        <motion.div
+          className="tm__head"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="tm__badge">The Trendox Method</span>
+          <h2 className="tm__title">A Process Built for <em>Results</em></h2>
+          <p className="tm__desc">
+            A continuous growth framework where strategy, content, insights, optimization,
+            and refinement work together in an ongoing cycle to drive measurable business growth.
+          </p>
         </motion.div>
 
-        <div className="process__track" aria-hidden="true">
-          <motion.div
-            className="process__connector-fill"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          />
-        </div>
-
-        <div className="process__row">
-          {STEPS.map((s, i) => (
-            <motion.div
-              key={s.n}
-              className="process__card"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, delay: 0.1 + i * 0.13, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.2 } }}
-            >
-              <span className="process__ghost" aria-hidden="true">{s.n}</span>
-              <div className="process__icon-wrap">{s.icon}</div>
-              <div className="process__step">{s.n}</div>
-              <h3 className="process__title">{s.title}</h3>
-              <p className="process__body">{s.body}</p>
-              {i < STEPS.length - 1 && (
-                <span className="process__arrow" aria-hidden="true">→</span>
-              )}
-            </motion.div>
-          ))}
-        </div>
+        <DesktopFlow active={active} inView={inView} />
+        <MobileFlow  active={active} inView={inView} />
       </div>
     </section>
   )

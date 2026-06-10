@@ -2,49 +2,89 @@ import ServicePage from '../components/ServicePage/ServicePage'
 
 const PPCVisual = () => (
   <svg viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block' }}>
-    <rect width="480" height="360" rx="12" fill="#F7F7F5" />
-    {/* Header */}
-    <rect x="0" y="0" width="480" height="44" rx="0" fill="#fff" />
-    <rect x="16" y="14" width="80" height="16" rx="4" fill="#EBEBEB" />
-    <rect x="340" y="14" width="60" height="16" rx="6" fill="#111" />
-    <circle cx="448" cy="22" r="10" fill="#EBEBEB" />
-    {/* ROAS big card */}
-    <rect x="16" y="56" width="200" height="90" rx="10" fill="#fff" />
-    <rect x="30" y="68" width="60" height="7" rx="3" fill="#DADADB" />
-    <text x="30" y="108" fontSize="28" fontWeight="800" fill="#111" fontFamily="Inter,sans-serif">4.5x</text>
-    <rect x="30" y="118" width="50" height="6" rx="3" fill="#DADADB" />
-    <rect x="152" y="66" width="50" height="16" rx="6" fill="#E8E8E8" />
-    <text x="160" y="78" fontSize="9" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="700">+38% ROI</text>
-    {/* CPA card */}
-    <rect x="228" y="56" width="116" height="90" rx="10" fill="#fff" />
-    <rect x="242" y="68" width="50" height="6" rx="3" fill="#DADADB" />
-    <text x="242" y="108" fontSize="22" fontWeight="800" fill="#111" fontFamily="Inter,sans-serif">$12.4</text>
-    <rect x="242" y="116" width="60" height="5" rx="2" fill="#DADADB" />
-    {/* Spend card */}
-    <rect x="356" y="56" width="108" height="90" rx="10" fill="#111" />
-    <rect x="370" y="68" width="50" height="6" rx="3" fill="#555" />
-    <text x="370" y="108" fontSize="18" fontWeight="800" fill="#fff" fontFamily="Inter,sans-serif">$2M+</text>
-    <rect x="370" y="116" width="44" height="5" rx="2" fill="#555" />
-    {/* Campaign performance chart */}
-    <rect x="16" y="158" width="310" height="140" rx="10" fill="#fff" />
-    <rect x="30" y="170" width="90" height="7" rx="3" fill="#111" />
-    <rect x="280" y="168" width="30" height="10" rx="4" fill="#F0FDF4" />
-    {/* Bars */}
-    {[30, 50, 42, 65, 58, 80, 72, 90, 85, 100].map((h, i) => (
-      <rect key={i} x={30 + i * 28} y={278 - h * 0.88} width="18" rx="3"
-        height={h * 0.88}
-        fill={i >= 7 ? '#111' : '#EBEBEB'} />
-    ))}
-    {/* Platform breakdown */}
-    <rect x="338" y="158" width="126" height="140" rx="10" fill="#fff" />
-    <rect x="350" y="170" width="60" height="6" rx="3" fill="#111" />
-    {[['Google', 52, '#111'], ['Meta', 30, '#555'], ['LinkedIn', 18, '#ADADAD']].map(([name, pct, clr], i) => (
-      <g key={name}>
-        <rect x="350" y={190 + i * 32} width="102" height="20" rx="4" fill="#F7F7F5" />
-        <rect x="350" y={190 + i * 32} width={pct * 1.96} height="20" rx="4" fill={clr} opacity="0.15" />
-        <text x="356" y={204 + i * 32} fontSize="8" fill={clr} fontFamily="Inter,sans-serif" fontWeight="700">{name} {pct}%</text>
-      </g>
-    ))}
+    <defs>
+      <linearGradient id="ppc-bg" x1="0" y1="0" x2="480" y2="360" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#E2DDD8" />
+        <stop offset="100%" stopColor="#D0CCC6" />
+      </linearGradient>
+      <linearGradient id="ppc-card" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#F2EEE9" />
+        <stop offset="100%" stopColor="#E8E3DC" />
+      </linearGradient>
+      <linearGradient id="ppc-dark" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#48403A" />
+        <stop offset="100%" stopColor="#383028" />
+      </linearGradient>
+      <filter id="ppc-shadow">
+        <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#00000022" />
+      </filter>
+    </defs>
+    <rect width="480" height="360" fill="url(#ppc-bg)" />
+
+    {/* ── 3D isometric dashboard platform ── */}
+    <polygon points="40,290 240,330 440,290 240,250" fill="#BEB8B0" />
+    <polygon points="40,240 40,290 240,330 240,280" fill="#AEA8A0" />
+    <polygon points="440,240 440,290 240,330 240,280" fill="#C8C2BA" />
+
+    {/* ── ROAS big card ── */}
+    <g filter="url(#ppc-shadow)" transform="translate(30,30)">
+      <rect width="170" height="90" rx="14" fill="url(#ppc-dark)" />
+      <polygon points="170,14 174,18 174,98 170,94" fill="#282018" />
+      <polygon points="14,90 18,94 174,94 170,90" fill="#201808" />
+      <rect x="16" y="14" width="60" height="6" rx="3" fill="#6A5E58" />
+      <text x="16" y="62" fontSize="30" fontWeight="900" fill="#E8E0D8" fontFamily="Inter,sans-serif">4.5x</text>
+      <rect x="16" y="70" width="50" height="5" rx="2" fill="#5A5048" />
+      <rect x="118" y="12" width="36" height="14" rx="6" fill="#5A5048" />
+      <text x="124" y="23" fontSize="8" fill="#C8C0B8" fontFamily="Inter,sans-serif" fontWeight="700">+38%</text>
+    </g>
+
+    {/* ── CPA card ── */}
+    <g filter="url(#ppc-shadow)" transform="translate(212,30)">
+      <rect width="120" height="90" rx="14" fill="url(#ppc-card)" />
+      <polygon points="120,14 124,18 124,98 120,94" fill="#D8D0C8" />
+      <polygon points="14,90 18,94 124,94 120,90" fill="#CCC4BC" />
+      <rect x="14" y="14" width="55" height="6" rx="3" fill="#8A8078" />
+      <text x="14" y="62" fontSize="22" fontWeight="900" fill="#48403A" fontFamily="Inter,sans-serif">$12.4</text>
+      <rect x="14" y="70" width="60" height="4" rx="2" fill="#B0A89E" />
+    </g>
+
+    {/* ── Spend card ── */}
+    <g filter="url(#ppc-shadow)" transform="translate(344,30)">
+      <rect width="106" height="90" rx="14" fill="url(#ppc-card)" />
+      <polygon points="106,14 110,18 110,98 106,94" fill="#D8D0C8" />
+      <polygon points="14,90 18,94 110,94 106,90" fill="#CCC4BC" />
+      <rect x="14" y="14" width="55" height="6" rx="3" fill="#8A8078" />
+      <text x="14" y="62" fontSize="18" fontWeight="900" fill="#48403A" fontFamily="Inter,sans-serif">$2M+</text>
+      <rect x="14" y="70" width="48" height="4" rx="2" fill="#B0A89E" />
+    </g>
+
+    {/* ── Campaign chart ── */}
+    <g filter="url(#ppc-shadow)" transform="translate(30,138)">
+      <rect width="270" height="130" rx="14" fill="url(#ppc-card)" />
+      <polygon points="270,14 274,18 274,142 270,138" fill="#D8D0C8" />
+      <polygon points="14,130 18,134 274,134 270,130" fill="#CCC4BC" />
+      <rect x="16" y="14" width="90" height="7" rx="3" fill="#7A7068" />
+      {[30,50,42,65,58,80,72,90,85,100].map((h,i)=>(
+        <rect key={i} x={16+i*24} y={118-h*0.82} width="16" rx="3"
+          height={h*0.82}
+          fill={i>=7?'#48403A':i>=5?'#7A7268':'#C8C0B8'} />
+      ))}
+    </g>
+
+    {/* ── Platform breakdown ── */}
+    <g filter="url(#ppc-shadow)" transform="translate(312,138)">
+      <rect width="138" height="130" rx="14" fill="url(#ppc-dark)" />
+      <polygon points="138,14 142,18 142,142 138,138" fill="#282018" />
+      <polygon points="14,130 18,134 142,134 138,130" fill="#201808" />
+      <rect x="14" y="14" width="60" height="6" rx="3" fill="#6A5E58" />
+      {[['Google',52,'#D8D0C8'],['Meta',30,'#A8A098'],['LinkedIn',18,'#787068']].map(([nm,pct,clr],i)=>(
+        <g key={nm}>
+          <rect x="14" y={32+i*28} width="110" height="18" rx="5" fill="#302820" />
+          <rect x="14" y={32+i*28} width={pct*2.1} height="18" rx="5" fill={clr} opacity="0.25" />
+          <text x="20" y={45+i*28} fontSize="8" fill={clr} fontFamily="Inter,sans-serif" fontWeight="700">{nm} {pct}%</text>
+        </g>
+      ))}
+    </g>
   </svg>
 )
 

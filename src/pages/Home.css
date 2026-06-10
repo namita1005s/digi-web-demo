@@ -34,16 +34,28 @@
   background: var(--bg-alt);
 }
 
-/* ── Portfolio wrap ── */
+/* ── Portfolio (Our Impact) wrap ── */
 .home__portfolio-wrap {
   position: relative;
-  background: var(--bg-dark);
+  background: #050816;
+}
+
+/* ── Process wrap ── */
+.home__process-wrap {
+  position: relative;
+  background: #050816;
 }
 
 /* ── Testimonials wrap ── */
 .home__testimonials-wrap {
   position: relative;
   background: var(--bg-alt);
+}
+
+/* ── Growth Metrics wrap ── */
+.home__growth-wrap {
+  position: relative;
+  background: var(--bg);
 }
 
 /* ── FAQ wrap ── */

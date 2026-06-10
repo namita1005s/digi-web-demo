@@ -2,67 +2,90 @@ import ServicePage from '../components/ServicePage/ServicePage'
 
 const WebDevVisual = () => (
   <svg viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block' }}>
-    <rect width="480" height="360" rx="12" fill="#F7F7F5" />
-    {/* Browser chrome */}
-    <rect x="16" y="16" width="448" height="328" rx="10" fill="#fff" />
-    <rect x="16" y="16" width="448" height="36" rx="10" fill="#EBEBEB" />
-    <rect x="16" y="38" width="448" height="14" fill="#EBEBEB" />
-    <circle cx="36" cy="34" r="6" fill="#DDDDDD" />
-    <circle cx="54" cy="34" r="6" fill="#CCCCCC" />
-    <circle cx="72" cy="34" r="6" fill="#BBBBBB" />
-    <rect x="90" y="26" width="280" height="16" rx="8" fill="#fff" />
-    {/* Code editor — left panel */}
-    <rect x="16" y="52" width="220" height="292" fill="#1E1E1E" />
-    {/* line numbers + code lines */}
-    {[0,1,2,3,4,5,6,7,8,9,10,11,12].map(i => (
-      <rect key={i} x="38" y={72 + i * 20} width="4" height="8" rx="2" fill="#444444" />
-    ))}
-    {/* code tokens */}
-    <rect x="52" y="72" width="28" height="8" rx="2" fill="#888888" />
-    <rect x="86" y="72" width="44" height="8" rx="2" fill="#aaaaaa" />
-    <rect x="136" y="72" width="16" height="8" rx="2" fill="#cccccc" />
-    <rect x="52" y="92" width="20" height="8" rx="2" fill="#999999" />
-    <rect x="78" y="92" width="60" height="8" rx="2" fill="#cccccc" />
-    <rect x="52" y="112" width="36" height="8" rx="2" fill="#888888" />
-    <rect x="94" y="112" width="50" height="8" rx="2" fill="#aaaaaa" />
-    <rect x="52" y="132" width="24" height="8" rx="2" fill="#999999" />
-    <rect x="82" y="132" width="80" height="8" rx="2" fill="#cccccc" />
-    <rect x="52" y="152" width="44" height="8" rx="2" fill="#888888" />
-    <rect x="102" y="152" width="30" height="8" rx="2" fill="#bbbbbb" />
-    <rect x="52" y="172" width="16" height="8" rx="2" fill="#999999" />
-    <rect x="74" y="172" width="56" height="8" rx="2" fill="#cccccc" />
-    <rect x="52" y="192" width="60" height="8" rx="2" fill="#aaaaaa" />
-    <rect x="52" y="212" width="28" height="8" rx="2" fill="#888888" />
-    <rect x="86" y="212" width="44" height="8" rx="2" fill="#cccccc" />
-    {/* cursor blink */}
-    <rect x="52" y="232" width="2" height="14" rx="1" fill="#aaaaaa" opacity="0.9" />
-    {/* Preview panel */}
-    <rect x="236" y="52" width="228" height="292" fill="#fff" />
-    {/* Preview nav */}
-    <rect x="248" y="66" width="60" height="8" rx="3" fill="#111" />
-    <rect x="360" y="64" width="48" height="12" rx="6" fill="#111" />
-    {/* Hero block */}
-    <rect x="248" y="88" width="204" height="60" rx="8" fill="#F7F7F5" />
-    <rect x="260" y="98" width="80" height="10" rx="4" fill="#111" />
-    <rect x="260" y="114" width="120" height="7" rx="3" fill="#DADADB" />
-    <rect x="260" y="126" width="52" height="14" rx="6" fill="#111" />
-    {/* Feature cards */}
-    {[0,1,2].map(i => (
+    <defs>
+      <linearGradient id="wd-bg" x1="0" y1="0" x2="480" y2="360" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#DCE4E8" />
+        <stop offset="100%" stopColor="#C8D4DA" />
+      </linearGradient>
+      <linearGradient id="wd-card" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#EFF3F5" />
+        <stop offset="100%" stopColor="#E2E9ED" />
+      </linearGradient>
+      <linearGradient id="wd-dark" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#3C4A50" />
+        <stop offset="100%" stopColor="#2C383E" />
+      </linearGradient>
+      <filter id="wd-shadow">
+        <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#00000020" />
+      </filter>
+      <filter id="wd-shadow-sm">
+        <feDropShadow dx="0" dy="3" stdDeviation="5" floodColor="#00000018" />
+      </filter>
+    </defs>
+    <rect width="480" height="360" fill="url(#wd-bg)" />
+
+    {/* ── 3D isometric monitor ── */}
+    {/* Stand */}
+    <polygon points="220,306 260,318 260,330 220,318" fill="#A8B4BA" />
+    <polygon points="260,318 300,306 300,318 260,330" fill="#98A4AA" />
+    <rect x="196" y="326" width="128" height="8" rx="4" fill="#98A4AA" />
+
+    {/* Monitor back 3D depth */}
+    <polygon points="84,70 400,70 400,298 84,298" fill="#B0BCC2" />
+    <polygon points="400,70 408,62 408,290 400,298" fill="#98A8AE" />
+    <polygon points="84,70 92,62 408,62 400,70" fill="#C0CCD2" />
+
+    {/* Monitor screen */}
+    <rect x="90" y="76" width="304" height="216" rx="4" fill="url(#wd-dark)" />
+
+    {/* Browser chrome inside screen */}
+    <rect x="90" y="76" width="304" height="26" rx="4" fill="#2A3840" />
+    <circle cx="106" cy="89" r="4" fill="#8A9AA0" opacity="0.5" />
+    <circle cx="120" cy="89" r="4" fill="#8A9AA0" opacity="0.4" />
+    <circle cx="134" cy="89" r="4" fill="#8A9AA0" opacity="0.3" />
+    <rect x="150" y="83" width="160" height="12" rx="6" fill="#3C4A50" />
+    <rect x="158" y="86" width="80" height="6" rx="3" fill="#5A6A70" />
+
+    {/* Code panel left */}
+    <rect x="90" y="102" width="128" height="190" fill="#1E2C32" />
+    {/* code lines */}
+    {[0,1,2,3,4,5,6,7,8,9,10,11].map(i=>(
       <g key={i}>
-        <rect x={248 + i * 70} y="162" width="60" height="50" rx="6" fill="#F7F7F5" />
-        <rect x={256 + i * 70} y="172" width="20" height="6" rx="2" fill="#DADADB" />
-        <rect x={256 + i * 70} y="182" width="40" height="5" rx="2" fill="#EBEBEB" />
-        <rect x={256 + i * 70} y="190" width="32" height="5" rx="2" fill="#EBEBEB" />
+        <rect x="102" y={114+i*14} width="4" height="6" rx="1" fill="#3C5060" />
+        <rect x="112" y={114+i*14}
+          width={[28,44,20,50,36,24,48,30,42,26,38,22][i]}
+          height="6" rx="2"
+          fill={i%3===0?'#7A9AA8':i%3===1?'#6A8A98':'#5A7A88'} opacity="0.7" />
       </g>
     ))}
-    {/* PageSpeed badge */}
-    <rect x="248" y="228" width="204" height="48" rx="8" fill="#F0F0F0" />
-    <circle cx="270" cy="252" r="14" fill="#555555" opacity="0.15" />
-    <circle cx="270" cy="252" r="8" fill="#555555" />
-    <rect x="288" y="246" width="30" height="7" rx="3" fill="#111" />
-    <rect x="288" y="257" width="50" height="5" rx="2" fill="#DADADB" />
-    <rect x="386" y="244" width="36" height="16" rx="4" fill="#333333" />
-    <rect x="392" y="249" width="24" height="6" rx="2" fill="#fff" />
+    {/* cursor */}
+    <rect x="112" y="282" width="2" height="10" rx="1" fill="#9ABAC8" opacity="0.9" />
+
+    {/* Preview panel right */}
+    <rect x="218" y="102" width="176" height="190" fill="#E8EEF1" />
+    {/* nav */}
+    <rect x="228" y="112" width="50" height="6" rx="3" fill="#3C4A50" />
+    <rect x="342" y="110" width="40" height="10" rx="5" fill="#6A7A80" />
+    {/* hero block */}
+    <rect x="228" y="128" width="156" height="44" rx="6" fill="#D8E2E8" />
+    <rect x="238" y="136" width="70" height="8" rx="3" fill="#3C4A50" />
+    <rect x="238" y="148" width="100" height="5" rx="2" fill="#A8B8C0" />
+    <rect x="238" y="158" width="40" height="10" rx="5" fill="#4A5A60" />
+    {/* feature cards */}
+    {[0,1,2].map(i=>(
+      <g key={i}>
+        <rect x={228+i*54} y="182" width="46" height="38" rx="5" fill="#D0DCE2" />
+        <rect x={236+i*54} y="190" width="18" height="5" rx="2" fill="#A8B8C0" />
+        <rect x={236+i*54} y="199" width="30" height="4" rx="2" fill="#B8C8D0" />
+        <rect x={236+i*54} y="207" width="24" height="4" rx="2" fill="#B8C8D0" />
+      </g>
+    ))}
+    {/* speed badge */}
+    <rect x="228" y="230" width="156" height="34" rx="6" fill="#C8D8E0" />
+    <circle cx="244" cy="247" r="9" fill="#5A7080" />
+    <text x="244" y="251" fontSize="8" fill="#E8EEF1" fontFamily="Inter,sans-serif" fontWeight="900" textAnchor="middle">98</text>
+    <rect x="260" y="241" width="50" height="5" rx="2" fill="#8AA0A8" />
+    <rect x="260" y="249" width="36" height="4" rx="2" fill="#A0B0B8" />
   </svg>
 )
 

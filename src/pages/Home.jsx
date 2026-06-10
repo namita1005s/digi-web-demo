@@ -3,12 +3,10 @@ import { useRef } from 'react'
 import Hero from '../components/Hero/Hero'
 import TrustedBy from '../components/TrustedBy/TrustedBy'
 import Services from '../components/Services/Services'
-import Stats from '../components/Stats/Stats'
-import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs'
 import Portfolio from '../components/Portfolio/Portfolio'
+import Process from '../components/Process/Process'
 import Testimonials from '../components/Testimonials/Testimonials'
 import FAQ from '../components/FAQ/FAQ'
-import Pricing from '../components/Pricing/Pricing'
 import CTA from '../components/CTA/CTA'
 import SectionDivider from '../components/SectionDivider/SectionDivider'
 import './Home.css'
@@ -100,35 +98,21 @@ export default function Home() {
         <motion.div {...revealUp}>
           <Services />
         </motion.div>
-        {/* Services → Stats: angled cut into dark with ghost layer */}
-        <SectionDivider from={BG} to={DRK} variant="angle" height={108} />
+        <SectionDivider from={BG} to={ALT} variant="angle" height={108} />
       </div>
 
-      {/* ── Stats ── dark band */}
-      <div className="home__stats-wrap">
-        <DepthOrb className="home__depth-orb--stats" />
-        <Stats />
-        {/* Stats → WhyChooseUs: organic S-curve out of dark */}
-        <SectionDivider from={DRK} to={ALT} variant="masked" height={56} flip />
-      </div>
-
-      {/* ── WhyChooseUs ── */}
-      <div className="home__why-wrap">
-        <ParallaxAccent className="home__accent--ring-tl" speed={0.3} />
-        <ParallaxAccent className="home__accent--corner-dots" speed={0.5} />
-        <motion.div {...revealUpSlow}>
-          <WhyChooseUs />
-        </motion.div>
-        {/* WhyChooseUs → Portfolio: tilt into dark */}
-        <SectionDivider from={ALT} to={DRK} variant="tilt" height={104} />
-      </div>
-
-      {/* ── Portfolio ── dark; fades into Testimonials */}
+      {/* ── Portfolio (Our Impact) ── */}
       <div className="home__portfolio-wrap">
-        <DepthOrb className="home__depth-orb--portfolio" />
         <Portfolio />
-        {/* Portfolio → Testimonials: curve */}
-        <SectionDivider from={DRK} to={ALT} variant="curve" height={96} />
+        {/* Impact → Process: seamless same bg */}
+      </div>
+
+      {/* ── Process (Trendox Method) ── */}
+      <div className="home__process-wrap">
+        <motion.div {...revealUp}>
+          <Process />
+        </motion.div>
+        <SectionDivider from="#050816" to={BG} variant="curve" height={96} />
       </div>
 
       {/* ── Testimonials ── */}
@@ -150,16 +134,6 @@ export default function Home() {
         </motion.div>
         {/* FAQ → Pricing: angle into bg */}
         <SectionDivider from={BG} to={BG} variant="angle" height={80} />
-      </div>
-
-      {/* ── Custom Pricing ── */}
-      <div className="home__pricing-wrap">
-        <DepthOrb className="home__depth-orb--pricing" />
-        <motion.div {...revealUpSlow}>
-          <Pricing />
-        </motion.div>
-        {/* Pricing → CTA: curve into dark */}
-        <SectionDivider from={BG} to={DRK} variant="curve" height={96} flip />
       </div>
 
       {/* ── CTA ── radial glow bleeds into Footer */}

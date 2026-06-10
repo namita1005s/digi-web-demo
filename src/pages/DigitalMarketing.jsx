@@ -2,56 +2,78 @@ import ServicePage from '../components/ServicePage/ServicePage'
 
 const DigitalMarketingVisual = () => (
   <svg viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block' }}>
-    <rect width="480" height="360" rx="12" fill="#F7F7F5" />
-    {/* Funnel */}
-    <path d="M180 30 L300 30 L280 100 L200 100 Z" fill="#111" opacity="0.9" />
-    <path d="M200 108 L280 108 L265 170 L215 170 Z" fill="#333" opacity="0.8" />
-    <path d="M215 178 L265 178 L255 232 L225 232 Z" fill="#555" opacity="0.7" />
-    <path d="M225 240 L255 240 L248 282 L232 282 Z" fill="#777" opacity="0.6" />
-    {/* Funnel labels */}
-    <rect x="312" y="52" width="80" height="8" rx="3" fill="#DADADB" />
-    <rect x="312" y="64" width="56" height="6" rx="3" fill="#EBEBEB" />
-    <line x1="302" y1="56" x2="312" y2="56" stroke="#DADADB" strokeWidth="1" strokeDasharray="3 2" />
-    <rect x="312" y="128" width="80" height="8" rx="3" fill="#DADADB" />
-    <rect x="312" y="140" width="56" height="6" rx="3" fill="#EBEBEB" />
-    <line x1="270" y1="134" x2="312" y2="134" stroke="#DADADB" strokeWidth="1" strokeDasharray="3 2" />
-    <rect x="312" y="196" width="80" height="8" rx="3" fill="#DADADB" />
-    <rect x="312" y="208" width="56" height="6" rx="3" fill="#EBEBEB" />
-    <line x1="258" y1="202" x2="312" y2="202" stroke="#DADADB" strokeWidth="1" strokeDasharray="3 2" />
-    <rect x="312" y="256" width="80" height="8" rx="3" fill="#111" />
-    <rect x="312" y="268" width="56" height="6" rx="3" fill="#DADADB" />
-    <line x1="248" y1="262" x2="312" y2="262" stroke="#DADADB" strokeWidth="1" strokeDasharray="3 2" />
-    {/* Channel cards — left */}
-    <rect x="20" y="40" width="148" height="40" rx="8" fill="#fff" />
-    <rect x="32" y="50" width="40" height="6" rx="3" fill="#111" />
-    <rect x="32" y="60" width="70" height="5" rx="2" fill="#DADADB" />
-    <rect x="130" y="47" width="26" height="12" rx="4" fill="#E8E8E8" />
-    <text x="135" y="57" fontSize="8" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="700">SEO</text>
-    <rect x="20" y="90" width="148" height="40" rx="8" fill="#fff" />
-    <rect x="32" y="100" width="40" height="6" rx="3" fill="#111" />
-    <rect x="32" y="110" width="70" height="5" rx="2" fill="#DADADB" />
-    <rect x="126" y="97" width="32" height="12" rx="4" fill="#E8E8E8" />
-    <text x="129" y="107" fontSize="8" fill="#333333" fontFamily="Inter,sans-serif" fontWeight="700">PPC</text>
-    <rect x="20" y="140" width="148" height="40" rx="8" fill="#fff" />
-    <rect x="32" y="150" width="40" height="6" rx="3" fill="#111" />
-    <rect x="32" y="160" width="70" height="5" rx="2" fill="#DADADB" />
-    <rect x="120" y="147" width="38" height="12" rx="4" fill="#EEEEEE" />
-    <text x="123" y="157" fontSize="8" fill="#444444" fontFamily="Inter,sans-serif" fontWeight="700">SMM</text>
-    <rect x="20" y="190" width="148" height="40" rx="8" fill="#fff" />
-    <rect x="32" y="200" width="44" height="6" rx="3" fill="#111" />
-    <rect x="32" y="210" width="70" height="5" rx="2" fill="#DADADB" />
-    <rect x="116" y="197" width="42" height="12" rx="4" fill="#EEEEEE" />
-    <text x="119" y="207" fontSize="7" fill="#555555" fontFamily="Inter,sans-serif" fontWeight="700">Email</text>
-    {/* ROAS card bottom */}
-    <rect x="20" y="290" width="440" height="56" rx="10" fill="#111" />
-    <text x="40" y="312" fontSize="9" fill="#888" fontFamily="Inter,sans-serif">Average ROAS</text>
-    <text x="40" y="332" fontSize="22" fontWeight="900" fill="#fff" fontFamily="Inter,sans-serif">4.2x</text>
-    <rect x="180" y="300" width="1" height="36" fill="#333" />
-    <text x="196" y="312" fontSize="9" fill="#888" fontFamily="Inter,sans-serif">Lead Growth</text>
-    <text x="196" y="332" fontSize="22" fontWeight="900" fill="#fff" fontFamily="Inter,sans-serif">+320%</text>
-    <rect x="340" y="300" width="1" height="36" fill="#333" />
-    <text x="356" y="312" fontSize="9" fill="#888" fontFamily="Inter,sans-serif">Channels</text>
-    <text x="356" y="332" fontSize="22" fontWeight="900" fill="#ffffff" fontFamily="Inter,sans-serif">6+</text>
+    <defs>
+      <linearGradient id="dm-bg" x1="0" y1="0" x2="480" y2="360" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#DAD8D2" />
+        <stop offset="100%" stopColor="#C8C6BF" />
+      </linearGradient>
+      <linearGradient id="dm-card" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#EEECEA" />
+        <stop offset="100%" stopColor="#E4E2DC" />
+      </linearGradient>
+      <linearGradient id="dm-dark" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#464440" />
+        <stop offset="100%" stopColor="#363430" />
+      </linearGradient>
+      <filter id="dm-shadow">
+        <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#00000020" />
+      </filter>
+    </defs>
+    <rect width="480" height="360" fill="url(#dm-bg)" />
+
+    {/* ── 3D isometric funnel ── */}
+    {/* Stage 4 - bottom - widest */}
+    <polygon points="140,30 340,30 328,72 152,72" fill="#7A7870" />
+    <polygon points="340,30 348,38 336,80 328,72" fill="#6A6860" />
+    <polygon points="140,30 132,38 144,80 152,72" fill="#8A8880" />
+    {/* Stage 3 */}
+    <polygon points="156,78 324,78 312,118 168,118" fill="#8A8880" />
+    <polygon points="324,78 332,86 320,126 312,118" fill="#787670" />
+    <polygon points="156,78 148,86 160,126 168,118" fill="#9A9890" />
+    {/* Stage 2 */}
+    <polygon points="172,124 308,124 298,160 182,160" fill="#9A9890" />
+    <polygon points="308,124 316,132 306,168 298,160" fill="#888880" />
+    <polygon points="172,124 164,132 174,168 182,160" fill="#AAAAA0" />
+    {/* Stage 1 - top - narrowest */}
+    <polygon points="186,166 294,166 286,198 194,198" fill="#AAAAA0" />
+    <polygon points="294,166 302,174 294,206 286,198" fill="#989890" />
+    <polygon points="186,166 178,174 186,206 194,198" fill="#B8B8B0" />
+
+    {/* Funnel stage labels */}
+    {[['Awareness',51],['Interest',99],['Consideration',145],['Conversion',182]].map(([lbl,y])=>(
+      <text key={lbl} x="240" y={y} fontSize="8" fill="#F0EDE8" fontFamily="Inter,sans-serif"
+        fontWeight="700" textAnchor="middle" opacity="0.9">{lbl}</text>
+    ))}
+
+    {/* ── Channel cards left ── */}
+    {[
+      {label:'SEO',y:24,w:100},
+      {label:'PPC',y:86,w:100},
+      {label:'Social',y:148,w:100},
+      {label:'Email',y:202,w:100},
+    ].map(({label,y,w})=>(
+      <g key={label} filter="url(#dm-shadow)" transform={`translate(20,${y})`}>
+        <rect width={w} height="34" rx="8" fill="url(#dm-card)" />
+        <polygon points={`${w},8 ${w+4},12 ${w+4},42 ${w},38`} fill="#D0CEC8" />
+        <polygon points={`8,34 12,38 ${w+4},38 ${w},34`} fill="#C8C6C0" />
+        <rect x="10" y="10" width="44" height="5" rx="2" fill="#8A8880" />
+        <rect x="10" y="20" width="60" height="4" rx="2" fill="#B0AEA8" />
+      </g>
+    ))}
+
+    {/* ── Bottom results bar ── */}
+    <g filter="url(#dm-shadow)" transform="translate(20,252)">
+      <rect width="440" height="68" rx="14" fill="url(#dm-dark)" />
+      <polygon points="440,14 444,18 444,78 440,74" fill="#262420" />
+      <polygon points="14,68 18,72 444,72 440,68" fill="#1E1C18" />
+      {[['4.2x','Avg ROAS',20],['165','+320% Leads',175],['6+','Channels',330]].map(([val,lbl,x])=>(
+        <g key={lbl}>
+          <text x={x+10} y="32" fontSize="8" fill="#7A7870" fontFamily="Inter,sans-serif">{lbl}</text>
+          <text x={x+10} y="56" fontSize="22" fontWeight="900" fill="#E8E4DE" fontFamily="Inter,sans-serif">{val}</text>
+          {x<330 && <rect x={x+155} y="14" width="1" height="44" fill="#4A4840" />}
+        </g>
+      ))}
+    </g>
   </svg>
 )
 

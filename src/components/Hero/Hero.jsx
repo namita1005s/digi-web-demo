@@ -124,14 +124,7 @@ export default function Hero() {
             </Link>
           </motion.div>
 
-          <motion.div className="hero__trust-row" {...fadeUp(0.42)}>
-            {['100+ Projects Delivered', '50+ Happy Clients', '95% Retention Rate'].map((t) => (
-              <div key={t} className="hero__trust-item">
-                <span className="hero__trust-check">✓</span>
-                <span>{t}</span>
-              </div>
-            ))}
-          </motion.div>
+
         </div>
 
         {/* ── RIGHT VISUAL — 3D Graph ── */}

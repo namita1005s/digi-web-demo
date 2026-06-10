@@ -111,12 +111,14 @@ export default function Portfolio() {
                 {/* SVG dashboard illustration */}
                 <svg viewBox="0 0 260 260" className="impact__svg" aria-label="Growth analytics dashboard">
                   {/* bg */}
-                  <circle cx="130" cy="130" r="130" fill="#f5f5f3" />
+                  <circle cx="130" cy="130" r="130" fill="#d8d5d0" />
+                  {/* subtle inner shadow ring */}
+                  <circle cx="130" cy="130" r="128" fill="none" stroke="rgba(0,0,0,0.06)" strokeWidth="4"/>
                   {/* grid lines */}
                   {[50,80,110,140,170,200].map(y => (
-                    <line key={y} x1="20" y1={y} x2="240" y2={y} stroke="rgba(0,0,0,0.06)" strokeWidth="1"/>
+                    <line key={y} x1="20" y1={y} x2="240" y2={y} stroke="rgba(0,0,0,0.07)" strokeWidth="1"/>
                   ))}
-                  {/* bar chart */}
+                  {/* 3D isometric bar chart */}
                   {[
                     [30,190,16,80],
                     [52,175,16,95],
@@ -127,21 +129,33 @@ export default function Portfolio() {
                     [162,95,16,175],
                     [184,78,16,192],
                   ].map(([x,y,w,h],i) => (
-                    <rect key={i} x={x} y={y} width={w} height={260-y-30}
-                      rx="3"
-                      fill={i===7 ? 'rgba(0,0,0,0.85)' : i>=5 ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.15)'}
-                    />
+                    <g key={i}>
+                      {/* right face */}
+                      <polygon
+                        points={`${x+w},${y} ${x+w+8},${y-8} ${x+w+8},${260-30-8} ${x+w},${260-30}`}
+                        fill={i===7?'rgba(0,0,0,0.55)':i>=5?'rgba(0,0,0,0.28)':'rgba(0,0,0,0.12)'}
+                      />
+                      {/* top face */}
+                      <polygon
+                        points={`${x},${y} ${x+w},${y} ${x+w+8},${y-8} ${x+8},${y-8}`}
+                        fill={i===7?'rgba(0,0,0,0.4)':i>=5?'rgba(0,0,0,0.22)':'rgba(0,0,0,0.09)'}
+                      />
+                      {/* front face */}
+                      <rect x={x} y={y} width={w} height={260-y-30}
+                        rx="2"
+                        fill={i===7?'rgba(0,0,0,0.72)':i>=5?'rgba(0,0,0,0.38)':'rgba(0,0,0,0.14)'}
+                      />
+                    </g>
                   ))}
                   {/* trend line */}
                   <polyline
                     points="38,188 60,173 82,158 104,143 126,126 148,108 170,93 192,76"
-                    fill="none" stroke="rgba(0,0,0,0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                    fill="none" stroke="rgba(0,0,0,0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                   />
                   {/* dots on trend */}
                   {[[38,188],[60,173],[82,158],[104,143],[126,126],[148,108],[170,93],[192,76]].map(([cx,cy],i) => (
-                    <circle key={i} cx={cx} cy={cy} r="3" fill="#111111" />
+                    <circle key={i} cx={cx} cy={cy} r="3" fill="rgba(0,0,0,0.65)" />
                   ))}
-
                 </svg>
               </motion.div>
               {/* orbiting badges */}

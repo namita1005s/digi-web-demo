@@ -150,6 +150,20 @@
   color: rgba(255,255,255,0.85);
 }
 
+.tm-card__icon-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 3D raised cube feel */
+  transform: perspective(200px) rotateX(10deg) rotateY(-5deg);
+  transition: transform 0.3s ease;
+}
+
+.tm-card:hover .tm-card__icon-wrap {
+  transform: perspective(200px) rotateX(5deg) rotateY(-2deg) translateY(-2px);
+}
+
 .tm-card__label {
   font-size: 0.72rem;
   font-weight: 700;

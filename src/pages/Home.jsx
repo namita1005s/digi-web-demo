@@ -8,6 +8,7 @@ import Process from '../components/Process/Process'
 import Testimonials from '../components/Testimonials/Testimonials'
 import FAQ from '../components/FAQ/FAQ'
 import CTA from '../components/CTA/CTA'
+
 import SectionDivider from '../components/SectionDivider/SectionDivider'
 import './Home.css'
 
@@ -131,10 +132,11 @@ export default function Home() {
         <SectionDivider from={BG} to={ALT} variant="tilt" height={72} />
       </div>
 
-      {/* ── CTA ── Dark */}
+      {/* ── CTA ── */}
       <div className="home__cta-wrap">
         <CTA />
       </div>
+
 
     </div>
   )

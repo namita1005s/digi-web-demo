@@ -165,6 +165,11 @@
   overflow: hidden;
   z-index: 1;
   background: var(--surface);
+  /* 3D depth effect */
+  box-shadow:
+    6px 8px 0 rgba(0,0,0,0.12),
+    12px 16px 0 rgba(0,0,0,0.07),
+    18px 24px 32px rgba(0,0,0,0.18);
 }
 
 .impact__circle-glow {
@@ -205,7 +210,13 @@
   border-radius: 10px;
   padding: 6px 10px;
   min-width: 58px;
-  box-shadow: var(--shadow-sm);
+  /* 3D box shadow */
+  box-shadow:
+    3px 3px 0 rgba(0,0,0,0.12),
+    5px 5px 0 rgba(0,0,0,0.07),
+    8px 10px 16px rgba(0,0,0,0.15);
+  border-bottom: 2px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.08);
 }
 
 .impact__badge-val {

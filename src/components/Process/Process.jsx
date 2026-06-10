@@ -3,12 +3,12 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import './Process.css'
 
 const STEPS = [
-  { id: 0, label: 'Strategy',            icon: '◎' },
-  { id: 1, label: 'Content Creation',    icon: '✦' },
-  { id: 2, label: 'Knowledge Base',      icon: '⬡' },
-  { id: 3, label: 'Content Updates',     icon: '↺' },
-  { id: 4, label: 'Auditing',            icon: '⬖' },
-  { id: 5, label: 'Strategy Refinement', icon: '◈' },
+  { id: 0, label: 'Strategy',            icon: '◎', iconBg: 'rgba(255,255,255,0.07)', iconShadow: '0 4px 12px rgba(0,0,0,0.5)' },
+  { id: 1, label: 'Content Creation',    icon: '✦', iconBg: 'rgba(255,255,255,0.06)', iconShadow: '0 4px 12px rgba(0,0,0,0.5)' },
+  { id: 2, label: 'Knowledge Base',      icon: '⬡', iconBg: 'rgba(255,255,255,0.07)', iconShadow: '0 4px 12px rgba(0,0,0,0.5)' },
+  { id: 3, label: 'Content Updates',     icon: '↺', iconBg: 'rgba(255,255,255,0.06)', iconShadow: '0 4px 12px rgba(0,0,0,0.5)' },
+  { id: 4, label: 'Auditing',            icon: '⬖', iconBg: 'rgba(255,255,255,0.07)', iconShadow: '0 4px 12px rgba(0,0,0,0.5)' },
+  { id: 5, label: 'Strategy Refinement', icon: '◈', iconBg: 'rgba(255,255,255,0.06)', iconShadow: '0 4px 12px rgba(0,0,0,0.5)' },
 ]
 
 /* ── Floating particles background ── */
@@ -155,7 +155,20 @@ function DesktopFlow({ active, inView }) {
                 style={{ width: cardW, height: cardH }}
               >
                 {isActive && <span className="tm-pulse" />}
-                <span className="tm-card__icon">{step.icon}</span>
+                <span className="tm-card__icon-wrap" style={{
+                  background: step.iconBg,
+                  boxShadow: step.iconShadow,
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderBottom: '3px solid rgba(0,0,0,0.4)',
+                  borderRight: '2px solid rgba(0,0,0,0.3)',
+                  borderRadius: '10px',
+                  padding: '8px 10px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <span className="tm-card__icon">{step.icon}</span>
+                </span>
                 <span className="tm-card__label">{step.label}</span>
               </div>
             </foreignObject>
@@ -184,7 +197,20 @@ function MobileFlow({ active, inView }) {
             transition={{ duration: 0.5, delay: i * 0.1 }}
           >
             {active === i && <span className="tm-pulse" />}
-            <span className="tm-card__icon">{step.icon}</span>
+            <span className="tm-card__icon-wrap" style={{
+              background: step.iconBg,
+              boxShadow: step.iconShadow,
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderBottom: '3px solid rgba(0,0,0,0.4)',
+              borderRight: '2px solid rgba(0,0,0,0.3)',
+              borderRadius: '8px',
+              padding: '6px 8px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <span className="tm-card__icon">{step.icon}</span>
+            </span>
             <span className="tm-card__label">{step.label}</span>
           </motion.div>
           {i < STEPS.length - 1 ? (

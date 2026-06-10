@@ -14,7 +14,7 @@ import './Home.css'
 const BG  = 'var(--bg)'
 const ALT = 'var(--bg-alt)'
 const DRK = 'var(--bg-dark)'
-const DEEP = '#050816'
+const DEEP = 'var(--bg-dark)'
 
 const revealUp = {
   initial: { opacity: 0, y: 36 },
@@ -98,7 +98,7 @@ export default function Home() {
         <motion.div {...revealUp}>
           <Services />
         </motion.div>
-        <SectionDivider from={BG} to={DEEP} variant="tilt" height={100} />
+        <SectionDivider from={BG} to={DRK} variant="tilt" height={100} />
       </div>
 
       {/* ── Portfolio (Our Impact) ── continuous deep bg from Services divider */}
@@ -111,7 +111,7 @@ export default function Home() {
         <motion.div {...revealUp}>
           <Process />
         </motion.div>
-        <SectionDivider from={DEEP} to={ALT} variant="curve" height={96} />
+        <SectionDivider from={DRK} to={ALT} variant="curve" height={96} />
       </div>
 
       {/* ── Testimonials ── */}

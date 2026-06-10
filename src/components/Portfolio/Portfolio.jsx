@@ -129,17 +129,17 @@ export default function Portfolio() {
                   ].map(([x,y,w,h],i) => (
                     <rect key={i} x={x} y={y} width={w} height={260-y-30}
                       rx="3"
-                      fill={i===7 ? 'rgba(139,92,246,0.85)' : i>=5 ? 'rgba(99,102,241,0.6)' : 'rgba(99,102,241,0.25)'}
+                      fill={i===7 ? 'rgba(255,255,255,0.85)' : i>=5 ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.2)'}
                     />
                   ))}
                   {/* trend line */}
                   <polyline
                     points="38,188 60,173 82,158 104,143 126,126 148,108 170,93 192,76"
-                    fill="none" stroke="rgba(167,139,250,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                    fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                   />
                   {/* dots on trend */}
                   {[[38,188],[60,173],[82,158],[104,143],[126,126],[148,108],[170,93],[192,76]].map(([cx,cy],i) => (
-                    <circle key={i} cx={cx} cy={cy} r="3" fill="#a78bfa" />
+                    <circle key={i} cx={cx} cy={cy} r="3" fill="#ffffff" />
                   ))}
 
                 </svg>

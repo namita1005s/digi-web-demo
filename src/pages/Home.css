@@ -19,8 +19,8 @@
 .home__hero-wrap     { position: relative; }
 .home__trusted-wrap  { position: relative; background: var(--bg); }
 .home__services-wrap { position: relative; background: var(--bg); }
-.home__portfolio-wrap{ position: relative; background: #050816; }
-.home__process-wrap  { position: relative; background: #050816; }
+.home__portfolio-wrap{ position: relative; background: var(--bg-dark); }
+.home__process-wrap  { position: relative; background: var(--bg-dark); }
 .home__testimonials-wrap { position: relative; background: var(--bg-alt); }
 .home__faq-wrap      { position: relative; background: var(--bg); }
 

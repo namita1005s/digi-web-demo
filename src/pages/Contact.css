@@ -123,7 +123,7 @@ a.cp-info-card:hover {
   width: 100%;
   height: 650px;
   position: relative;
-  overflow: visible;
+  overflow: visible; 
   border-radius: 24px;
 }
 

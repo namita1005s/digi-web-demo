@@ -11,7 +11,7 @@ const fadeUp = (delay = 0) => ({
   viewport: { once: true },
   transition: { duration: 0.5, delay, ease: 'easeOut' },
 })
-
+ 
 const cases = [
   {
     tag: 'SEO Campaign',

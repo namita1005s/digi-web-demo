@@ -12,7 +12,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, delay, ease: 'easeOut' },
 })
 
-const articles = [
+const articles = [  
   {
     id: 1,
     tag: 'SEO',

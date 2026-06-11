@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef , useEffect } from 'react'
 import emailjs from '@emailjs/browser'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaLocationDot, FaPhone, FaEnvelope } from 'react-icons/fa6'
@@ -49,48 +49,22 @@ const INFO_CARDS = [
 
 const initialValues = { firstName: '', lastName: '', email: '', phone: '', service: '', message: '' }
 
-const contactFloatCards = [
-  {
-    cls: 'ph-float--1',
-    icon: '↑',
-    value: '24h',
-    label: 'Response Time',
-    initial: { opacity: 0, x: 20, y: -10 },
-    animate: { opacity: 1, x: 0, y: [0, -8, 0] },
-    transition: {
-      opacity: { duration: 0.5, delay: 0.85 },
-      x:       { duration: 0.5, delay: 0.85 },
-      y:       { duration: 4.4, delay: 0.85, repeat: Infinity, ease: 'easeInOut' },
-    },
-  },
-  {
-    cls: 'ph-float--2',
-    icon: '◆',
-    value: '93%',
-    label: 'Client Retention',
-    initial: { opacity: 0, x: -20, y: 10 },
-    animate: { opacity: 1, x: 0, y: [0, 7, 0] },
-    transition: {
-      opacity: { duration: 0.5, delay: 1.0 },
-      x:       { duration: 0.5, delay: 1.0 },
-      y:       { duration: 5.0, delay: 1.0, repeat: Infinity, ease: 'easeInOut' },
-    },
-  },
-  {
-    cls: 'ph-float--3',
-    icon: '✦',
-    value: '4.2×',
-    label: 'Avg. ROAS',
-    initial: { opacity: 0, y: 18 },
-    animate: { opacity: 1, y: [0, -6, 0] },
-    transition: {
-      opacity: { duration: 0.5, delay: 1.15 },
-      y:       { duration: 5.2, delay: 1.15, repeat: Infinity, ease: 'easeInOut' },
-    },
-  },
-]
+
 
 export default function Contact() {
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.type = 'module'
+    script.src =
+      'https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js'
+
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
   const formRef = useRef(null)
   const [focused, setFocused]   = useState({})
   const [values, setValues]     = useState(initialValues)
@@ -131,6 +105,113 @@ export default function Contact() {
     <div className="cp">
 
       {/* ── HERO ── */}
+<section className="ph">
+  <div className="ph__bg-glow" />
+  <div className="ph__noise" />
+
+  <div className="container ph__inner">
+    <div className="ph__content">
+      <motion.div
+        className="hero__trust-badge"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <span className="hero__badge-pulse" />
+        <span className="hero__trust-badge-text">
+          Get In Touch · Response Within 24h
+        </span>
+      </motion.div>
+
+      <motion.h1
+        className="ph__title"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.65,
+          delay: 0.1,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        Let's Build Something
+        <br />
+        <span className="hero__title-accent">
+          Remarkable Together
+        </span>
+      </motion.h1>
+
+      <motion.p
+        className="ph__subtitle"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.65,
+          delay: 0.2,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        Tell us about your project. We'll craft a strategy that
+        drives real, measurable growth.
+      </motion.p>
+
+      <motion.div
+        className="hero__actions"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.65,
+          delay: 0.3,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        <a href="#contact-form" className="hero__btn-primary">
+          Start a Project
+          <span className="hero__btn-arrow">→</span>
+        </a>
+
+        <a
+          href="mailto:hello@trendoxmarketing.com"
+          className="hero__btn-ghost"
+        >
+          hello@trendoxmarketing.com
+        </a>
+      </motion.div>
+
+      <motion.div
+        className="hero__trust-indicators"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.65,
+          delay: 0.42,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        
+      </motion.div>
+    </div>
+
+    <motion.div
+      className="ph__visual"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.9,
+        delay: 0.15,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <div className="ph__visual-glow" />
+
+      <div className="ph__spline-wrapper">
+        <spline-viewer
+          url="https://prod.spline.design/cA5rdB51kXJ6ZAO3/scene.splinecode"
+        ></spline-viewer>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
       <section className="ph">
         <div className="ph__bg-glow" />
         <div className="ph__noise" />
@@ -332,37 +413,12 @@ export default function Contact() {
 
           {/* Sidebar */}
           <motion.div className="cp-sidebar" {...up(0.12)}>
-            <div className="cp-sidebar__block">
-              <span className="ap-tag">Why Work With Us</span>
-              <h3 className="cp-sidebar__title">We treat your<br /><em>revenue as ours.</em></h3>
-              <p className="cp-sidebar__body">
-                Every client gets a dedicated senior strategist — no juniors, no hand-offs.
-                We're obsessed with measurable outcomes.
-              </p>
-            </div>
-
-            <div className="cp-sidebar__stats">
-              {[
-                { val: '150+', label: 'Campaigns launched' },
-                { val: '93%',  label: 'Client retention rate' },
-                { val: '4.2×', label: 'Average ROAS delivered' },
-              ].map(s => (
-                <div key={s.label} className="cp-stat">
-                  <span className="cp-stat__val">{s.val}</span>
-                  <span className="cp-stat__label">{s.label}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="cp-sidebar__promise">
-              {['Free strategy consultation', 'Response within 24 hours', 'No lock-in contracts', 'Senior team, always'].map(item => (
-                <div key={item} className="cp-promise-row">
-                  <span className="cp-promise-check">✓</span>
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+  <img
+    src="/ContactUs .png"
+    alt="Marketing Agency"
+    className="cp-sidebar__image"
+  />
+</motion.div>
 
         </div>
       </section>

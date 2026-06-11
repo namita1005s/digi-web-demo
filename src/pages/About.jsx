@@ -351,7 +351,7 @@ export default function About() {
         <div className="container why-section__inner">
           <div className="why-left">
             <img 
-              src="/public/WhyUs.png" 
+              src="/public/WhyUs (1).png" 
               alt="Why Us" 
             />
           </div>

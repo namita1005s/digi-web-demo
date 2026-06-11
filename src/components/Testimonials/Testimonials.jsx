@@ -2,7 +2,7 @@ import './Testimonials.css'
 
 const REVIEWS = [
   {
-    quote: 'Trendox completely transformed our online presence. Our qualified leads doubled within 3 months — the team was strategic, responsive and laser-focused on results.',
+    quote: 'Trendox completely transformed our online presence . Our qualified leads doubled within 3 months — the team was strategic, responsive and laser-focused on results.',
     name: 'Sarah Mitchell',
     role: 'CEO',
     avatar: 'S',

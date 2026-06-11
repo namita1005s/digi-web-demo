@@ -11,6 +11,7 @@ const fadeUp = (delay = 0) => ({
   viewport: { once: true },
   transition: { duration: 0.5, delay, ease: 'easeOut' },
 })
+<<<<<<< HEAD
 
 const handleMouseMove = (e, cardRef) => {
   const r = cardRef.getBoundingClientRect()
@@ -30,6 +31,9 @@ const handleMouseLeave = (cardRef) => {
   cardRef.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0) scale(1)'
 }
 
+=======
+ 
+>>>>>>> f2fa60646d9d4f78a4a944626642ec4151eddc84
 const cases = [
   {
     tag: 'SEO Campaign', client: 'Nexora Tech', industry: 'SaaS',

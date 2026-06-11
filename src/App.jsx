@@ -18,6 +18,26 @@ import DigitalMarketing from './pages/DigitalMarketing'
 import SMM from './pages/SMM'
 import PPC from './pages/PPC'
 import AIAutomation from './pages/AIAutomation'
+import ORM from './pages/ORM'
+import LocalSEO from './pages/LocalSEO'
+import EcommerceSEO from './pages/EcommerceSEO'
+import WhiteLabelSEO from './pages/WhiteLabelSEO'
+import MobileAppMarketing from './pages/MobileAppMarketing'
+import SoftwareDevelopment from './pages/SoftwareDevelopment'
+import MobileAppsDevelopment from './pages/MobileAppsDevelopment'
+import UIUXDesigning from './pages/UIUXDesigning'
+import EcommerceWebDevelopment from './pages/EcommerceWebDevelopment'
+import WordpressWebDevelopment from './pages/WordpressWebDevelopment'
+import ReactjsDevelopment from './pages/ReactjsDevelopment'
+import NodejsDevelopment from './pages/NodejsDevelopment'
+import PHPDevelopment from './pages/PHPDevelopment'
+import CRMSolutions from './pages/CRMSolutions'
+import AngularjsDevelopment from './pages/AngularjsDevelopment'
+import AspNetDevelopment from './pages/AspNetDevelopment'
+import LandingPageDesigning from './pages/LandingPageDesigning'
+import WebsiteRedesigning from './pages/WebsiteRedesigning'
+import Web20Design from './pages/Web20Design'
+import FlashDesign from './pages/FlashDesign'
 import NotFound from './pages/NotFound'
 
 function ScrollToTop() {
@@ -42,6 +62,26 @@ export default function App() {
         <Route path="/services/smm" element={<SMM />} />
         <Route path="/services/ppc" element={<PPC />} />
         <Route path="/services/ai-automation" element={<AIAutomation />} />
+        <Route path="/services/orm" element={<ORM />} />
+        <Route path="/services/local-seo" element={<LocalSEO />} />
+        <Route path="/services/ecommerce-seo" element={<EcommerceSEO />} />
+        <Route path="/services/white-label-seo" element={<WhiteLabelSEO />} />
+        <Route path="/services/mobile-app-marketing" element={<MobileAppMarketing />} />
+        <Route path="/services/software-development" element={<SoftwareDevelopment />} />
+        <Route path="/services/mobile-apps-development" element={<MobileAppsDevelopment />} />
+        <Route path="/services/ui-ux-designing" element={<UIUXDesigning />} />
+        <Route path="/services/ecommerce-web-development" element={<EcommerceWebDevelopment />} />
+        <Route path="/services/wordpress-development" element={<WordpressWebDevelopment />} />
+        <Route path="/services/reactjs-development" element={<ReactjsDevelopment />} />
+        <Route path="/services/nodejs-development" element={<NodejsDevelopment />} />
+        <Route path="/services/php-development" element={<PHPDevelopment />} />
+        <Route path="/services/crm-solutions" element={<CRMSolutions />} />
+        <Route path="/services/angularjs-development" element={<AngularjsDevelopment />} />
+        <Route path="/services/asp-net-development" element={<AspNetDevelopment />} />
+        <Route path="/services/landing-page-designing" element={<LandingPageDesigning />} />
+        <Route path="/services/website-redesigning" element={<WebsiteRedesigning />} />
+        <Route path="/services/web-2-0-design" element={<Web20Design />} />
+        <Route path="/services/flash-design" element={<FlashDesign />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />

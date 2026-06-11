@@ -109,9 +109,23 @@ export default function ServicePage({
       {/* ── 1. HERO ── */}
       <section className="sp-hero">
         <div className="sp-hero__bg-grid" aria-hidden />
+        <div className="sp-hero__bloom" aria-hidden />
+        <div className="sp-hero__noise" aria-hidden />
+
+        {/* Mountain waves */}
+        <svg className="sp-hero__mountains" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,320 L0,180 C80,150 200,90 340,70 C460,52 520,130 660,110 C780,92 880,30 1020,20 C1140,10 1260,80 1440,60 L1440,320 Z" fill="rgba(255,255,255,0.03)" />
+          <path d="M0,320 L0,220 C120,200 240,150 380,130 C500,112 560,180 700,165 C820,150 940,90 1080,75 C1200,62 1320,120 1440,105 L1440,320 Z" fill="rgba(255,255,255,0.05)" />
+          <path d="M0,265 C100,250 220,210 360,192 C480,176 560,235 700,220 C820,206 960,160 1100,148 C1220,138 1340,185 1440,172" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+          <path d="M0,320 L0,265 C100,250 220,210 360,192 C480,176 560,235 700,220 C820,206 960,160 1100,148 C1220,138 1340,185 1440,172 L1440,320 Z" fill="rgba(255,255,255,0.07)" />
+        </svg>
+
         <div className="container sp-hero__inner">
           <div className="sp-hero__content">
-            <motion.span className="ap-tag" {...up(0)}>{badge}</motion.span>
+            <motion.div className="sp-hero__pill" {...up(0)}>
+              <span className="sp-hero__pill-dot" />
+              <span>{badge}</span>
+            </motion.div>
             <motion.h1 className="sp-hero__h1" {...up(0.08)}>{headline}</motion.h1>
             <motion.p className="sp-hero__desc" {...up(0.15)}>{description}</motion.p>
             <motion.div className="sp-hero__ctas" {...up(0.21)}>
@@ -146,6 +160,13 @@ export default function ServicePage({
               ))}
             </motion.div>
           )}
+        </div>
+
+        {/* Bottom wave */}
+        <div className="sp-hero__wave">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--bg)" />
+          </svg>
         </div>
       </section>
 

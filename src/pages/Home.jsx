@@ -3,13 +3,12 @@ import { useRef } from 'react'
 import Hero from '../components/Hero/Hero'
 import TrustedBy from '../components/TrustedBy/TrustedBy'
 import Services from '../components/Services/Services'
-import Stats from '../components/Stats/Stats'
-import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs'
 import Portfolio from '../components/Portfolio/Portfolio'
+import Process from '../components/Process/Process'
 import Testimonials from '../components/Testimonials/Testimonials'
 import FAQ from '../components/FAQ/FAQ'
-import Pricing from '../components/Pricing/Pricing'
 import CTA from '../components/CTA/CTA'
+
 import SectionDivider from '../components/SectionDivider/SectionDivider'
 import './Home.css'
 
@@ -80,90 +79,64 @@ export default function Home() {
   return (
     <div className="home">
 
-      {/* ── Hero ── flows into TrustedBy via gradient bleed */}
+      {/* ── Hero ── wave bleeds to var(--bg) */}
       <div className="home__hero-wrap">
         <Hero />
-        <div className="home__hero-fade" />
         <ParallaxAccent className="home__accent--hero-ring" speed={0.2} />
       </div>
 
-      {/* ── TrustedBy ── pulled up to overlap hero fade */}
-      <motion.div className="home__trusted-wrap" {...revealUp}>
+      {/* ── TrustedBy ── Light */}
+      <div className="home__trusted-wrap">
         <TrustedBy />
-      </motion.div>
+      </div>
 
-      {/* ── Services ── */}
+      {/* ── Services ── White */}
       <div className="home__services-wrap">
         <ParallaxAccent className="home__accent--dot-grid-br" speed={0.4} />
-        <ParallaxAccent className="home__accent--dot-grid-tl" speed={0.25} />
         <DriftLine className="home__drift-line--services" />
         <motion.div {...revealUp}>
           <Services />
         </motion.div>
-        {/* Services → Stats: angled cut into dark with ghost layer */}
-        <SectionDivider from={BG} to={DRK} variant="angle" height={108} />
+        <SectionDivider from={BG} to={ALT} variant="tilt" height={40} />
       </div>
 
-      {/* ── Stats ── dark band */}
-      <div className="home__stats-wrap">
-        <DepthOrb className="home__depth-orb--stats" />
-        <Stats />
-        {/* Stats → WhyChooseUs: organic S-curve out of dark */}
-        <SectionDivider from={DRK} to={ALT} variant="masked" height={56} flip />
-      </div>
-
-      {/* ── WhyChooseUs ── */}
-      <div className="home__why-wrap">
-        <ParallaxAccent className="home__accent--ring-tl" speed={0.3} />
-        <ParallaxAccent className="home__accent--corner-dots" speed={0.5} />
-        <motion.div {...revealUpSlow}>
-          <WhyChooseUs />
-        </motion.div>
-        {/* WhyChooseUs → Portfolio: tilt into dark */}
-        <SectionDivider from={ALT} to={DRK} variant="tilt" height={104} />
-      </div>
-
-      {/* ── Portfolio ── dark; fades into Testimonials */}
+      {/* ── Portfolio (Our Impact) ── Warm Grey */}
       <div className="home__portfolio-wrap">
-        <DepthOrb className="home__depth-orb--portfolio" />
         <Portfolio />
-        {/* Portfolio → Testimonials: curve */}
-        <SectionDivider from={DRK} to={ALT} variant="curve" height={96} />
       </div>
 
-      {/* ── Testimonials ── */}
+      {/* ── Process ── Dark */}
+      <div className="home__process-wrap">
+        <SectionDivider from={ALT} to={DRK} variant="curve" height={60} />
+        <motion.div {...revealUp}>
+          <Process />
+        </motion.div>
+        <SectionDivider from={DRK} to={BG} variant="curve" height={72} flip />
+      </div>
+
+      {/* ── Testimonials ── Light */}
       <div className="home__testimonials-wrap">
         <ParallaxAccent className="home__accent--line-r" speed={0.35} />
         <DriftLine className="home__drift-line--testimonials" />
         <motion.div {...revealUp}>
           <Testimonials />
         </motion.div>
-        {/* Testimonials → FAQ: soft curve */}
-        <SectionDivider from={ALT} to={BG} variant="curve" height={100} flip />
+        <SectionDivider from={BG} to={BG} variant="angle" height={56} />
       </div>
 
-      {/* ── FAQ ── */}
+      {/* ── FAQ ── White */}
       <div className="home__faq-wrap">
-        <ParallaxAccent className="home__accent--faq-grid" speed={0.2} />
         <motion.div {...revealUp}>
           <FAQ />
         </motion.div>
-        {/* FAQ → Pricing: angle into bg */}
-        <SectionDivider from={BG} to={BG} variant="angle" height={80} />
+        <SectionDivider from={BG} to={ALT} variant="tilt" height={72} />
       </div>
 
-      {/* ── Custom Pricing ── */}
-      <div className="home__pricing-wrap">
-        <DepthOrb className="home__depth-orb--pricing" />
-        <motion.div {...revealUpSlow}>
-          <Pricing />
-        </motion.div>
-        {/* Pricing → CTA: curve into dark */}
-        <SectionDivider from={BG} to={DRK} variant="curve" height={96} flip />
+      {/* ── CTA ── */}
+      <div className="home__cta-wrap">
+        <CTA />
       </div>
 
-      {/* ── CTA ── radial glow bleeds into Footer */}
-      <CTA />
 
     </div>
   )

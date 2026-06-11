@@ -89,7 +89,8 @@
   border: 1px solid var(--border);
 }
 
-.blog-post__image img {
+.blog-post__image img,
+.blog-post__image svg {
   width: 100%;
   height: auto;
   display: block;

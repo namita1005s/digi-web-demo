@@ -1,8 +1,9 @@
 .trusted {
-  padding: 48px 0;
+  padding: 32px 0 24px;
   background: var(--bg);
   overflow: hidden;
   position: relative;
+  border-top: 1px solid var(--border);
 }
 
 .trusted__label-row {

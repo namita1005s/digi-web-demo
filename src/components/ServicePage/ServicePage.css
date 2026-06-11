@@ -8,30 +8,77 @@
 /* ══ 1. HERO ══════════════════════════════════════════════════════ */
 .sp-hero {
   position: relative;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: clamp(88px, 10vw, 104px) 0 clamp(40px, 4vw, 56px);
   overflow: hidden;
+  padding-top: 104px;
 }
 
+/* Dark gradient background — same as home hero */
 .sp-hero__bg-grid {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0,0,0,0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.028) 1px, transparent 1px);
-  background-size: 56px 56px;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #0d0d0d 70%, #000000 100%);
+  z-index: 0;
+}
+
+/* Radial bloom top-left */
+.sp-hero__bloom {
+  position: absolute;
+  top: -100px;
+  left: -80px;
+  width: 700px;
+  height: 600px;
+  background: radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.09) 0%, transparent 65%);
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Noise texture */
+.sp-hero__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Mountain-style layered white waves */
+.sp-hero__mountains {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+}
+
+/* Bottom wave to page bg */
+.sp-hero__wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  line-height: 0;
+}
+.sp-hero__wave svg {
+  display: block;
+  width: 100%;
+  height: 80px;
 }
 
 .sp-hero__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
+  grid-template-columns: 54% 46%;
+  gap: clamp(40px, 6vw, 56px);
   align-items: center;
-  /* extra padding so floating metric cards aren't clipped */
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 32px;
+  padding-bottom: 80px;
+  position: relative;
+  z-index: 2;
 }
 
 .sp-hero__content {
@@ -40,29 +87,72 @@
   gap: 0;
 }
 
-.sp-hero__content .ap-tag { margin-bottom: 20px; }
+/* Badge pill */
+.sp-hero__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px 6px 10px;
+  margin-bottom: 32px;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.92);
+}
+
+.sp-hero__pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+  animation: spDotPulse 2s ease-out infinite;
+}
+@keyframes spDotPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
 
 .sp-hero__h1 {
   font-size: clamp(2.4rem, 4.8vw, 4rem);
   font-weight: 900;
   letter-spacing: -0.055em;
   line-height: 0.97;
-  color: var(--text);
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
 .sp-hero__h1 em {
   font-style: italic;
   font-weight: 300;
-  color: var(--text-subtle);
+  color: rgba(255,255,255,0.6);
+  position: relative;
+  display: inline-block;
+}
+.sp-hero__h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.1) 100%);
+  border-radius: 2px;
 }
 
 .sp-hero__desc {
   font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.78;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.82;
   max-width: 44ch;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 
 .sp-hero__ctas {
@@ -71,7 +161,30 @@
   flex-wrap: wrap;
 }
 
-/* visual wrap — positions the card + floating metrics */
+/* Override btn-primary / btn-outline for dark hero context */
+.sp-hero .btn-primary {
+  background: #ffffff;
+  color: #111111;
+  border: none;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+.sp-hero .btn-primary:hover {
+  background: #f0f0ee;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.28);
+}
+.sp-hero .btn-outline {
+  background: transparent;
+  color: rgba(255,255,255,0.9);
+  border: 1.5px solid rgba(255,255,255,0.4);
+}
+.sp-hero .btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.7);
+  transform: translateY(-2px);
+}
+
+/* visual wrap */
 .sp-hero__visual-wrap {
   position: relative;
   flex-shrink: 0;
@@ -82,24 +195,26 @@
   border-radius: 22px;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.13), 0 0 0 1px var(--border);
-  background: #fff;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.08);
+  background: rgba(14,16,28,0.9);
   width: 100%;
 }
 
-/* floating metric cards */
+/* floating metric badges — white chips on dark bg */
 .sp-hero__metric {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  gap: 8px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: var(--radius-md);
   padding: 10px 14px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
   white-space: nowrap;
-  z-index: 2;
+  z-index: 4;
 }
 
 .sp-hero__metric--0 { bottom: -18px; left: -20px; }
@@ -107,23 +222,31 @@
 .sp-hero__metric--2 { bottom: 44px;  right: -20px; }
 
 .sp-hero__metric-icon {
-  font-size: 1.1rem;
-  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
   flex-shrink: 0;
 }
 
 .sp-hero__metric-val {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #111;
+  line-height: 1;
 }
 
 .sp-hero__metric-label {
-  font-size: 0.68rem;
-  color: var(--text-subtle);
+  font-size: 0.58rem;
+  color: #666;
   font-weight: 500;
+  margin-top: 2px;
   line-height: 1.2;
 }
 
@@ -396,9 +519,19 @@
 }
 
 /* ══ Responsive ═══════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .sp-hero__metric--1 { right: -8px; }
+  .sp-hero__metric--2 { right: -8px; }
+  .sp-hero__metric--0 { left: -8px; }
+}
+
 @media (max-width: 1024px) {
-  .sp-hero__inner { grid-template-columns: 1fr; }
-  .sp-hero__visual-wrap { max-width: 560px; width: 100%; margin: 40px auto 0; }
+  .sp-hero__inner {
+    grid-template-columns: 1fr;
+    padding-top: 40px;
+    padding-bottom: 100px;
+  }
+  .sp-hero__visual-wrap { max-width: 560px; width: 100%; margin: 0 auto; }
   .sp-hero__metric--0 { bottom: -14px; left: 8px; }
   .sp-hero__metric--1 { top: -14px;   right: 8px; }
   .sp-hero__metric--2 { bottom: 50px; right: 8px; }
@@ -415,8 +548,10 @@
 }
 
 @media (max-width: 640px) {
-  .sp-hero { padding-top: 96px; padding-bottom: 48px; }
+  .sp-hero { padding-top: 80px; }
   .sp-hero__h1 { font-size: clamp(2.1rem, 8vw, 3rem); }
+  .sp-hero__ctas { flex-direction: column; align-items: stretch; }
+  .sp-hero .btn-primary, .sp-hero .btn-outline { justify-content: center; }
   .sp-hero__metric { padding: 8px 11px; gap: 7px; }
   .sp-hero__metric--0 { bottom: -12px; left: 6px; }
   .sp-hero__metric--1 { top: -12px;   right: 6px; }
@@ -431,5 +566,6 @@
 }
 
 @media (max-width: 420px) {
+  .sp-hero__metric { display: none; }
   .sp-why__grid { grid-template-columns: 1fr; }
 }

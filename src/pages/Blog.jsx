@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import CTA from '../components/CTA/CTA'
+import { blogThumbs } from '../components/Blog/BlogThumbnails'
 import './pages.css'
 import './Blog.css'
 
@@ -151,6 +152,12 @@ export default function Blog() {
       <section className="ph">
         <div className="ph__bg-glow" />
         <div className="ph__noise" />
+        <svg className="ph__mountains" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,320 L0,180 C80,150 200,90 340,70 C460,52 520,130 660,110 C780,92 880,30 1020,20 C1140,10 1260,80 1440,60 L1440,320 Z" fill="rgba(255,255,255,0.03)" />
+          <path d="M0,320 L0,220 C120,200 240,150 380,130 C500,112 560,180 700,165 C820,150 940,90 1080,75 C1200,62 1320,120 1440,105 L1440,320 Z" fill="rgba(255,255,255,0.05)" />
+          <path d="M0,265 C100,250 220,210 360,192 C480,176 560,235 700,220 C820,206 960,160 1100,148 C1220,138 1340,185 1440,172" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+          <path d="M0,320 L0,265 C100,250 220,210 360,192 C480,176 560,235 700,220 C820,206 960,160 1100,148 C1220,138 1340,185 1440,172 L1440,320 Z" fill="rgba(255,255,255,0.07)" />
+        </svg>
         <div className="container ph__inner">
           <div className="ph__content">
             <motion.div className="hero__trust-badge" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
@@ -167,6 +174,14 @@ export default function Blog() {
             <motion.div className="hero__actions" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}>
               <a href="#articles" className="hero__btn-primary">Browse Articles <span className="hero__btn-arrow">→</span></a>
               <Link to="/contact" className="hero__btn-ghost">Work With Us</Link>
+            </motion.div>
+            <motion.div className="hero__trust-indicators" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}>
+              {['50+ Articles', '8 Topics', '20K+ Monthly Readers'].map(item => (
+                <div key={item} className="hero__trust-item">
+                  <span className="hero__trust-check">✓</span>
+                  <span>{item}</span>
+                </div>
+              ))}
             </motion.div>
           </div>
           <motion.div
@@ -218,6 +233,11 @@ export default function Blog() {
               ))}
             </div>
           </motion.div>
+        </div>
+        <div className="ph__wave">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--bg)" />
+          </svg>
         </div>
       </section>
 

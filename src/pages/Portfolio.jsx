@@ -12,66 +12,78 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, delay, ease: 'easeOut' },
 })
 
+const handleMouseMove = (e, cardRef) => {
+  const r = cardRef.getBoundingClientRect()
+  const x = (e.clientX - r.left) / r.width
+  const y = (e.clientY - r.top) / r.height
+  const rx = (y - 0.5) * -14
+  const ry = (x - 0.5) * 14
+  cardRef.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px) scale(1.02)`
+  const shine = cardRef.querySelector('.pf-card__shine')
+  if (shine) {
+    shine.style.setProperty('--mx', `${x * 100}%`)
+    shine.style.setProperty('--my', `${y * 100}%`)
+  }
+}
+
+const handleMouseLeave = (cardRef) => {
+  cardRef.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0) scale(1)'
+}
+
 const cases = [
   {
-    tag: 'SEO Campaign',
-    client: 'Nexora Tech',
-    industry: 'SaaS',
-    result: '+180% Organic Traffic',
-    metric: '180%',
-    metricLabel: 'Traffic Growth',
+    tag: 'SEO Campaign', client: 'Nexora Tech', industry: 'SaaS',
+    result: '+180% Organic Traffic', metric: '180%', metricLabel: 'Traffic Growth',
     desc: 'Technical SEO overhaul and content strategy that tripled search visibility in 4 months.',
     services: ['SEO', 'Content Strategy', 'Link Building'],
+    glow: 'rgba(99,153,255,0.6)',
+    grad: 'linear-gradient(90deg,#4f8bff,#a78bfa)',
+    tagColor: 'rgba(167,139,250,0.7)',
   },
   {
-    tag: 'Website Redesign',
-    client: 'Veltrix Solutions',
-    industry: 'B2B Services',
-    result: '+60% Conversion Rate',
-    metric: '60%',
-    metricLabel: 'More Conversions',
+    tag: 'Website Redesign', client: 'Veltrix Solutions', industry: 'B2B Services',
+    result: '+60% Conversion Rate', metric: '60%', metricLabel: 'More Conversions',
     desc: 'Full website transformation with UX-first design that dramatically improved lead quality.',
     services: ['Website Design', 'Web Development', 'CRO'],
+    glow: 'rgba(52,211,153,0.6)',
+    grad: 'linear-gradient(90deg,#34d399,#06b6d4)',
+    tagColor: 'rgba(52,211,153,0.7)',
   },
   {
-    tag: 'PPC Advertising',
-    client: 'Brandify Co.',
-    industry: 'E-Commerce',
-    result: '4.5x ROAS',
-    metric: '4.5x',
-    metricLabel: 'Return on Ad Spend',
+    tag: 'PPC Advertising', client: 'Brandify Co.', industry: 'E-Commerce',
+    result: '4.5x ROAS', metric: '4.5x', metricLabel: 'Return on Ad Spend',
     desc: 'Managed $20K/month ad budget across Google and Meta, achieving consistent 4.5x return.',
     services: ['Google Ads', 'Meta Ads', 'Analytics'],
+    glow: 'rgba(251,146,60,0.6)',
+    grad: 'linear-gradient(90deg,#fb923c,#f59e0b)',
+    tagColor: 'rgba(251,146,60,0.7)',
   },
   {
-    tag: 'Social Media Marketing',
-    client: 'Optica Retail',
-    industry: 'Retail',
-    result: '+220% Engagement',
-    metric: '220%',
-    metricLabel: 'Engagement Lift',
+    tag: 'Social Media Marketing', client: 'Optica Retail', industry: 'Retail',
+    result: '+220% Engagement', metric: '220%', metricLabel: 'Engagement Lift',
     desc: 'Rebranded social presence with editorial content strategy that turned followers into buyers.',
     services: ['SMM', 'Content Creation', 'Influencer Outreach'],
+    glow: 'rgba(244,114,182,0.6)',
+    grad: 'linear-gradient(90deg,#f472b6,#c084fc)',
+    tagColor: 'rgba(244,114,182,0.7)',
   },
   {
-    tag: 'Digital Marketing',
-    client: 'FinEdge Capital',
-    industry: 'Finance',
-    result: '3.2x Lead Volume',
-    metric: '3.2x',
-    metricLabel: 'Lead Growth',
+    tag: 'Digital Marketing', client: 'FinEdge Capital', industry: 'Finance',
+    result: '3.2x Lead Volume', metric: '3.2x', metricLabel: 'Lead Growth',
     desc: 'Full-funnel digital strategy combining SEO, PPC, and email nurture to scale qualified leads.',
     services: ['SEO', 'PPC', 'Email Marketing'],
+    glow: 'rgba(56,189,248,0.6)',
+    grad: 'linear-gradient(90deg,#38bdf8,#818cf8)',
+    tagColor: 'rgba(56,189,248,0.7)',
   },
   {
-    tag: 'Web Development',
-    client: 'Luminary Studios',
-    industry: 'Creative Agency',
-    result: '98 PageSpeed Score',
-    metric: '98',
-    metricLabel: 'PageSpeed Score',
+    tag: 'Web Development', client: 'Luminary Studios', industry: 'Creative Agency',
+    result: '98 PageSpeed Score', metric: '98', metricLabel: 'PageSpeed Score',
     desc: 'Custom React build with headless CMS delivering sub-second load times and flawless UX.',
     services: ['Web Development', 'Performance', 'CMS Integration'],
+    glow: 'rgba(163,230,53,0.6)',
+    grad: 'linear-gradient(90deg,#a3e635,#34d399)',
+    tagColor: 'rgba(163,230,53,0.7)',
   },
 ]
 
@@ -218,11 +230,19 @@ export default function Portfolio() {
               <motion.div
                 key={c.client}
                 className="pf-card"
+                style={{
+                  '--glow-col': c.glow,
+                  '--accent-grad': c.grad,
+                  '--tag-color': c.tagColor,
+                }}
+                onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07, ease: 'easeOut' }}
               >
+                <div className="pf-card__shine" />
                 <div className="pf-card__visual">
                   <div className="pf-card__metric-big">{c.metric}</div>
                   <div className="pf-card__metric-label">{c.metricLabel}</div>

@@ -80,7 +80,7 @@ function AboutVisual() {
   }
 
   return (
-    <motion.div
+   <motion.div
       className="ap-hero__visual"
       ref={visualRef}
       onMouseMove={handleMouseMove}
@@ -227,7 +227,7 @@ function AboutVisual() {
           </div>
         </motion.div>
       </motion.div>
-    </motion.div>
+    </motion.div>  
   )
 }
 
@@ -316,69 +316,12 @@ export default function About() {
       <section className="ap-who">
         <div className="container ap-who__layout">
           <motion.div className="ap-who__img-wrap" {...up(0)}>
-            <svg viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',display:'block',borderRadius:'20px'}}>
-              <defs>
-                <linearGradient id="ap-team-bg" x1="0" y1="0" x2="600" y2="420" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#D8D4CE"/>
-                  <stop offset="100%" stopColor="#C8C4BC"/>
-                </linearGradient>
-                <filter id="ap-team-sh"><feDropShadow dx="0" dy="5" stdDeviation="8" floodColor="#00000022"/></filter>
-              </defs>
-              <rect width="600" height="420" fill="url(#ap-team-bg)"/>
-              {/* 3D office desk isometric */}
-              {/* Desk top */}
-              <polygon points="80,220 300,280 520,220 300,160" fill="#C0BAB2"/>
-              {/* Desk front */}
-              <polygon points="80,220 80,260 300,320 300,280" fill="#A8A29A"/>
-              {/* Desk right */}
-              <polygon points="520,220 520,260 300,320 300,280" fill="#B8B2AA"/>
-              {/* Monitor on desk */}
-              <polygon points="260,120 260,210 320,230 320,140" fill="#A0A8B2"/>
-              <polygon points="320,140 320,230 380,210 380,120" fill="#B0B8C2"/>
-              <polygon points="260,120 320,140 380,120 320,100" fill="#C0C8D2"/>
-              <rect x="268" y="128" width="104" height="72" rx="3" fill="#2C3844"/>
-              <rect x="268" y="128" width="104" height="14" rx="3" fill="#222C38"/>
-              {/* Screen content */}
-              <rect x="276" y="148" width="50" height="5" rx="2" fill="#4A5868"/>
-              <rect x="276" y="158" width="80" height="4" rx="2" fill="#3A4858"/>
-              <rect x="276" y="167" width="60" height="4" rx="2" fill="#3A4858"/>
-              <rect x="276" y="176" width="34" height="8" rx="4" fill="#5A6878"/>
-              {/* Keyboard */}
-              <polygon points="250,230 250,244 330,254 330,240" fill="#B8B2A8"/>
-              <polygon points="330,240 330,254 380,244 380,230" fill="#C8C2B8"/>
-              <polygon points="250,230 330,240 380,230 300,220" fill="#D0CAC0"/>
-              {/* Books stack left */}
-              {[0,1,2].map(i=>(
-                <g key={i}>
-                  <polygon points={`130,${230-i*14} 130,${244-i*14} 210,${264-i*14} 210,${250-i*14}`} fill={['#A8A29A','#B8B2A8','#C8C2B8'][i]}/>
-                  <polygon points={`210,${250-i*14} 210,${264-i*14} 230,${256-i*14} 230,${242-i*14}`} fill={['#989290','#A8A2A0','#B8B2B0'][i]}/>
-                  <polygon points={`130,${230-i*14} 210,${250-i*14} 230,${242-i*14} 150,${222-i*14}`} fill={['#C0BAB0','#D0CAC0','#E0DAD0'][i]}/>
-                </g>
-              ))}
-              {/* Team figures (abstract) */}
-              {[{cx:160,cy:160},{cx:240,cy:140},{cx:360,cy:140},{cx:440,cy:160}].map(({cx,cy},i)=>(
-                <g key={i}>
-                  <circle cx={cx} cy={cy-20} r="16" fill="#B8B2A8" opacity="0.7"/>
-                  <polygon points={`${cx-14},${cy} ${cx+14},${cy} ${cx+20},${cy+50} ${cx-20},${cy+50}`} fill="#A8A29A" opacity="0.7" />
-                </g>
-              ))}
-              {/* Floating stat cards */}
-              <g filter="url(#ap-team-sh)" transform="translate(20,20)">
-                <rect width="110" height="60" rx="10" fill="#F0ECE6"/>
-                <polygon points="110,10 114,14 114,66 110,62" fill="#D8D4CE"/>
-                <polygon points="10,60 14,64 114,64 110,60" fill="#CCC8C2"/>
-                <text x="12" y="28" fontSize="8" fill="#8A8880" fontFamily="Inter,sans-serif">Happy Clients</text>
-                <text x="12" y="48" fontSize="20" fontWeight="900" fill="#3C3C38" fontFamily="Inter,sans-serif">60+</text>
-              </g>
-              <g filter="url(#ap-team-sh)" transform="translate(460,20)">
-                <rect width="110" height="60" rx="10" fill="#3A3C48"/>
-                <polygon points="110,10 114,14 114,66 110,62" fill="#22242E"/>
-                <polygon points="10,60 14,64 114,64 110,60" fill="#1A1C26"/>
-                <text x="12" y="28" fontSize="8" fill="#5A5C70" fontFamily="Inter,sans-serif">Experience</text>
-                <text x="12" y="48" fontSize="20" fontWeight="900" fill="#C8CCE0" fontFamily="Inter,sans-serif">5+ yrs</text>
-              </g>
-            </svg>
-          </motion.div>
+  <img
+    src="/public/Teamup.png"
+    alt="About Us"
+    className="ap-who__img"
+  />
+</motion.div>
           <motion.div className="ap-who__body" {...up(0.12)}>
             <span className="ap-tag">Who We Are</span>
             <h2 className="ap-h2">A team that treats<br /><em>your revenue</em> as ours.</h2>
@@ -408,7 +351,7 @@ export default function About() {
         <div className="container why-section__inner">
           <div className="why-left">
             <img 
-              src="/WhyUs.png" 
+              src="/public/WhyUs.png" 
               alt="Why Us" 
             />
           </div>

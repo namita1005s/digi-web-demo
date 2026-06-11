@@ -110,52 +110,89 @@ export default function Portfolio() {
                 <div className="impact__circle-glow" aria-hidden />
                 {/* SVG dashboard illustration */}
                 <svg viewBox="0 0 260 260" className="impact__svg" aria-label="Growth analytics dashboard">
-                  {/* bg */}
-                  <circle cx="130" cy="130" r="130" fill="#d8d5d0" />
-                  {/* subtle inner shadow ring */}
-                  <circle cx="130" cy="130" r="128" fill="none" stroke="rgba(0,0,0,0.06)" strokeWidth="4"/>
+                  <defs>
+                    <linearGradient id="port-bg" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#C8C4BE"/><stop offset="100%" stopColor="#B0ACA6"/>
+                    </linearGradient>
+                    <linearGradient id="port-bar-lo" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#A8A49E"/><stop offset="100%" stopColor="#888480"/>
+                    </linearGradient>
+                    <linearGradient id="port-bar-hi" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#585654"/><stop offset="100%" stopColor="#383634"/>
+                    </linearGradient>
+                    <linearGradient id="port-bar-md" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#787674"/><stop offset="100%" stopColor="#545250"/>
+                    </linearGradient>
+                    <filter id="port-glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    <filter id="port-shadow"><feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#00000030"/></filter>
+                  </defs>
+                  {/* bg circle */}
+                  <circle cx="130" cy="130" r="130" fill="url(#port-bg)"/>
+                  {/* inner bevel ring */}
+                  <circle cx="130" cy="130" r="128" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="2"/>
+                  <circle cx="130" cy="130" r="126" fill="none" stroke="rgba(0,0,0,0.08)" strokeWidth="1.5"/>
                   {/* grid lines */}
-                  {[50,80,110,140,170,200].map(y => (
-                    <line key={y} x1="20" y1={y} x2="240" y2={y} stroke="rgba(0,0,0,0.07)" strokeWidth="1"/>
+                  {[60,90,120,150,180,210].map(y => (
+                    <line key={y} x1="18" y1={y} x2="242" y2={y} stroke="rgba(0,0,0,0.06)" strokeWidth="1"/>
                   ))}
-                  {/* 3D isometric bar chart */}
+                  {/* floor shadow */}
+                  <ellipse cx="130" cy="232" rx="90" ry="6" fill="rgba(0,0,0,0.08)"/>
+                  {/* 3D isometric bars */}
                   {[
-                    [30,190,16,80],
-                    [52,175,16,95],
-                    [74,160,16,110],
-                    [96,145,16,125],
-                    [118,128,16,142],
-                    [140,110,16,160],
-                    [162,95,16,175],
-                    [184,78,16,192],
-                  ].map(([x,y,w,h],i) => (
+                    {x:28, y:190, h:42, g:'port-bar-lo'},
+                    {x:50, y:175, h:57, g:'port-bar-lo'},
+                    {x:72, y:160, h:72, g:'port-bar-lo'},
+                    {x:94, y:145, h:87, g:'port-bar-md'},
+                    {x:116,y:128, h:104,g:'port-bar-md'},
+                    {x:138,y:110, h:122,g:'port-bar-hi'},
+                    {x:160,y:94,  h:138,g:'port-bar-hi'},
+                    {x:182,y:78,  h:154,g:'port-bar-hi'},
+                  ].map(({x,y,h,g},i) => (
                     <g key={i}>
-                      {/* right face */}
+                      {/* right face — darker */}
                       <polygon
-                        points={`${x+w},${y} ${x+w+8},${y-8} ${x+w+8},${260-30-8} ${x+w},${260-30}`}
-                        fill={i===7?'rgba(0,0,0,0.55)':i>=5?'rgba(0,0,0,0.28)':'rgba(0,0,0,0.12)'}
+                        points={`${x+16},${y} ${x+24},${y-8} ${x+24},${224} ${x+16},${232}`}
+                        fill={i>=5?'rgba(30,28,26,0.55)':i>=3?'rgba(60,58,56,0.35)':'rgba(80,78,76,0.22)'}
                       />
-                      {/* top face */}
+                      {/* top face — lighter highlight */}
                       <polygon
-                        points={`${x},${y} ${x+w},${y} ${x+w+8},${y-8} ${x+8},${y-8}`}
-                        fill={i===7?'rgba(0,0,0,0.4)':i>=5?'rgba(0,0,0,0.22)':'rgba(0,0,0,0.09)'}
+                        points={`${x},${y} ${x+16},${y} ${x+24},${y-8} ${x+8},${y-8}`}
+                        fill={i>=5?'rgba(140,136,130,0.9)':i>=3?'rgba(160,156,150,0.85)':'rgba(180,176,170,0.8)'}
                       />
+                      {/* top edge highlight */}
+                      <line x1={x} y1={y} x2={x+8} y2={y-8} stroke="rgba(255,255,255,0.3)" strokeWidth="0.8"/>
+                      <line x1={x+8} y1={y-8} x2={x+24} y2={y-8} stroke="rgba(255,255,255,0.22)" strokeWidth="0.8"/>
                       {/* front face */}
-                      <rect x={x} y={y} width={w} height={260-y-30}
-                        rx="2"
-                        fill={i===7?'rgba(0,0,0,0.72)':i>=5?'rgba(0,0,0,0.38)':'rgba(0,0,0,0.14)'}
-                      />
+                      <rect x={x} y={y} width={16} height={232-y} rx="1" fill={`url(#${g})`}/>
                     </g>
                   ))}
                   {/* trend line */}
                   <polyline
-                    points="38,188 60,173 82,158 104,143 126,126 148,108 170,93 192,76"
-                    fill="none" stroke="rgba(0,0,0,0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                    points="36,188 58,173 80,158 102,143 124,126 146,108 168,92 190,76"
+                    fill="none" stroke="rgba(40,38,36,0.65)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                    filter="url(#port-glow)"
                   />
-                  {/* dots on trend */}
-                  {[[38,188],[60,173],[82,158],[104,143],[126,126],[148,108],[170,93],[192,76]].map(([cx,cy],i) => (
-                    <circle key={i} cx={cx} cy={cy} r="3" fill="rgba(0,0,0,0.65)" />
+                  {/* trend area fill */}
+                  <polygon
+                    points="36,188 58,173 80,158 102,143 124,126 146,108 168,92 190,76 190,232 36,232"
+                    fill="rgba(0,0,0,0.06)"
+                  />
+                  {/* peak dot with halo */}
+                  <circle cx="190" cy="76" r="8" fill="rgba(60,58,56,0.15)"/>
+                  <circle cx="190" cy="76" r="4" fill="#484644" filter="url(#port-glow)"/>
+                  {/* other dots */}
+                  {[[36,188],[58,173],[80,158],[102,143],[124,126],[146,108],[168,92]].map(([cx,cy],i) => (
+                    <circle key={i} cx={cx} cy={cy} r="2.5" fill="rgba(60,58,54,0.6)"/>
                   ))}
+                  {/* stat badge */}
+                  <g filter="url(#port-shadow)" transform="translate(18,18)">
+                    <polygon points="88,6 94,12 94,44 88,38" fill="rgba(40,38,36,0.35)"/>
+                    <polygon points="6,38 12,44 94,44 88,38" fill="rgba(30,28,26,0.25)"/>
+                    <rect width="88" height="38" rx="8" fill="rgba(40,38,36,0.82)"/>
+                    <rect x="0" y="0" width="88" height="1.5" rx="1" fill="rgba(255,255,255,0.18)"/>
+                    <text x="10" y="16" fontSize="6" fill="rgba(200,196,190,0.6)" fontFamily="Inter,sans-serif">Growth</text>
+                    <text x="10" y="31" fontSize="13" fontWeight="900" fill="#C8C4BE" fontFamily="Inter,sans-serif">+180%</text>
+                  </g>
                 </svg>
               </motion.div>
               {/* orbiting badges */}

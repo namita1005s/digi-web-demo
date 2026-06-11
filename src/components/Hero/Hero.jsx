@@ -3,17 +3,23 @@ import { Link } from 'react-router-dom'
 import { useRef } from 'react'
 import './Hero.css'
 
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
+})
+
 const PARTICLES = [
-  { x: '8%',  y: '18%', size: 3,   dur: 4.2, delay: 0   },
-  { x: '15%', y: '72%', size: 2,   dur: 5.1, delay: 0.6 },
-  { x: '22%', y: '42%', size: 4,   dur: 3.8, delay: 1.2 },
-  { x: '31%', y: '85%', size: 2.5, dur: 6.0, delay: 0.3 },
-  { x: '48%', y: '25%', size: 3,   dur: 4.5, delay: 0.9 },
-  { x: '58%', y: '68%', size: 2,   dur: 5.5, delay: 1.5 },
-  { x: '67%', y: '15%', size: 3.5, dur: 3.5, delay: 0.4 },
-  { x: '76%', y: '55%', size: 2,   dur: 4.8, delay: 1.1 },
-  { x: '85%', y: '35%', size: 3,   dur: 5.2, delay: 0.7 },
-  { x: '92%', y: '78%', size: 2.5, dur: 4.0, delay: 1.8 },
+  { x: '6%',  y: '20%', s: 3,   d: 4.2, delay: 0    },
+  { x: '14%', y: '68%', s: 2,   d: 5.1, delay: 0.6  },
+  { x: '24%', y: '44%', s: 4,   d: 3.8, delay: 1.2  },
+  { x: '38%', y: '82%', s: 2.5, d: 6.0, delay: 0.3  },
+  { x: '52%', y: '15%', s: 3,   d: 4.5, delay: 0.9  },
+  { x: '63%', y: '72%', s: 2,   d: 5.5, delay: 1.5  },
+  { x: '74%', y: '30%', s: 3.5, d: 3.5, delay: 0.4  },
+  { x: '82%', y: '58%', s: 2,   d: 4.8, delay: 1.1  },
+  { x: '90%', y: '22%', s: 3,   d: 5.2, delay: 0.7  },
+  { x: '96%', y: '75%', s: 2.5, d: 4.0, delay: 1.8  },
 ]
 
 function HeroParticles() {
@@ -23,209 +29,237 @@ function HeroParticles() {
         <motion.span
           key={i}
           className="hero__particle"
-          style={{ left: p.x, top: p.y, width: p.size, height: p.size }}
-          animate={{ y: [0, -12, 0], opacity: [0.15, 0.5, 0.15] }}
-          transition={{ duration: p.dur, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }}
+          style={{ left: p.x, top: p.y, width: p.s, height: p.s }}
+          animate={{ y: [0, -14, 0], opacity: [0.12, 0.45, 0.12] }}
+          transition={{ duration: p.d, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }}
         />
       ))}
     </div>
   )
 }
 
-const fadeUp = (delay = 0, duration = 0.65) => ({
-  initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration, delay, ease: [0.22, 1, 0.36, 1] },
-})
-
-/* Premium 3D dashboard SVG visual */
+/* ── Full 3D Dashboard with dull stone/slate palette ── */
 function HeroDashboard3D() {
   return (
-    <svg viewBox="0 0 520 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',display:'block'}}>
+    <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg" className="hero__dash-svg">
       <defs>
-        <linearGradient id="hd-card-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#2a2a2a"/>
-          <stop offset="100%" stopColor="#1a1a1a"/>
+        {/* Card background — deep charcoal */}
+        <linearGradient id="d-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#2A2825"/>
+          <stop offset="100%" stopColor="#1A1816"/>
         </linearGradient>
-        <linearGradient id="hd-bar1" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#909090" stopOpacity="0.85"/>
-          <stop offset="100%" stopColor="#606060" stopOpacity="0.3"/>
+        {/* Bar gradients — dull stone tones */}
+        <linearGradient id="d-bar-a" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#7A7672" stopOpacity="0.9"/>
+          <stop offset="100%" stopColor="#484442" stopOpacity="0.3"/>
         </linearGradient>
-        <linearGradient id="hd-bar2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#7A7A7A" stopOpacity="0.9"/>
-          <stop offset="100%" stopColor="#505050" stopOpacity="0.25"/>
+        <linearGradient id="d-bar-b" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#908C88" stopOpacity="0.95"/>
+          <stop offset="100%" stopColor="#585452" stopOpacity="0.35"/>
         </linearGradient>
-        <linearGradient id="hd-bar-peak" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#B0B0B0" stopOpacity="0.95"/>
-          <stop offset="100%" stopColor="#808080" stopOpacity="0.5"/>
+        <linearGradient id="d-bar-pk" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#B0ACA8" stopOpacity="1"/>
+          <stop offset="100%" stopColor="#787472" stopOpacity="0.45"/>
         </linearGradient>
-        <linearGradient id="hd-line" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="rgba(140,140,140,0.4)"/>
-          <stop offset="50%" stopColor="rgba(180,180,180,0.85)"/>
-          <stop offset="100%" stopColor="rgba(140,140,140,0.4)"/>
+        {/* 3D bar top face — stone highlight */}
+        <linearGradient id="d-top-face" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#424040"/>
+          <stop offset="50%" stopColor="#6A6866"/>
+          <stop offset="100%" stopColor="#424040"/>
         </linearGradient>
-        <linearGradient id="hd-area" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(255,255,255,0.12)"/>
-          <stop offset="100%" stopColor="rgba(255,255,255,0)"/>
+        {/* Trend area fill */}
+        <linearGradient id="d-area" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="rgba(176,172,168,0.12)"/>
+          <stop offset="100%" stopColor="rgba(176,172,168,0)"/>
         </linearGradient>
-        <linearGradient id="hd-glass" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(255,255,255,0.12)"/>
-          <stop offset="100%" stopColor="rgba(255,255,255,0.03)"/>
+        {/* Glass orb fill */}
+        <linearGradient id="d-glass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="rgba(200,196,192,0.16)"/>
+          <stop offset="100%" stopColor="rgba(200,196,192,0.02)"/>
         </linearGradient>
-        <linearGradient id="hd-silver-top" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#555"/>
-          <stop offset="50%" stopColor="#8A8A8A"/>
-          <stop offset="100%" stopColor="#555"/>
+        {/* Ring stroke */}
+        <linearGradient id="d-ring" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="rgba(176,172,168,0.7)"/>
+          <stop offset="100%" stopColor="rgba(176,172,168,0)"/>
         </linearGradient>
-        <linearGradient id="hd-ring" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="rgba(192,192,192,0.6)"/>
-          <stop offset="100%" stopColor="rgba(192,192,192,0)"/>
+        {/* Badge face */}
+        <linearGradient id="d-badge-face" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#242220"/>
+          <stop offset="100%" stopColor="#161412"/>
         </linearGradient>
-        <filter id="hd-glow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <filter id="hd-soft"><feGaussianBlur stdDeviation="2"/></filter>
-        <filter id="hd-shadow"><feDropShadow dx="0" dy="8" stdDeviation="16" floodColor="#000" floodOpacity="0.6"/></filter>
-        <clipPath id="hd-main-clip"><rect width="400" height="280" rx="20"/></clipPath>
+
+        <filter id="d-shadow"><feDropShadow dx="0" dy="12" stdDeviation="22" floodColor="#000" floodOpacity="0.7"/></filter>
+        <filter id="d-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="d-soft"><feGaussianBlur stdDeviation="18"/></filter>
+        <filter id="d-badge-sh"><feDropShadow dx="4" dy="8" stdDeviation="10" floodColor="#000" floodOpacity="0.6"/></filter>
       </defs>
 
-      {/* ── Ambient glow orb ── */}
-      <ellipse cx="260" cy="200" rx="180" ry="140" fill="rgba(192,192,192,0.04)" filter="url(#hd-soft)"/>
+      {/* ambient glow */}
+      <ellipse cx="250" cy="190" rx="200" ry="140" fill="rgba(140,136,132,0.04)" filter="url(#d-soft)"/>
 
-      {/* ── Floating geometric ring (back) ── */}
-      <motion.g
-        style={{transformOrigin:'260px 60px'}}
-        animate={{rotate:[0,360]}}
-        transition={{duration:18,repeat:Infinity,ease:'linear'}}
-      >
-        <ellipse cx="380" cy="48" rx="32" ry="12" stroke="url(#hd-ring)" strokeWidth="1.2" fill="none" opacity="0.5"/>
-        <ellipse cx="380" cy="48" rx="20" ry="7" stroke="rgba(192,192,192,0.3)" strokeWidth="0.8" fill="none"/>
+      {/* ── Floating glass sphere — top left ── */}
+      <motion.g animate={{y:[0,-9,0]}} transition={{duration:6,repeat:Infinity,ease:'easeInOut',delay:0.4}}>
+        {/* sphere back shadow */}
+        <ellipse cx="62" cy="88" rx="20" ry="6" fill="rgba(0,0,0,0.25)"/>
+        {/* sphere body */}
+        <circle cx="60" cy="76" r="24" fill="url(#d-glass)" stroke="rgba(200,196,192,0.14)" strokeWidth="1"/>
+        {/* specular highlight */}
+        <ellipse cx="53" cy="68" rx="9" ry="6" fill="rgba(255,255,255,0.16)" transform="rotate(-30,53,68)"/>
+        {/* rim light */}
+        <circle cx="60" cy="76" r="24" stroke="url(#d-ring)" strokeWidth="0.8" fill="none"/>
+        {/* bottom edge shadow */}
+        <ellipse cx="66" cy="90" rx="14" ry="4" fill="rgba(0,0,0,0.18)"/>
       </motion.g>
 
-      {/* ── Floating glass sphere (back-left) ── */}
-      <motion.g animate={{y:[0,-8,0]}} transition={{duration:5,repeat:Infinity,ease:'easeInOut',delay:0.5}}>
-        <circle cx="68" cy="90" r="22" fill="url(#hd-glass)" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-        <ellipse cx="62" cy="83" rx="8" ry="5" fill="rgba(255,255,255,0.12)" transform="rotate(-30,62,83)"/>
-        <circle cx="68" cy="90" r="22" stroke="url(#hd-ring)" strokeWidth="0.6" fill="none"/>
+      {/* ── Rotating 3D ring — top right ── */}
+      <motion.g style={{transformOrigin:'420px 50px'}} animate={{rotate:[0,360]}} transition={{duration:16,repeat:Infinity,ease:'linear'}}>
+        {/* ring shadow */}
+        <ellipse cx="424" cy="60" rx="30" ry="10" fill="rgba(0,0,0,0.2)"/>
+        <ellipse cx="420" cy="50" rx="34" ry="13" stroke="url(#d-ring)" strokeWidth="2" fill="none" opacity="0.65"/>
+        <ellipse cx="420" cy="50" rx="20" ry="7" stroke="rgba(176,172,168,0.28)" strokeWidth="0.9" fill="none"/>
+        {/* ring highlight dot */}
+        <circle cx="386" cy="50" r="2.5" fill="rgba(220,216,212,0.6)"/>
       </motion.g>
 
-      {/* ── MAIN DASHBOARD CARD ── */}
-      <motion.g filter="url(#hd-shadow)" animate={{y:[0,-4,0]}} transition={{duration:6,repeat:Infinity,ease:'easeInOut'}}>
-        <g transform="translate(60,80)">
-          {/* Card body */}
-          <rect width="400" height="280" rx="20" fill="url(#hd-card-bg)"/>
-          <rect width="400" height="280" rx="20" stroke="rgba(255,255,255,0.10)" strokeWidth="1" fill="none"/>
-          {/* Top gloss edge */}
-          <rect x="1" y="1" width="398" height="1" rx="1" fill="rgba(255,255,255,0.18)"/>
+      {/* ── Main 3D Dashboard card ── */}
+      <motion.g filter="url(#d-shadow)" animate={{y:[0,-5,0]}} transition={{duration:6.5,repeat:Infinity,ease:'easeInOut'}}>
+        {/* card 3D extrude — right face */}
+        <polygon points="450,70 458,78 458,348 450,340" fill="rgba(10,8,6,0.65)"/>
+        {/* card 3D extrude — bottom face */}
+        <polygon points="50,340 450,340 458,348 58,348" fill="rgba(8,6,4,0.55)"/>
+        {/* card top edge highlight */}
+        <polygon points="50,70 450,70 458,78 58,78" fill="rgba(200,196,192,0.08)"/>
 
-          {/* Card header */}
-          <rect x="20" y="20" width="120" height="6" rx="3" fill="rgba(255,255,255,0.5)"/>
-          <rect x="20" y="32" width="70" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
+        <g transform="translate(50,70)">
+          <rect width="400" height="270" rx="18" fill="url(#d-bg)"/>
+          <rect width="400" height="270" rx="18" stroke="rgba(200,196,192,0.09)" strokeWidth="1" fill="none"/>
+          {/* top gloss line */}
+          <rect x="1" y="1" width="398" height="1.5" rx="1" fill="rgba(255,255,255,0.14)"/>
+          {/* left edge light */}
+          <rect x="0" y="18" width="1" height="234" rx="1" fill="rgba(255,255,255,0.06)"/>
 
-          {/* Live badge */}
-          <rect x="320" y="18" width="60" height="20" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-          <circle cx="334" cy="28" r="3" fill="rgba(200,200,200,0.9)"/>
-          <rect x="342" y="25" width="30" height="4" rx="2" fill="rgba(255,255,255,0.5)"/>
+          {/* header bar */}
+          <rect x="20" y="20" width="110" height="6" rx="3" fill="rgba(200,196,192,0.45)"/>
+          <rect x="20" y="32" width="65" height="4" rx="2" fill="rgba(200,196,192,0.16)"/>
 
-          {/* ── 3D Bar chart scene ── */}
-          {/* Grid lines */}
-          {[0,1,2,3].map(i => (
-            <line key={i} x1="20" y1={80+i*30} x2="380" y2={80+i*30} stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
+          {/* live pill */}
+          <rect x="315" y="18" width="64" height="20" rx="10" fill="rgba(200,196,192,0.06)" stroke="rgba(200,196,192,0.12)" strokeWidth="1"/>
+          <circle cx="329" cy="28" r="3" fill="rgba(176,172,168,0.8)"/>
+          <rect x="337" y="25" width="32" height="4" rx="2" fill="rgba(200,196,192,0.38)"/>
+
+          {/* grid lines */}
+          {[0,1,2,3].map(i=>(
+            <line key={i} x1="20" y1={72+i*28} x2="380" y2={72+i*28} stroke="rgba(200,196,192,0.04)" strokeWidth="1"/>
           ))}
 
-          {/* Bars — isometric 3D style */}
+          {/* ── 3D extruded bars ── */}
           {[
-            {x:38, h:55, grad:'hd-bar1'},
-            {x:85, h:80, grad:'hd-bar1'},
-            {x:132,h:65, grad:'hd-bar2'},
-            {x:179,h:100,grad:'hd-bar2'},
-            {x:226,h:85, grad:'hd-bar1'},
-            {x:273,h:118,grad:'hd-bar-peak'},
-            {x:320,h:95, grad:'hd-bar1'},
-          ].map(({x,h,grad},i) => (
+            {x:30,  h:50,  g:'d-bar-a'},
+            {x:78,  h:75,  g:'d-bar-a'},
+            {x:126, h:60,  g:'d-bar-b'},
+            {x:174, h:95,  g:'d-bar-b'},
+            {x:222, h:78,  g:'d-bar-a'},
+            {x:270, h:115, g:'d-bar-pk'},
+            {x:318, h:90,  g:'d-bar-b'},
+          ].map(({x,h,g},i)=>(
             <g key={i}>
-              {/* Side face */}
-              <polygon
-                points={`${x+28},${170-h} ${x+36},${162-h} ${x+36},162 ${x+28},170`}
-                fill={`rgba(100,100,100,${0.15+i*0.02})`}
-              />
-              {/* Top face */}
-              <polygon
-                points={`${x},${170-h} ${x+28},${170-h} ${x+36},${162-h} ${x+8},${162-h}`}
-                fill="url(#hd-silver-top)" opacity="0.9"
-              />
-              {/* Front face */}
-              <rect x={x} y={170-h} width={28} height={h} fill={`url(#${grad})`} rx="2"/>
-              {/* Label */}
-              <text x={x+14} y={183} fontSize="7" fill="rgba(255,255,255,0.3)" fontFamily="Inter,sans-serif" textAnchor="middle">
+              {/* right side face — darkest */}
+              <polygon points={`${x+28},${165-h} ${x+36},${157-h} ${x+36},157 ${x+28},165`}
+                fill={`rgba(30,28,26,${0.55+i*0.02})`}/>
+              {/* top face — stone highlight */}
+              <polygon points={`${x},${165-h} ${x+28},${165-h} ${x+36},${157-h} ${x+8},${157-h}`}
+                fill="url(#d-top-face)" opacity="0.82"/>
+              {/* top edge specular */}
+              <line x1={x} y1={165-h} x2={x+8} y2={157-h} stroke="rgba(220,216,212,0.22)" strokeWidth="0.8"/>
+              <line x1={x+8} y1={157-h} x2={x+36} y2={157-h} stroke="rgba(200,196,192,0.15)" strokeWidth="0.8"/>
+              {/* front face */}
+              <rect x={x} y={165-h} width={28} height={h} fill={`url(#${g})`} rx="2"/>
+              {/* bottom base shadow */}
+              <rect x={x} y={163} width={28} height={3} rx="1" fill="rgba(0,0,0,0.3)"/>
+              <text x={x+14} y={176} fontSize="7" fill="rgba(200,196,192,0.26)" fontFamily="Inter,sans-serif" textAnchor="middle">
                 {['J','F','M','A','M','J','J'][i]}
               </text>
             </g>
           ))}
 
-          {/* Trend line */}
-          <path
-            d="M52,165 C80,148 108,128 136,118 C164,108 190,128 218,105 C246,82 274,62 302,48 C320,38 338,36 348,32"
-            fill="none" stroke="url(#hd-line)" strokeWidth="2" strokeLinecap="round"
-          />
-          {/* Area fill under line */}
-          <path
-            d="M52,165 C80,148 108,128 136,118 C164,108 190,128 218,105 C246,82 274,62 302,48 C320,38 338,36 348,32 L348,170 L52,170 Z"
-            fill="url(#hd-area)"
-          />
-          {/* Peak dot */}
-          <circle cx="302" cy="48" r="4" fill="#fff" filter="url(#hd-glow)"/>
-          <circle cx="302" cy="48" r="8" fill="rgba(255,255,255,0.12)"/>
+          {/* trend area fill */}
+          <path d="M44,162 C75,145 105,122 133,112 C161,102 188,122 215,100 C242,78 268,56 295,44 C313,35 330,32 342,28 L342,165 L44,165 Z"
+            fill="url(#d-area)"/>
+          {/* trend line */}
+          <path d="M44,162 C75,145 105,122 133,112 C161,102 188,122 215,100 C242,78 268,56 295,44 C313,35 330,32 342,28"
+            fill="none" stroke="rgba(176,172,168,0.65)" strokeWidth="1.8" strokeLinecap="round"/>
+          {/* peak dot with halo */}
+          <circle cx="295" cy="44" r="10" fill="rgba(176,172,168,0.1)"/>
+          <circle cx="295" cy="44" r="4.5" fill="rgba(220,216,212,0.9)" filter="url(#d-glow)"/>
 
-          {/* ── Footer metrics ── */}
-          <line x1="20" y1="200" x2="380" y2="200" stroke="rgba(255,255,255,0.07)" strokeWidth="1"/>
-          {[{v:'3.2M',l:'Impressions',x:50},{v:'184%',l:'Traffic',x:170},{v:'4.8x',l:'ROAS',x:280}].map(m=>(
+          {/* footer divider */}
+          <line x1="20" y1="193" x2="380" y2="193" stroke="rgba(200,196,192,0.06)" strokeWidth="1"/>
+
+          {/* footer metrics */}
+          {[{v:'3.2M',l:'Impressions',x:40},{v:'184%',l:'Traffic',x:160},{v:'4.8x',l:'ROAS',x:270}].map(m=>(
             <g key={m.l}>
-              <text x={m.x} y={222} fontSize="16" fontWeight="800" fill="#fff" fontFamily="Inter,sans-serif" letterSpacing="-1">{m.v}</text>
-              <text x={m.x} y={236} fontSize="7" fill="rgba(255,255,255,0.35)" fontFamily="Inter,sans-serif" textTransform="uppercase">{m.l}</text>
+              <text x={m.x} y={214} fontSize="15" fontWeight="800" fill="rgba(220,216,212,0.9)" fontFamily="Inter,sans-serif" letterSpacing="-0.5">{m.v}</text>
+              <text x={m.x} y={228} fontSize="7" fill="rgba(176,172,168,0.3)" fontFamily="Inter,sans-serif">{m.l}</text>
             </g>
           ))}
-          {/* Metric dividers */}
-          <line x1="140" y1="208" x2="140" y2="245" stroke="rgba(255,255,255,0.07)" strokeWidth="1"/>
-          <line x1="250" y1="208" x2="250" y2="245" stroke="rgba(255,255,255,0.07)" strokeWidth="1"/>
+          <line x1="138" y1="200" x2="138" y2="238" stroke="rgba(200,196,192,0.06)" strokeWidth="1"/>
+          <line x1="248" y1="200" x2="248" y2="238" stroke="rgba(200,196,192,0.06)" strokeWidth="1"/>
 
-          {/* Bottom bar — glass */}
-          <rect x="0" y="255" width="400" height="25" rx="0" fill="rgba(255,255,255,0.03)"/>
-          <rect x="0" y="255" width="400" height="25" rx="0" stroke="none" fill="none"/>
-          <rect x="20" y="261" width="60" height="5" rx="2" fill="rgba(255,255,255,0.12)"/>
-          <rect x="88" y="261" width="40" height="5" rx="2" fill="rgba(255,255,255,0.07)"/>
-          <rect x="310" y="259" width="70" height="9" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" strokeWidth="1"/>
-          <rect x="318" y="262" width="54" height="3" rx="1" fill="rgba(255,255,255,0.3)"/>
+          {/* bottom bar */}
+          <rect x="0" y="248" width="400" height="22" fill="rgba(200,196,192,0.02)"/>
+          <rect x="20" y="254" width="55" height="5" rx="2" fill="rgba(200,196,192,0.09)"/>
+          <rect x="83" y="254" width="35" height="5" rx="2" fill="rgba(200,196,192,0.05)"/>
+          <rect x="308" y="252" width="72" height="9" rx="4" fill="rgba(200,196,192,0.06)" stroke="rgba(200,196,192,0.1)" strokeWidth="1"/>
+          <rect x="316" y="255" width="56" height="3" rx="1" fill="rgba(200,196,192,0.25)"/>
         </g>
       </motion.g>
 
-      {/* ── Floating KPI badge — top right ── */}
-      <motion.g filter="url(#hd-shadow)" animate={{y:[0,-6,0]}} transition={{duration:4,repeat:Infinity,ease:'easeInOut',delay:0.8}}>
-        <g transform="translate(370,55)">
-          <rect width="120" height="60" rx="14" fill="rgba(22,22,22,0.95)" stroke="rgba(255,255,255,0.12)" strokeWidth="1"/>
-          <rect x="0" y="0" width="120" height="1" rx="1" fill="rgba(255,255,255,0.18)"/>
-          <circle cx="18" cy="20" r="6" fill="rgba(192,192,192,0.2)" stroke="rgba(192,192,192,0.4)" strokeWidth="1"/>
-          <text x="12" y="24" fontSize="8" fill="#C0C0C0" fontFamily="Inter,sans-serif" fontWeight="700">↑</text>
-          <rect x="30" y="14" width="50" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
-          <text x="14" y="44" fontSize="20" fontWeight="900" fill="#fff" fontFamily="Inter,sans-serif" letterSpacing="-1">+184%</text>
-          <text x="14" y="54" fontSize="7" fill="rgba(255,255,255,0.35)" fontFamily="Inter,sans-serif">Organic Traffic</text>
+      {/* ── Floating KPI badge — top right (3D box) ── */}
+      <motion.g filter="url(#d-badge-sh)" animate={{y:[0,-7,0]}} transition={{duration:4.2,repeat:Infinity,ease:'easeInOut',delay:0.7}}>
+        <g transform="translate(366,44)">
+          {/* 3D right side */}
+          <polygon points="118,0 126,8 126,70 118,62" fill="rgba(0,0,0,0.55)"/>
+          {/* 3D bottom */}
+          <polygon points="0,62 118,62 126,70 8,70" fill="rgba(0,0,0,0.45)"/>
+          {/* face */}
+          <rect width="118" height="62" rx="12" fill="url(#d-badge-face)"/>
+          <rect x="0" y="0" width="118" height="1.5" rx="1" fill="rgba(220,216,212,0.18)"/>
+          <rect x="0" y="0" width="1" height="62" rx="1" fill="rgba(220,216,212,0.07)"/>
+          {/* icon circle */}
+          <circle cx="18" cy="18" r="7" fill="rgba(176,172,168,0.12)" stroke="rgba(176,172,168,0.35)" strokeWidth="1"/>
+          <text x="14.5" y="22" fontSize="8" fill="rgba(176,172,168,0.85)" fontFamily="Inter,sans-serif" fontWeight="800">↑</text>
+          {/* value */}
+          <text x="12" y="44" fontSize="19" fontWeight="900" fill="rgba(220,216,212,0.92)" fontFamily="Inter,sans-serif" letterSpacing="-1">+184%</text>
+          <text x="12" y="56" fontSize="7" fill="rgba(176,172,168,0.35)" fontFamily="Inter,sans-serif">Organic Traffic</text>
         </g>
       </motion.g>
 
-      {/* ── Floating mini-card — bottom left ── */}
-      <motion.g filter="url(#hd-shadow)" animate={{y:[0,-5,0]}} transition={{duration:5.5,repeat:Infinity,ease:'easeInOut',delay:1.2}}>
-        <g transform="translate(14,290)">
-          <rect width="110" height="56" rx="14" fill="rgba(22,22,22,0.95)" stroke="rgba(255,255,255,0.10)" strokeWidth="1"/>
-          <rect x="0" y="0" width="110" height="1" rx="1" fill="rgba(255,255,255,0.15)"/>
-          <text x="12" y="24" fontSize="7" fill="rgba(255,255,255,0.35)" fontFamily="Inter,sans-serif">Avg. ROAS</text>
-          <text x="12" y="44" fontSize="22" fontWeight="900" fill="#D9D9D9" fontFamily="Inter,sans-serif" letterSpacing="-1">4.8x</text>
-          {/* mini sparkline */}
-          <polyline points="68,38 76,30 84,33 92,22 100,18" fill="none" stroke="rgba(192,192,192,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
+      {/* ── Floating ROAS badge — bottom left (3D box) ── */}
+      <motion.g filter="url(#d-badge-sh)" animate={{y:[0,-6,0]}} transition={{duration:5.5,repeat:Infinity,ease:'easeInOut',delay:1.3}}>
+        <g transform="translate(6,276)">
+          {/* 3D right side */}
+          <polygon points="108,0 116,8 116,66 108,58" fill="rgba(0,0,0,0.5)"/>
+          {/* 3D bottom */}
+          <polygon points="0,58 108,58 116,66 8,66" fill="rgba(0,0,0,0.4)"/>
+          {/* face */}
+          <rect width="108" height="58" rx="12" fill="url(#d-badge-face)"/>
+          <rect x="0" y="0" width="108" height="1.5" rx="1" fill="rgba(220,216,212,0.15)"/>
+          <rect x="0" y="0" width="1" height="58" rx="1" fill="rgba(220,216,212,0.06)"/>
+          <text x="12" y="20" fontSize="7" fill="rgba(176,172,168,0.32)" fontFamily="Inter,sans-serif">Avg. ROAS</text>
+          <text x="12" y="44" fontSize="22" fontWeight="900" fill="rgba(210,206,202,0.88)" fontFamily="Inter,sans-serif" letterSpacing="-1">4.8x</text>
+          {/* sparkline */}
+          <polyline points="66,40 74,32 82,35 90,24 98,18" fill="none" stroke="rgba(160,156,152,0.55)" strokeWidth="1.5" strokeLinecap="round"/>
+          <circle cx="98" cy="18" r="2.5" fill="rgba(176,172,168,0.75)"/>
         </g>
       </motion.g>
 
-      {/* ── Small floating glass orb ── */}
-      <motion.g animate={{y:[0,-10,0],rotate:[0,5,0]}} transition={{duration:7,repeat:Infinity,ease:'easeInOut',delay:2}}>
-        <circle cx="470" cy="300" r="18" fill="url(#hd-glass)" stroke="rgba(255,255,255,0.12)" strokeWidth="1"/>
-        <ellipse cx="464" cy="294" rx="6" ry="4" fill="rgba(255,255,255,0.15)" transform="rotate(-25,464,294)"/>
+      {/* ── Small floating glass orb — bottom right ── */}
+      <motion.g animate={{y:[0,-11,0]}} transition={{duration:7,repeat:Infinity,ease:'easeInOut',delay:2}}>
+        {/* orb shadow */}
+        <ellipse cx="468" cy="316" rx="16" ry="4" fill="rgba(0,0,0,0.22)"/>
+        <circle cx="466" cy="298" r="19" fill="url(#d-glass)" stroke="rgba(200,196,192,0.12)" strokeWidth="1"/>
+        <ellipse cx="459" cy="291" rx="7" ry="4.5" fill="rgba(255,255,255,0.15)" transform="rotate(-25,459,291)"/>
+        <circle cx="466" cy="298" r="19" stroke="url(#d-ring)" strokeWidth="0.7" fill="none"/>
       </motion.g>
     </svg>
   )
@@ -236,8 +270,8 @@ export default function Hero() {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [3, -3]), { stiffness: 80, damping: 20 })
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-3, 3]), { stiffness: 80, damping: 20 })
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), { stiffness: 80, damping: 20 })
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-4, 4]), { stiffness: 80, damping: 20 })
 
   const handleMouseMove = (e) => {
     const rect = visualRef.current?.getBoundingClientRect()
@@ -253,11 +287,15 @@ export default function Hero() {
       <div className="hero__noise" />
       <HeroParticles />
 
+      <svg className="hero__mountains" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,320 L0,180 C80,150 200,90 340,70 C460,52 520,130 660,110 C780,92 880,30 1020,20 C1140,10 1260,80 1440,60 L1440,320 Z" fill="rgba(255,255,255,0.03)"/>
+        <path d="M0,320 L0,220 C120,200 240,150 380,130 C500,112 560,180 700,165 C820,150 940,90 1080,75 C1200,62 1320,120 1440,105 L1440,320 Z" fill="rgba(255,255,255,0.05)"/>
+        <path d="M0,320 L0,265 C100,250 220,210 360,192 C480,176 560,235 700,220 C820,206 960,160 1100,148 C1220,138 1340,185 1440,172 L1440,320 Z" fill="rgba(255,255,255,0.07)"/>
+        <path d="M0,265 C100,250 220,210 360,192 C480,176 560,235 700,220 C820,206 960,160 1100,148 C1220,138 1340,185 1440,172" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="1.5"/>
+      </svg>
+
       <div className="container hero__inner">
-
-        {/* ── LEFT CONTENT ── */}
         <div className="hero__content">
-
           <motion.div className="hero__badge-pill" {...fadeUp(0)}>
             <span className="hero__badge-dot" />
             <span>Growth-Focused Digital Agency</span>
@@ -283,7 +321,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT VISUAL — Premium 3D Dashboard ── */}
         <motion.div
           className="hero__visual"
           ref={visualRef}
@@ -304,7 +341,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Bottom wave */}
       <div className="hero__wave">
         <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--bg)" />

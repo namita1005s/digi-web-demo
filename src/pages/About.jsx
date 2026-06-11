@@ -21,10 +21,18 @@ const STATS = [
 ]
 
 const WHY = [
-  { title: 'Outcome-led',      body: 'Every decision traces back to a number that matters to your business.'   },
-  { title: 'Radical honesty',  body: "We tell you what won't work as clearly as what will."                    },
-  { title: 'No bloat',         body: 'The people who pitch you are the people who execute for you.'            },
-  { title: 'Always iterating', body: "We don't set-and-forget. We optimise until the numbers stop improving."  },
+  {
+    title: "Save Money",
+    body: "We create solutions that reduce unnecessary costs and improve ROI."
+  },
+  {
+    title: "Save Time",
+    body: "Faster execution means quicker results for your business."
+  },
+  {
+    title: "Solutions",
+    body: "Custom digital strategies tailored to your growth goals."
+  }
 ]
 
 function Counter({ target }) {
@@ -132,26 +140,43 @@ export default function About() {
       <Process />
 
       {/* 5 · WHY CHOOSE US */}
-      <section className="ap-why">
-        <div className="container">
-          <motion.div className="ap-why__head" {...up(0)}>
-            <span className="ap-tag">Why Choose Trendox</span>
-            <h2 className="ap-h2">What makes us<br /><em>different.</em></h2>
-          </motion.div>
-          <div className="ap-why__grid">
-            {WHY.map((w, i) => (
-              <motion.div key={w.title} className="ap-why__card" {...up(i * 0.07)}>
-                <span className="ap-why__num">{String(i + 1).padStart(2, '0')}</span>
-                <h3>{w.title}</h3>
-                <p>{w.body}</p>
+      <section className="why-section">
+         <div className="why-heading">
+      <span className="why-tag">Why Choose Us</span>
+      <h2 className="why-title">We don't just deliver — <em>we transform.</em></h2>
+      <p className="why-subtitle">Here's why brands trust us with their growth</p>
+    </div>
+        <div className="container why-section__inner">
+          <div className="why-left">
+            <img 
+              src="/WhyUs.png" 
+              alt="Why Us" 
+            />
+          </div>
+          <div className="why-right">
+            {WHY.map((item, index) => (
+              <motion.div
+                key={item.title}
+                className="why-step"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.2,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                <div className="why-step__dot" />
+                <div className="why-step__content">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* 7 · CTA */}
-      <CTA />
     </div>
   )
 }

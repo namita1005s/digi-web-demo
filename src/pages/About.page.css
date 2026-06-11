@@ -603,27 +603,18 @@
   gap: clamp(40px, 6vw, 88px);
   align-items: center;
 }
+
 .ap-who__img-wrap {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  flex-shrink: 0;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+  width: 100%;
 }
+
 .ap-who__img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
   display: block;
-  transition: transform 0.7s ease;
 }
-.ap-who__img-wrap:hover .ap-who__img { transform: scale(1.04); }
-.ap-who__body {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
+
+
+
 .ap-who__body .ap-tag { margin-bottom: 16px; }
 .ap-who__body .ap-h2 { margin-bottom: 20px; }
 .ap-who__body p {

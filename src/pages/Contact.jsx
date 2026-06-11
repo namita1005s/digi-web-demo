@@ -188,7 +188,7 @@ export default function Contact() {
         }}
       >
         
-      </motion.div>
+      </motion.div> 
     </div>
 
     <motion.div
@@ -326,7 +326,7 @@ export default function Contact() {
           {/* Sidebar */}
           <motion.div className="cp-sidebar" {...up(0.12)}>
   <img
-    src="/ContactUs .png"
+    src="/public/ContactUs .png"
     alt="Marketing Agency"
     className="cp-sidebar__image"
   />

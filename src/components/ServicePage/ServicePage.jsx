@@ -244,7 +244,7 @@ export default function ServicePage({
           </div>
         </section>
       )}
-
+ 
       {/* ── 7. FAQ ── */}
       {faqs && (
         <section className="sp-faq section">

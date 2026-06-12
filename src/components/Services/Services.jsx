@@ -18,7 +18,7 @@ const SeoIllustration = () => (
       </linearGradient>
       <filter id="svc-sh"><feDropShadow dx="2" dy="6" stdDeviation="10" floodColor="#00000040"/></filter>
       <filter id="seo-inner-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#00000030"/></filter>
-    </defs>
+    </defs> 
     <rect width="400" height="260" fill="url(#svc-seo-bg)"/>
     {/* 3D podium — isometric box */}
     <polygon points="120,185 200,210 280,185 200,160" fill="#A8A49E"/>

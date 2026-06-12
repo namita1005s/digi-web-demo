@@ -7,7 +7,7 @@ const EcomSEOVisual = () => (
         <stop offset="0%" stopColor="#E2DDD8" />
         <stop offset="100%" stopColor="#D2CEC8" />
       </linearGradient>
-      <linearGradient id="es-card" x1="0" y1="0" x2="0" y2="1">
+      <linearGradient id="es-card" x1="0" y1="0" x2="0" y2="1"> 
         <stop offset="0%" stopColor="#F2EEEA" />
         <stop offset="100%" stopColor="#E6E2DC" />
       </linearGradient>

@@ -8,7 +8,7 @@ const DigitalMarketingVisual = () => (
     position: 'relative',
     borderRadius: '20px',
     overflow: 'hidden',
-    backgroundColor: '#000',
+    backgroundColor: '#000', 
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

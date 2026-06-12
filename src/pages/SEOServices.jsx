@@ -14,7 +14,7 @@ const SEOVisual = () => (
     <video 
       autoPlay 
       loop 
-      muted 
+      muted  
       playsInline
       style={{
         width: '100%',

@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <div className="home">
 
-      {/* ── Hero ── wave bleeds to var(--bg) */}
+      {/* ── Hero ── wave bleeds to var(--bg) */} 
       <div className="home__hero-wrap">
         <Hero />
         <ParallaxAccent className="home__accent--hero-ring" speed={0.2} />

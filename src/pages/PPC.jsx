@@ -13,7 +13,7 @@ const PPCVisual = () => (
     justifyContent: 'center',
   }}>
     <img 
-      src="/public/PPCimage.png" 
+      src="/public/PPCimage.png"  
       alt="PPC Advertising Dashboard"
       style={{
         width: '100%',

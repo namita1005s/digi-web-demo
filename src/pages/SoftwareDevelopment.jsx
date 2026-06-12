@@ -14,7 +14,7 @@ const SoftwareDevVisual = () => (
       <linearGradient id="sd-dark" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stopColor="#30384A" />
         <stop offset="100%" stopColor="#20283A" />
-      </linearGradient>
+      </linearGradient> 
       <filter id="sd-shadow"><feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#00000022" /></filter>
     </defs>
     <rect width="480" height="360" fill="url(#sd-bg)" />

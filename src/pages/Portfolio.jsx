@@ -45,7 +45,7 @@ const cases = [
     desc: 'Technical SEO overhaul and content strategy that tripled search visibility in 4 months.',
     services: ['SEO', 'Content Strategy', 'Link Building'],
     glow: 'rgba(99,153,255,0.55)',
-    grad: 'linear-gradient(90deg,#4f8bff,#a78bfa)',
+    grad: 'linear-gradient(90deg,#4f8bff,#a78bfa)', 
     tagColor: 'rgba(167,139,250,0.85)',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
   },

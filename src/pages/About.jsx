@@ -255,14 +255,7 @@ export default function About() {
         </div>
         <div className="container why-section__inner">
           <div className="why-left">
-<<<<<<< HEAD
             <img src="/public/WhyUs.png" alt="Why Us" />
-=======
-            <img 
-              src="/public/WhyUs (1).png" 
-              alt="Why Us" 
-            />
->>>>>>> e606f52172731df750e4a3615066d9a18840dea1
           </div>
           <div className="why-right">
             {WHY.map((item, index) => (

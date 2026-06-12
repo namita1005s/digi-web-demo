@@ -5,17 +5,15 @@ import Testimonials from '../components/Testimonials/Testimonials'
 import './pages.css'
 import './Portfolio.css'
 
-<<<<<<< HEAD
-=======
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
   transition: { duration: 0.5, delay, ease: 'easeOut' },
 })
-<<<<<<< HEAD
 
->>>>>>> e606f52172731df750e4a3615066d9a18840dea1
+
 const handleMouseMove = (e, cardRef) => {
   const r = cardRef.getBoundingClientRect()
   const x = (e.clientX - r.left) / r.width
@@ -40,9 +38,6 @@ const handleMouseLeave = (cardRef) => {
   if (img) img.style.transform = 'scale(1) translate(0px, 0px)'
 }
 
-=======
- 
->>>>>>> f2fa60646d9d4f78a4a944626642ec4151eddc84
 const cases = [
   {
     tag: 'SEO Campaign', client: 'Nexora Tech', industry: 'SaaS',

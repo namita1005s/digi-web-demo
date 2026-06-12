@@ -113,7 +113,7 @@ export default function Career() {
                 <p>{w.body}</p>
               </motion.div>
             ))}
-          </div>
+          </div> 
         </div>
       </section>
 

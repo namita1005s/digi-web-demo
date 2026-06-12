@@ -1,8 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import CTA from '../components/CTA/CTA'
-import Process from '../components/Process/Process'
 import './About.page.css'
 
 const vp = { once: true, margin: '-30px' }
@@ -20,19 +18,48 @@ const STATS = [
   { val: '60+',  label: 'Brands Scaled',       sub: 'Seed to Series B'    },
 ]
 
+const TEAM = [
+  {
+    name: "Aria Mehta",
+    role: "Head of Strategy & Growth",
+    bio: "Turns complex goals into clear marketing plans. Bridges creative ideas with measurable results.",
+    img: "/public/Avtar3.png",
+    color: "#e8e0f7"
+  },
+  {
+    name: "Jaxon Cruz",
+    role: "Senior SEO & Content Specialist",
+    bio: "Makes sure your business gets found naturally. Optimizes content that helps and ranks.",
+    img: "/public/Avtar2.png",
+    color: "#dff0e8"
+  },
+  {
+    name: "Maya Kapoor",
+    role: "Creative Director",
+    bio: "Gives brands a voice people remember. Crafts words that connect, convince, and convert.",
+    img: "/public/Avtar4.png",
+    color: "#fde8e8"
+  },
+  {
+    name: "Eli Torres",
+    role: "Paid Media & PPC Manager",
+    bio: "Turns ad spend into real leads. Never wastes money on campaigns that don't perform.",
+    img: "/public/Avtar1.png",
+    color: "#fef3dc"
+  },
+  {
+    name: "Zara Lin",
+    role: "Data & Analytics Lead",
+    bio: "Makes data easy to understand. Flags what's working and what's not without the guesswork.",
+    img: "/public/Avtar5.png",
+    color: "#ddeeff"
+  },
+]
+
 const WHY = [
-  {
-    title: "Save Money",
-    body: "We create solutions that reduce unnecessary costs and improve ROI."
-  },
-  {
-    title: "Save Time",
-    body: "Faster execution means quicker results for your business."
-  },
-  {
-    title: "Solutions",
-    body: "Custom digital strategies tailored to your growth goals."
-  }
+  { title: "Save Money", body: "We create solutions that reduce unnecessary costs and improve ROI." },
+  { title: "Save Time",  body: "Faster execution means quicker results for your business." },
+  { title: "Solutions",  body: "Custom digital strategies tailored to your growth goals." },
 ]
 
 function Counter({ target }) {
@@ -65,233 +92,83 @@ function Counter({ target }) {
   return <span ref={ref}>{val}</span>
 }
 
-function AboutVisual() {
-  const visualRef = useRef(null)
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [3, -3]), { stiffness: 80, damping: 20 })
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-3, 3]), { stiffness: 80, damping: 20 })
-
-  const handleMouseMove = (e) => {
-    const rect = visualRef.current?.getBoundingClientRect()
-    if (!rect) return
-    mouseX.set((e.clientX - rect.left) / rect.width - 0.5)
-    mouseY.set((e.clientY - rect.top) / rect.height - 0.5)
-  }
-
-  return (
-   <motion.div
-      className="ap-hero__visual"
-      ref={visualRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => { mouseX.set(0); mouseY.set(0) }}
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-      style={{ perspective: 1200 }}
-    >
-      <motion.div className="ap-3d-wrap" style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}>
-        <div className="ap-hero__orb" />
-
-        {/* Team / office scene card */}
-        <div className="ap-card">
-          {/* card header */}
-          <div className="ap-card__header">
-            <div className="ap-card__header-left">
-              <span className="ap-card__dot" />
-              <span className="ap-card__title">Trendox Team</span>
-            </div>
-            <span className="ap-card__badge">Est. 2019</span>
-          </div>
-
-          {/* SVG — same visual language as "Who We Are" section but dark-themed */}
-          <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg"
-            style={{ width: '100%', display: 'block', borderRadius: 10 }}>
-
-            {/* --- isometric desk --- */}
-            {/* desk top face */}
-            <polygon points="60,168 220,210 380,168 220,126" fill="rgba(180,175,165,0.18)" />
-            {/* desk front face */}
-            <polygon points="60,168 60,196 220,238 220,210" fill="rgba(140,135,125,0.14)" />
-            {/* desk right face */}
-            <polygon points="380,168 380,196 220,238 220,210" fill="rgba(160,155,145,0.16)" />
-
-            {/* --- monitor --- */}
-            {/* monitor left side */}
-            <polygon points="196,80 196,158 228,168 228,90" fill="rgba(120,130,150,0.30)" />
-            {/* monitor right side */}
-            <polygon points="228,90 228,168 260,158 260,80" fill="rgba(140,150,170,0.30)" />
-            {/* monitor top */}
-            <polygon points="196,80 228,90 260,80 228,70" fill="rgba(160,170,190,0.35)" />
-            {/* screen */}
-            <rect x="202" y="88" width="50" height="62" rx="2" fill="rgba(20,26,40,0.85)" />
-            {/* screen chrome bar */}
-            <rect x="202" y="88" width="50" height="10" rx="2" fill="rgba(14,18,30,0.90)" />
-            {/* screen content lines */}
-            <rect x="207" y="104" width="28" height="4" rx="1" fill="rgba(100,120,160,0.7)" />
-            <rect x="207" y="112" width="38" height="3" rx="1" fill="rgba(80,100,140,0.5)" />
-            <rect x="207" y="119" width="30" height="3" rx="1" fill="rgba(80,100,140,0.4)" />
-            {/* screen CTA button */}
-            <rect x="207" y="128" width="22" height="8" rx="3" fill="rgba(100,120,160,0.55)" />
-            {/* monitor stand */}
-            <rect x="221" y="168" width="14" height="10" rx="1" fill="rgba(140,135,125,0.25)" />
-            <rect x="214" y="177" width="28" height="4" rx="2" fill="rgba(140,135,125,0.20)" />
-
-            {/* --- keyboard --- */}
-            <polygon points="188,172 188,182 248,192 248,182" fill="rgba(160,155,145,0.22)" />
-            <polygon points="248,182 248,192 270,184 270,174" fill="rgba(180,175,165,0.18)" />
-            <polygon points="188,172 248,182 270,174 210,164" fill="rgba(200,195,185,0.20)" />
-
-            {/* --- book stack left --- */}
-            {[0,1,2].map(i => (
-              <g key={i}>
-                <polygon
-                  points={`84,${174-i*10} 84,${184-i*10} 148,${198-i*10} 148,${188-i*10}`}
-                  fill={['rgba(120,115,108,0.28)','rgba(140,135,128,0.24)','rgba(160,155,148,0.20)'][i]} />
-                <polygon
-                  points={`148,${188-i*10} 148,${198-i*10} 162,${192-i*10} 162,${182-i*10}`}
-                  fill={['rgba(100,95,88,0.22)','rgba(120,115,108,0.18)','rgba(140,135,128,0.14)'][i]} />
-                <polygon
-                  points={`84,${174-i*10} 148,${188-i*10} 162,${182-i*10} 98,${168-i*10}`}
-                  fill={['rgba(180,175,165,0.20)','rgba(200,195,185,0.18)','rgba(220,215,205,0.16)'][i]} />
-              </g>
-            ))}
-
-            {/* --- team figures (abstract silhouettes) --- */}
-            {[
-              { cx: 100, cy: 120 },
-              { cx: 156, cy: 104 },
-              { cx: 290, cy: 104 },
-              { cx: 346, cy: 120 },
-            ].map(({ cx, cy }, i) => (
-              <g key={i} opacity={0.55 + i * 0.05}>
-                {/* head */}
-                <circle cx={cx} cy={cy - 14} r="11" fill="rgba(200,195,185,0.35)" />
-                {/* body */}
-                <path
-                  d={`M${cx-10},${cy} Q${cx},${cy-4} ${cx+10},${cy} L${cx+14},${cy+38} L${cx-14},${cy+38} Z`}
-                  fill="rgba(180,175,165,0.28)"
-                />
-              </g>
-            ))}
-
-            {/* --- coffee cup right of desk --- */}
-            <ellipse cx="338" cy="164" rx="10" ry="4" fill="rgba(160,155,145,0.22)" />
-            <rect x="328" y="148" width="20" height="16" rx="3" fill="rgba(140,135,125,0.28)" />
-            <path d="M348,152 Q356,156 348,160" stroke="rgba(160,155,145,0.30)" strokeWidth="2" fill="none" />
-            {/* steam */}
-            <path d="M333,146 Q331,140 333,134" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M338,145 Q336,138 338,132" stroke="rgba(255,255,255,0.10)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M343,146 Q341,140 343,134" stroke="rgba(255,255,255,0.08)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-
-            {/* --- plant pot right corner --- */}
-            <polygon points="356,142 344,142 348,168 360,168" fill="rgba(120,115,108,0.30)" />
-            <ellipse cx="352" cy="142" rx="8" ry="4" fill="rgba(140,135,128,0.25)" />
-            {/* leaves */}
-            <path d="M352,136 Q344,124 336,120 Q344,128 352,130" fill="rgba(80,110,80,0.35)" />
-            <path d="M352,134 Q360,122 370,118 Q362,126 352,130" fill="rgba(70,100,70,0.30)" />
-            <path d="M352,132 Q350,118 352,110 Q354,118 352,130" fill="rgba(90,120,90,0.28)" />
-          </svg>
-
-          {/* bottom metric strip */}
-          <div className="ap-card__footer">
-            {[{ val: '60+', lbl: 'Brands' }, { val: '15+', lbl: 'Specialists' }, { val: '5 yrs', lbl: 'Experience' }].map(m => (
-              <div key={m.lbl} className="ap-card__metric">
-                <span className="ap-card__metric-val">{m.val}</span>
-                <span className="ap-card__metric-lbl">{m.lbl}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Floating badges */}
-        <motion.div className="ap-hero__stat-badge ap-badge--tl"
-          initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-        >
-          <span className="ap-hero__stat-icon">★</span>
-          <div>
-            <div className="ap-hero__stat-value">93%</div>
-            <div className="ap-hero__stat-label">Client Retention</div>
-          </div>
-        </motion.div>
-
-        <motion.div className="ap-hero__stat-badge ap-badge--br"
-          initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 1.1 }}
-        >
-          <span className="ap-hero__stat-icon">↑</span>
-          <div>
-            <div className="ap-hero__stat-value">4.2×</div>
-            <div className="ap-hero__stat-label">Avg. ROAS</div>
-          </div>
-        </motion.div>
-      </motion.div>
-    </motion.div>  
-  )
-}
-
 export default function About() {
+  const trackRef = useRef(null)
+
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    const handleMove = (e) => {
+      const card = e.target.closest('.ap-team__card')
+      if (!card) return
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 12
+      const rotateX = -((y - rect.height / 2) / (rect.height / 2)) * 12
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`
+    }
+
+    const handleLeave = (e) => {
+      const card = e.target.closest('.ap-team__card')
+      if (!card) return
+      card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)'
+    }
+
+    track.addEventListener('mousemove', handleMove)
+    track.addEventListener('mouseleave', handleLeave, true)
+    return () => {
+      track.removeEventListener('mousemove', handleMove)
+      track.removeEventListener('mouseleave', handleLeave, true)
+    }
+  }, [])
+
   return (
     <div className="ap">
 
       {/* 1 · HERO */}
       <section className="ap-hero">
-        <div className="ap-hero__bg" />
-        <div className="ap-hero__bloom" />
         <div className="ap-hero__noise" />
+        <div className="ap-hero__inner">
+          <motion.div
+            className="ap-hero__pill"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="ap-hero__pill-dot" />
+            <span>Growth-Focused Digital Agency</span>
+          </motion.div>
 
-        {/* Mountain waves — same as Home hero */}
-        <svg className="ap-hero__mountains" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,320 L0,180 C80,150 200,90 340,70 C460,52 520,130 660,110 C780,92 880,30 1020,20 C1140,10 1260,80 1440,60 L1440,320 Z" fill="rgba(255,255,255,0.03)" />
-          <path d="M0,180 C80,150 200,90 340,70 C460,52 520,130 660,110 C780,92 880,30 1020,20 C1140,10 1260,80 1440,60" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-          <path d="M0,320 L0,220 C120,200 240,150 380,130 C500,112 560,180 700,165 C820,150 940,90 1080,75 C1200,62 1320,120 1440,105 L1440,320 Z" fill="rgba(255,255,255,0.05)" />
-          <path d="M0,220 C120,200 240,150 380,130 C500,112 560,180 700,165 C820,150 940,90 1080,75 C1200,62 1320,120 1440,105" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="1" />
-          <path d="M0,320 L0,265 C100,250 220,210 360,192 C480,176 560,235 700,220 C820,206 960,160 1100,148 C1220,138 1340,185 1440,172 L1440,320 Z" fill="rgba(255,255,255,0.07)" />
-          <path d="M0,265 C100,250 220,210 360,192 C480,176 560,235 700,220 C820,206 960,160 1100,148 C1220,138 1340,185 1440,172" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
-        </svg>
+          <motion.h1
+            className="ap-hero__h1"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            We don't run ads.
+          </motion.h1>
 
-        <div className="container ap-hero__inner">
+          <p className="ap-hero__h1-em">We build growth engines.</p>
 
-          {/* LEFT */}
-          <div className="ap-hero__content">
-            <motion.div className="ap-hero__pill" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:0.65,delay:0,ease:[0.22,1,0.36,1]}}>
-              <span className="ap-hero__pill-dot" />
-              <span>Growth-Focused Digital Agency</span>
-            </motion.div>
-
-            <motion.h1 className="ap-hero__h1" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:0.65,delay:0.1,ease:[0.22,1,0.36,1]}}>
-              We don't run ads.<br />
-              <span className="ap-hero__title-em">We build growth</span><br />
-              engines.
-            </motion.h1>
-
-            <motion.p className="ap-hero__subtitle" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:0.65,delay:0.2,ease:[0.22,1,0.36,1]}}>
-              Trendox is a performance-led digital agency. We work with ambitious brands — from seed-stage startups to established companies — and treat your revenue as our own.
-            </motion.p>
-
-            <motion.div className="ap-hero__actions" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:0.65,delay:0.3,ease:[0.22,1,0.36,1]}}>
-              <Link to="/contact" className="ap-hero__btn-primary">
-                Start a Project <span className="ap-hero__btn-arrow">→</span>
-              </Link>
-              <Link to="/services" className="ap-hero__btn-outline">Our Services</Link>
-            </motion.div>
-
-            <motion.div className="ap-hero__trust" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:0.65,delay:0.42,ease:[0.22,1,0.36,1]}}>
-              {['Est. 2019', '15 Specialists', '60+ Brands Scaled'].map(t => (
-                <div key={t} className="ap-hero__trust-item">
-                  <span className="ap-hero__trust-check">✓</span>
-                  <span>{t}</span>
-                </div>
-              ))}
-            </motion.div>
+          <div className="ap-hero__banner">
+            <img src="/public/Banner.png" alt="Trendox Team" className="ap-hero__banner-img" />
           </div>
 
-          {/* RIGHT — interactive 3D visual */}
-          <AboutVisual />
+          <div className="ap-hero__divider" />
+
+          <motion.p
+            className="ap-hero__subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Trendox is a performance-led digital agency. We work with ambitious brands — from
+            seed-stage startups to established companies — and treat your revenue as our own.
+          </motion.p>
         </div>
 
-        {/* Bottom wave */}
         <div className="ap-hero__wave">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--bg)" />
@@ -316,12 +193,8 @@ export default function About() {
       <section className="ap-who">
         <div className="container ap-who__layout">
           <motion.div className="ap-who__img-wrap" {...up(0)}>
-  <img
-    src="/public/Teamup.png"
-    alt="About Us"
-    className="ap-who__img"
-  />
-</motion.div>
+            <img src="/public/Teamup.png" alt="About Us" className="ap-who__img" />
+          </motion.div>
           <motion.div className="ap-who__body" {...up(0.12)}>
             <span className="ap-tag">Who We Are</span>
             <h2 className="ap-h2">A team that treats<br /><em>your revenue</em> as ours.</h2>
@@ -338,22 +211,51 @@ export default function About() {
         </div>
       </section>
 
-      {/* 4 · PROCESS */}
-      <Process />
+      {/* 4 · TEAM CAROUSEL */}
+      <section className="ap-team">
+        <div className="ap-team__heading">
+          <span className="ap-tag">The People Behind It</span>
+          <h2 className="ap-h2">Meet our <em>team.</em></h2>
+        </div>
+        <div className="ap-team__track-wrap">
+          <div className="ap-team__track" ref={trackRef}>
+            {TEAM.map((member) => (
+              <div className="ap-team__card" key={member.name}>
+                <div className="ap-team__avatar" style={{ background: member.color }}>
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    className="ap-team__avatar-img"
+                    onError={(e) => {
+                      e.target.style.display = 'none'
+                      e.target.nextSibling.style.display = 'flex'
+                    }}
+                  />
+                  <span className="ap-team__initials">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
+                <div className="ap-team__info">
+                  <h3 className="ap-team__name">{member.name}</h3>
+                  <span className="ap-team__role">{member.role}</span>
+                  <p className="ap-team__bio">{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* 5 · WHY CHOOSE US */}
       <section className="why-section">
-         <div className="why-heading">
-      <span className="why-tag">Why Choose Us</span>
-      <h2 className="why-title">We don't just deliver — <em>we transform.</em></h2>
-      <p className="why-subtitle">Here's why brands trust us with their growth</p>
-    </div>
+        <div className="why-heading">
+          <span className="why-tag">Why Choose Us</span>
+          <h2 className="why-title">We don't just deliver — <em>we transform.</em></h2>
+          <p className="why-subtitle">Here's why brands trust us with their growth</p>
+        </div>
         <div className="container why-section__inner">
           <div className="why-left">
-            <img 
-              src="/public/WhyUs.png" 
-              alt="Why Us" 
-            />
+            <img src="/public/WhyUs.png" alt="Why Us" />
           </div>
           <div className="why-right">
             {WHY.map((item, index) => (
@@ -363,11 +265,7 @@ export default function About() {
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.2,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
+                transition={{ duration: 0.6, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="why-step__dot" />
                 <div className="why-step__content">
@@ -379,6 +277,7 @@ export default function About() {
           </div>
         </div>
       </section>
+
     </div>
   )
 }

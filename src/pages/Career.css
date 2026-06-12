@@ -7,7 +7,7 @@
 
 /* ── Shared ─────────────────────────────────────── */
 .cp-tag {
-  display: inline-flex;
+  display: inline-flex; 
   align-items: center;
   gap: 7px;
   font-size: 0.6rem;

@@ -5,85 +5,90 @@ import Testimonials from '../components/Testimonials/Testimonials'
 import './pages.css'
 import './Portfolio.css'
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5, delay, ease: 'easeOut' },
-})
-
 const handleMouseMove = (e, cardRef) => {
   const r = cardRef.getBoundingClientRect()
   const x = (e.clientX - r.left) / r.width
   const y = (e.clientY - r.top) / r.height
-  const rx = (y - 0.5) * -14
-  const ry = (x - 0.5) * 14
-  cardRef.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px) scale(1.02)`
+  const rx = (y - 0.5) * -16
+  const ry = (x - 0.5) * 16
+  cardRef.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(12px) scale(1.02)`
   const shine = cardRef.querySelector('.pf-card__shine')
   if (shine) {
     shine.style.setProperty('--mx', `${x * 100}%`)
     shine.style.setProperty('--my', `${y * 100}%`)
   }
+  const img = cardRef.querySelector('.pf-card__img')
+  if (img) {
+    img.style.transform = `scale(1.06) translate(${(x - 0.5) * -6}px, ${(y - 0.5) * -6}px)`
+  }
 }
 
 const handleMouseLeave = (cardRef) => {
-  cardRef.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0) scale(1)'
+  cardRef.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0) scale(1)'
+  const img = cardRef.querySelector('.pf-card__img')
+  if (img) img.style.transform = 'scale(1) translate(0px, 0px)'
 }
 
 const cases = [
   {
     tag: 'SEO Campaign', client: 'Nexora Tech', industry: 'SaaS',
-    result: '+180% Organic Traffic', metric: '180%', metricLabel: 'Traffic Growth',
+    result: '+180% Organic Traffic', metric: '+180%', metricLabel: 'Traffic Growth',
     desc: 'Technical SEO overhaul and content strategy that tripled search visibility in 4 months.',
     services: ['SEO', 'Content Strategy', 'Link Building'],
-    glow: 'rgba(99,153,255,0.6)',
+    glow: 'rgba(99,153,255,0.55)',
     grad: 'linear-gradient(90deg,#4f8bff,#a78bfa)',
-    tagColor: 'rgba(167,139,250,0.7)',
+    tagColor: 'rgba(167,139,250,0.85)',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
   },
   {
     tag: 'Website Redesign', client: 'Veltrix Solutions', industry: 'B2B Services',
-    result: '+60% Conversion Rate', metric: '60%', metricLabel: 'More Conversions',
+    result: '+60% Conversion Rate', metric: '+60%', metricLabel: 'More Conversions',
     desc: 'Full website transformation with UX-first design that dramatically improved lead quality.',
     services: ['Website Design', 'Web Development', 'CRO'],
-    glow: 'rgba(52,211,153,0.6)',
+    glow: 'rgba(52,211,153,0.55)',
     grad: 'linear-gradient(90deg,#34d399,#06b6d4)',
-    tagColor: 'rgba(52,211,153,0.7)',
+    tagColor: 'rgba(52,211,153,0.85)',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
   },
   {
     tag: 'PPC Advertising', client: 'Brandify Co.', industry: 'E-Commerce',
     result: '4.5x ROAS', metric: '4.5x', metricLabel: 'Return on Ad Spend',
     desc: 'Managed $20K/month ad budget across Google and Meta, achieving consistent 4.5x return.',
     services: ['Google Ads', 'Meta Ads', 'Analytics'],
-    glow: 'rgba(251,146,60,0.6)',
+    glow: 'rgba(251,146,60,0.55)',
     grad: 'linear-gradient(90deg,#fb923c,#f59e0b)',
-    tagColor: 'rgba(251,146,60,0.7)',
+    tagColor: 'rgba(251,146,60,0.85)',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80',
   },
   {
     tag: 'Social Media Marketing', client: 'Optica Retail', industry: 'Retail',
-    result: '+220% Engagement', metric: '220%', metricLabel: 'Engagement Lift',
+    result: '+220% Engagement', metric: '+220%', metricLabel: 'Engagement Lift',
     desc: 'Rebranded social presence with editorial content strategy that turned followers into buyers.',
     services: ['SMM', 'Content Creation', 'Influencer Outreach'],
-    glow: 'rgba(244,114,182,0.6)',
+    glow: 'rgba(244,114,182,0.55)',
     grad: 'linear-gradient(90deg,#f472b6,#c084fc)',
-    tagColor: 'rgba(244,114,182,0.7)',
+    tagColor: 'rgba(244,114,182,0.85)',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80',
   },
   {
     tag: 'Digital Marketing', client: 'FinEdge Capital', industry: 'Finance',
     result: '3.2x Lead Volume', metric: '3.2x', metricLabel: 'Lead Growth',
     desc: 'Full-funnel digital strategy combining SEO, PPC, and email nurture to scale qualified leads.',
     services: ['SEO', 'PPC', 'Email Marketing'],
-    glow: 'rgba(56,189,248,0.6)',
+    glow: 'rgba(56,189,248,0.55)',
     grad: 'linear-gradient(90deg,#38bdf8,#818cf8)',
-    tagColor: 'rgba(56,189,248,0.7)',
+    tagColor: 'rgba(56,189,248,0.85)',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80',
   },
   {
     tag: 'Web Development', client: 'Luminary Studios', industry: 'Creative Agency',
     result: '98 PageSpeed Score', metric: '98', metricLabel: 'PageSpeed Score',
     desc: 'Custom React build with headless CMS delivering sub-second load times and flawless UX.',
     services: ['Web Development', 'Performance', 'CMS Integration'],
-    glow: 'rgba(163,230,53,0.6)',
+    glow: 'rgba(163,230,53,0.55)',
     grad: 'linear-gradient(90deg,#a3e635,#34d399)',
-    tagColor: 'rgba(163,230,53,0.7)',
+    tagColor: 'rgba(163,230,53,0.85)',
+    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80',
   },
 ]
 
@@ -131,6 +136,7 @@ const pfFloatCards = [
 export default function Portfolio() {
   return (
     <>
+      {/* ── Hero ─────────────────────────────────────── */}
       <section className="ph">
         <div className="ph__bg-glow" />
         <div className="ph__noise" />
@@ -223,7 +229,8 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section className="section">
+      {/* ── Case Studies Grid ─────────────────────────── */}
+      <section className="section" id="cases">
         <div className="container">
           <div className="pf-grid">
             {cases.map((c, i) => (
@@ -237,32 +244,50 @@ export default function Portfolio() {
                 }}
                 onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
                 onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.07, ease: 'easeOut' }}
+                transition={{ duration: 0.55, delay: i * 0.08, ease: 'easeOut' }}
               >
+                {/* shine overlay */}
                 <div className="pf-card__shine" />
+
+                {/* ── Image visual panel ── */}
                 <div className="pf-card__visual">
-                  <div className="pf-card__metric-big">{c.metric}</div>
-                  <div className="pf-card__metric-label">{c.metricLabel}</div>
-                  <div className="pf-card__bars">
-                    {[40, 55, 45, 70, 58, 82, 68, 100].map((h, j) => (
-                      <motion.div
-                        key={j}
-                        className="pf-card__bar"
-                        style={{ height: `${h}%` }}
-                        initial={{ scaleY: 0 }}
-                        whileInView={{ scaleY: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.2 + j * 0.04 }}
-                      />
-                    ))}
+                  <img
+                    src={c.image}
+                    alt={c.client}
+                    className="pf-card__img"
+                    loading="lazy"
+                  />
+
+                  {/* gradient overlay */}
+                  <div className="pf-card__img-overlay" />
+
+                  {/* coloured glow blob */}
+                  <div className="pf-card__img-glow" />
+
+                  {/* metric chip — bottom-left */}
+                  <div className="pf-card__metric-chip">
+                    <motion.span
+                      className="pf-card__metric-big"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.45, delay: 0.25 + i * 0.06 }}
+                    >
+                      {c.metric}
+                    </motion.span>
+                    <span className="pf-card__metric-label">{c.metricLabel}</span>
                   </div>
+
+                  {/* tag pill — top-left */}
+                  <span className="pf-card__img-tag">{c.tag}</span>
                 </div>
+
+                {/* ── Card body (unchanged styles) ── */}
                 <div className="pf-card__body">
                   <div className="pf-card__meta">
-                    <span className="pf-card__tag">{c.tag}</span>
                     <span className="pf-card__industry">{c.industry}</span>
                   </div>
                   <h3 className="pf-card__client">{c.client}</h3>

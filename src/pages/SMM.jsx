@@ -1,126 +1,47 @@
 import ServicePage from '../components/ServicePage/ServicePage'
 
+// Video component for Social Media Marketing
 const SMMVisual = () => (
-  <svg viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block' }}>
-    <defs>
-      <linearGradient id="smm-bg" x1="0" y1="0" x2="480" y2="360" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#DDE0E8" />
-        <stop offset="100%" stopColor="#CBD0DC" />
-      </linearGradient>
-      <linearGradient id="smm-card" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#EEF0F5" />
-        <stop offset="100%" stopColor="#E2E5EE" />
-      </linearGradient>
-      <linearGradient id="smm-dark" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#42485A" />
-        <stop offset="100%" stopColor="#32384A" />
-      </linearGradient>
-      <filter id="smm-shadow">
-        <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#00000022" />
-      </filter>
-    </defs>
-    <rect width="480" height="360" fill="url(#smm-bg)" />
-
-    {/* ── 3D Isometric phone ── */}
-    {/* Phone body - left face */}
-    <polygon points="100,60 136,40 136,310 100,330" fill="#A8AEBA" />
-    {/* Phone body - right face */}
-    <polygon points="136,40 232,40 232,310 136,310" fill="url(#smm-card)" />
-    {/* Phone body - top face */}
-    <polygon points="100,60 136,40 232,40 196,60" fill="#C8CCD8" />
-    {/* Screen */}
-    <rect x="148" y="58" width="72" height="236" rx="2" fill="#2A3040" />
-    {/* Notch */}
-    <rect x="172" y="58" width="24" height="8" rx="4" fill="#1A2030" />
-
-    {/* Feed post 1 */}
-    <rect x="152" y="72" width="64" height="66" rx="3" fill="#3A4255" />
-    <circle cx="162" cy="82" r="6" fill="#5A6278" />
-    <rect x="172" y="78" width="34" height="4" rx="2" fill="#5A6278" />
-    <rect x="172" y="85" width="24" height="3" rx="1" fill="#4A5268" />
-    <rect x="152" y="94" width="64" height="32" rx="2" fill="#4A5268" />
-    <rect x="156" y="130" width="16" height="4" rx="2" fill="#4A5268" />
-    <rect x="178" y="130" width="16" height="4" rx="2" fill="#4A5268" />
-
-    {/* Feed post 2 */}
-    <rect x="152" y="144" width="64" height="66" rx="3" fill="#3A4255" />
-    <circle cx="162" cy="154" r="6" fill="#6A7288" />
-    <rect x="172" y="150" width="34" height="4" rx="2" fill="#5A6278" />
-    <rect x="172" y="157" width="24" height="3" rx="1" fill="#4A5268" />
-    <rect x="152" y="166" width="64" height="30" rx="2" fill="#5A6278" />
-    <rect x="156" y="202" width="16" height="4" rx="2" fill="#4A5268" />
-
-    {/* Feed post 3 */}
-    <rect x="152" y="216" width="64" height="50" rx="3" fill="#3A4255" />
-    <circle cx="162" cy="226" r="6" fill="#5A6888" />
-    <rect x="172" y="222" width="34" height="4" rx="2" fill="#5A6278" />
-    <rect x="152" y="234" width="64" height="22" rx="2" fill="#4A5870" />
-
-    {/* ── Floating analytics card ── */}
-    <g filter="url(#smm-shadow)" transform="translate(250,30)">
-      <rect width="200" height="110" rx="14" fill="url(#smm-card)" />
-      <polygon points="200,14 204,18 204,118 200,114" fill="#CDD0DA" />
-      <polygon points="14,110 18,114 204,114 200,110" fill="#C0C4CE" />
-      <rect x="16" y="14" width="80" height="6" rx="3" fill="#7A8090" />
-      <text x="152" y="30" fontSize="11" fill="#4A5068" fontFamily="Inter,sans-serif" fontWeight="800">+210%</text>
-      {/* sparkline */}
-      <polyline points="16,96 36,88 56,84 76,72 96,64 116,54 136,44 156,36 176,28 196,22"
-        stroke="#6A7088" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-      <polyline points="16,96 36,88 56,84 76,72 96,64 116,54 136,44 156,36 176,28 196,22 196,96"
-        fill="#6A7088" opacity="0.1" />
-    </g>
-
-    {/* ── Engagement card ── */}
-    <g filter="url(#smm-shadow)" transform="translate(250,155)">
-      <rect width="92" height="72" rx="12" fill="url(#smm-dark)" />
-      <polygon points="92,12 96,16 96,80 92,76" fill="#282E40" />
-      <polygon points="12,72 16,76 96,76 92,72" fill="#20263A" />
-      <rect x="12" y="12" width="50" height="5" rx="2" fill="#5A6078" />
-      <text x="12" y="50" fontSize="22" fontWeight="900" fill="#C8CCE0" fontFamily="Inter,sans-serif">3.8x</text>
-      <rect x="12" y="56" width="60" height="4" rx="2" fill="#4A5068" />
-    </g>
-
-    {/* ── Platform icons card ── */}
-    <g filter="url(#smm-shadow)" transform="translate(354,155)">
-      <rect width="96" height="72" rx="12" fill="url(#smm-dark)" />
-      <polygon points="96,12 100,16 100,80 96,76" fill="#282E40" />
-      <polygon points="12,72 16,76 100,76 96,72" fill="#20263A" />
-      <rect x="12" y="12" width="50" height="5" rx="2" fill="#5A6078" />
-      <text x="12" y="50" fontSize="22" fontWeight="900" fill="#C8CCE0" fontFamily="Inter,sans-serif">8+</text>
-      <rect x="12" y="56" width="60" height="4" rx="2" fill="#4A5068" />
-    </g>
-
-    {/* ── Platform row ── */}
-    <g filter="url(#smm-shadow)" transform="translate(250,242)">
-      <rect width="200" height="48" rx="12" fill="url(#smm-card)" />
-      <polygon points="200,12 204,16 204,56 200,52" fill="#CDD0DA" />
-      <polygon points="12,48 16,52 204,52 200,48" fill="#C0C4CE" />
-      <rect x="12" y="12" width="50" height="5" rx="2" fill="#8A8EA8" />
-      {['IG','FB','LI','TK','YT'].map((l,i)=>(
-        <g key={l}>
-          <circle cx={24+i*36} cy={34} r={12} fill="#D0D4E0" />
-          <text x={18+i*36} y={38} fontSize="7" fill="#5A6080"
-            fontFamily="Inter,sans-serif" fontWeight="700">{l}</text>
-        </g>
-      ))}
-    </g>
-  </svg>
+  <div style={{ 
+    width: '100%', 
+    height: '100%', 
+    position: 'relative',
+    borderRadius: '20px',
+    overflow: 'hidden',
+    backgroundColor: '#111',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    aspectRatio: '4/3',
+  }}>
+    <video 
+      autoPlay 
+      loop 
+      muted 
+      playsInline
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: 'center',
+        display: 'block',
+        borderRadius: '20px',
+      }}
+    >
+      <source src="/public/SMvideo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
 )
 
 export default function SMM() {
   return (
     <ServicePage
-      badge="Social Media Marketing"
       headline={<>Turn Followers Into<br /><em>Loyal Customers.</em></>}
       description="Strategic social media management that builds brand authority, grows engaged audiences, and converts attention into revenue."
       cta1={{ label: 'Start Growing →', to: '/contact' }}
       cta2={{ label: 'See Results', to: '/portfolio' }}
       heroVisual={<SMMVisual />}
-      heroMetrics={[
-        { icon: '📱', val: '+210%', label: 'Follower Growth' },
-        { icon: '💬', val: '3.8x', label: 'Engagement Lift' },
-        { icon: '🌐', val: '8+', label: 'Platforms Managed' },
-      ]}
       stats={[
         { val: '+210%', label: 'Avg. Follower Growth' },
         { val: '8+', label: 'Platforms Managed' },

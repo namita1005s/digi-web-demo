@@ -328,7 +328,7 @@ export default function Contact() {
   <img
     src="/public/ContactUs .png"
     alt="Marketing Agency"
-    className="cp-sidebar__image"
+    className="cp-sidebar__image" 
   />
 </motion.div>
 
